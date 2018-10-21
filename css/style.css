@@ -1,0 +1,10 @@
+:root
+{
+  box-sizing: border-box;
+  font-size: calc(0.5em + 1vw)
+}
+
+*, ::before, ::after
+{
+  box-sizing: inherit;
+}
