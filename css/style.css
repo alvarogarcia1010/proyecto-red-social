@@ -1,7 +1,7 @@
 :root
 {
   box-sizing: border-box;
-  /* font-size: calc(0.3em + 1vw) */
+  /* font-size: calc(0.3em + 1vw); */
 }
 
 *, ::before, ::after
@@ -11,4 +11,25 @@
 
 body {
   padding-top: 75px;
+  font-family: 'Cabin Condensed', sans-serif;
+}
+
+.text-inline{
+  display: inline-block;
+}
+
+.space-between{
+  display: flex;
+  justify-content: space-between;
+}
+
+.flex-center{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.flex-align-center{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
