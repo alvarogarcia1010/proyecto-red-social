@@ -33,3 +33,9 @@ body {
   flex-direction: column;
   justify-content: center;
 }
+
+.flex-end{
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
