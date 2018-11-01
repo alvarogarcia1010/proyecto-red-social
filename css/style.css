@@ -39,3 +39,17 @@ body {
   align-items: flex-start;
   justify-content: flex-end;
 }
+
+.text-small{
+  font-size: 0.9em;
+}
+
+@media (min-width: 992px) and (max-width: 1199px){
+  .text-lg-small{
+    font-size: 0.8em;
+  }
+
+  .text-small{
+    font-size: 0.8em;
+  }
+}
