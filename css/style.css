@@ -46,7 +46,11 @@ body {
 
 @media (min-width: 992px) and (max-width: 1199px){
   .text-lg-small{
-    font-size: 0.8em;
+    font-size: 0.75em;
+  }
+
+  .text-lg-small .btn{
+    font-size: 0.9em;
   }
 
   .text-small{
