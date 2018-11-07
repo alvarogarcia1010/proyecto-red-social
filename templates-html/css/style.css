@@ -44,6 +44,18 @@ body {
   font-size: 0.9em;
 }
 
+.icon{
+  position: relative;
+}
+
+.icon i{
+  position: absolute;
+  right: 0px;
+  top: 4px;
+  padding: 9px 8px;
+  color: green;
+}
+
 @media (min-width: 992px) and (max-width: 1199px){
   .text-lg-small{
     font-size: 0.75em;
@@ -55,5 +67,40 @@ body {
 
   .text-small{
     font-size: 0.8em;
+  }
+}
+
+.row1{
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 4px;
+}
+
+/* Create four equal columns that sits next to each other */
+.column1 {
+  flex: 33.3%;
+  max-width: 33.3%;
+  padding: 0 3px;
+}
+
+.column1 img {
+  margin-top: 8px;
+  vertical-align: middle;
+  width: 100%;
+}
+
+/* Responsive layout - makes a two column-layout instead of four columns */
+@media screen and (max-width: 800px) {
+  .column1 {
+    flex: 66.6%;
+    max-width: 66.6%;
+  }
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column1 {
+    flex: 100%;
+    max-width: 100%;
   }
 }
