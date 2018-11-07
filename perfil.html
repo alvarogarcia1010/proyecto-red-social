@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
-    <link rel="stylesheet" href="css/perfil.css">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
         crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Cabin+Condensed" rel="stylesheet">
@@ -63,9 +63,9 @@
         </div>
     </nav>
 
-    <div class="container-fluid">
+    <div class="container">
         <div class="row">
-            <div class="col-lg-3 bordered">
+            <div class="col-lg-3 px-2">
                 <!-- Mi Perfil -->
                 <div class="card mb-2">
                     <div class="card-body p-2">
@@ -86,23 +86,23 @@
                 </div>
                 <!-- Fin de mi perfil   -->
             </div>
-            <div class="col-lg-6 bordered">
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <div class="col-lg-6 px-2">
+                <ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
                     <li class="nav-item">
                         <a class="nav-link active" id="publication-tab" data-toggle="tab" href="#publication" role="tab"
-                            aria-controls="publication" aria-selected="true">Publicaciones</a>
+                            aria-controls="publication" style="color:green" aria-selected="true">Publicaciones</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="follower-tab" data-toggle="tab" href="#follower" role="tab"
-                            aria-controls="follower" aria-selected="false">Seguidores</a>
+                            aria-controls="follower" style="color:green" aria-selected="false">Seguidores</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="following-tab" data-toggle="tab" href="#following" role="tab"
-                            aria-controls="following" aria-selected="false">Siguiendo</a>
+                            aria-controls="following" style="color:green" aria-selected="false">Siguiendo</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="photo-tab" data-toggle="tab" href="#photo" role="tab" aria-controls="photo"
-                            aria-selected="false">Fotografías</a>
+                        <a class="nav-link" id="photo-tab" style="color:green" data-toggle="tab" href="#photo" role="tab"
+                            aria-controls="photo" aria-selected="false">Fotografías</a>
                     </li>
                 </ul>
                 <div class="tab-content" id="myTabContent">
@@ -110,7 +110,7 @@
                         <div class="card mb-2">
                             <div class="card-body">
                                 <form>
-                                    <div class="form-group">
+                                    <div class="form-group icon">
                                         <input type="email" class="form-control" id="exampleInputEmail1"
                                             aria-describedby="emailHelp" placeholder="Da a conocer a tu mascota">
                                         <i class="far fa-file-image"></i>
@@ -393,15 +393,20 @@
                     </div>
                     <div class="tab-pane fade" id="follower" role="tabpanel" aria-labelledby="follower-tab">
                         <div class="container">
+                            <form class="form px-5">
+                                <input class="form-control form-control-sm mr-sm-2 mb-3" type="search" placeholder="Buscar..."
+                                    aria-label="Search">
+                            </form>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="card text-center">
-                                        <a class="justify-content-center just" href="#">
-                                            <img class="card-img-top rounded-circle" style="width:100px" src="https://s.gravatar.com/avatar/31e81597c7a59321931c6a76324c13fd?s=100"
+                                        <a class="justify-content-center mt-2" href="#">
+                                            <img class="card-img-top rounded-circle" style="width:75px" src="https://s.gravatar.com/avatar/31e81597c7a59321931c6a76324c13fd?s=100"
                                                 alt="Card image">
                                         </a>
                                         <div class="card-body">
-                                            <h4 class="card-title">Daniel Alcoleas</h4>
+                                            <a href="#" class="card-title text-dark font-weight-bold">Daniel Alcoleas</a>
+                                            <h6 class="card-subtitle text-center mb-2 text-muted">@alcoleas96</h6>
                                             <p class="card-text">Some quick example text to build on the card title and
                                                 make up the bulk of the card's content.</p>
                                             <a href="#" class="btn btn-outline-success">Seguir</a>
@@ -409,12 +414,13 @@
                                     </div>
                                     <div>&nbsp</div>
                                     <div class="card text-center">
-                                        <a class="justify-content-center just" href="#">
-                                            <img class="card-img-top rounded-circle" style="width:100px" src="https://s.gravatar.com/avatar/31e81597c7a59321931c6a76324c13fd?s=100"
+                                        <a class="justify-content-center mt-2" href="#">
+                                            <img class="card-img-top rounded-circle" style="width:75px" src="https://s.gravatar.com/avatar/31e81597c7a59321931c6a76324c13fd?s=100"
                                                 alt="Card image">
                                         </a>
                                         <div class="card-body">
-                                            <h4 class="card-title">Daniel Alcoleas</h4>
+                                            <a href="#" class="card-title text-dark font-weight-bold">Daniel Alcoleas</a>
+                                            <h6 class="card-subtitle text-center mb-2 text-muted">@alcoleas96</h6>
                                             <p class="card-text">Some quick example text to build on the card title and
                                                 make up the bulk of the card's content.</p>
                                             <a href="#" class="btn btn-outline-success">Seguir</a>
@@ -423,12 +429,13 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="card text-center">
-                                        <a class="justify-content-center just" href="#">
-                                            <img class="card-img-top rounded-circle" style="width:100px" src="https://s.gravatar.com/avatar/31e81597c7a59321931c6a76324c13fd?s=100"
+                                        <a class="justify-content-center mt-2" href="#">
+                                            <img class="card-img-top rounded-circle" style="width:75px" src="https://s.gravatar.com/avatar/31e81597c7a59321931c6a76324c13fd?s=100"
                                                 alt="Card image">
                                         </a>
                                         <div class="card-body">
-                                            <h4 class="card-title">Daniel Alcoleas</h4>
+                                            <a href="#" class="card-title text-dark font-weight-bold">Daniel Alcoleas</a>
+                                            <h6 class="card-subtitle text-center mb-2 text-muted">@alcoleas96</h6>
                                             <p class="card-text">Some quick example text to build on the card title and
                                                 make up the bulk of the card's content.</p>
                                             <a href="#" class="btn btn-outline-success">Seguir</a>
@@ -436,12 +443,13 @@
                                     </div>
                                     <div>&nbsp</div>
                                     <div class="card text-center">
-                                        <a class="justify-content-center just" href="#">
-                                            <img class="card-img-top rounded-circle" style="width:100px" src="https://s.gravatar.com/avatar/31e81597c7a59321931c6a76324c13fd?s=100"
+                                        <a class="justify-content-center mt-2" href="#">
+                                            <img class="card-img-top rounded-circle" style="width:75px" src="https://s.gravatar.com/avatar/31e81597c7a59321931c6a76324c13fd?s=100"
                                                 alt="Card image">
                                         </a>
                                         <div class="card-body">
-                                            <h4 class="card-title">Daniel Alcoleas</h4>
+                                            <a href="#" class="card-title text-dark font-weight-bold">Daniel Alcoleas</a>
+                                            <h6 class="card-subtitle text-center mb-2 text-muted">@alcoleas96</h6>
                                             <p class="card-text">Some quick example text to build on the card title and
                                                 make up the bulk of the card's content.</p>
                                             <a href="#" class="btn btn-outline-success">Seguir</a>
@@ -453,58 +461,66 @@
                     </div>
                     <div class="tab-pane fade" id="following" role="tabpanel" aria-labelledby="following-tab">
                         <div class="container">
+                            <form class="form px-5">
+                                <input class="form-control form-control-sm mr-sm-2 mb-3" type="search" placeholder="Buscar..."
+                                    aria-label="Search">
+                            </form>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="card text-center">
-                                        <a class="justify-content-center just" href="#">
-                                            <img class="card-img-top rounded-circle" style="width:100px" src="https://s.gravatar.com/avatar/31e81597c7a59321931c6a76324c13fd?s=100"
+                                        <a class="justify-content-center mt-2" href="#">
+                                            <img class="card-img-top rounded-circle" style="width:75px" src="https://s.gravatar.com/avatar/31e81597c7a59321931c6a76324c13fd?s=100"
                                                 alt="Card image">
                                         </a>
                                         <div class="card-body">
-                                            <h4 class="card-title">Daniel Alcoleas</h4>
+                                            <a href="#" class="card-title text-dark font-weight-bold">Daniel Alcoleas</a>
+                                            <h6 class="card-subtitle text-center mb-2 text-muted">@alcoleas96</h6>
                                             <p class="card-text">Some quick example text to build on the card title and
                                                 make up the bulk of the card's content.</p>
-                                            <a href="#" class="btn btn-outline-success">Unfollow</a>
+                                            <a href="#" class="btn btn-success">Unfollow</a>
                                         </div>
                                     </div>
                                     <div>&nbsp</div>
                                     <div class="card text-center">
-                                        <a class="justify-content-center just" href="#">
-                                            <img class="card-img-top rounded-circle" style="width:100px" src="https://s.gravatar.com/avatar/31e81597c7a59321931c6a76324c13fd?s=100"
+                                        <a class="justify-content-center mt-2" href="#">
+                                            <img class="card-img-top rounded-circle" style="width:75px" src="https://s.gravatar.com/avatar/31e81597c7a59321931c6a76324c13fd?s=100"
                                                 alt="Card image">
                                         </a>
                                         <div class="card-body">
-                                            <h4 class="card-title">Daniel Alcoleas</h4>
+                                            <a href="#" class="card-title text-dark font-weight-bold">Daniel Alcoleas</a>
+                                            <h6 class="card-subtitle text-center mb-2 text-muted">@alcoleas96</h6>
                                             <p class="card-text">Some quick example text to build on the card title and
                                                 make up the bulk of the card's content.</p>
-                                            <a href="#" class="btn btn-outline-success">Unfollow</a>
+                                            <a href="#" class="btn btn-success">Unfollow</a>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="card text-center">
-                                        <a class="justify-content-center just" href="#">
-                                            <img class="card-img-top rounded-circle" style="width:100px" src="https://s.gravatar.com/avatar/31e81597c7a59321931c6a76324c13fd?s=100"
+                                        <a class="justify-content-center mt-2" href="#">
+                                            <img class="card-img-top rounded-circle" style="width:75px" src="https://s.gravatar.com/avatar/31e81597c7a59321931c6a76324c13fd?s=100"
                                                 alt="Card image">
                                         </a>
                                         <div class="card-body">
-                                            <h4 class="card-title">Daniel Alcoleas</h4>
+                                            <a href="#" class="card-title text-dark font-weight-bold">Daniel Alcoleas</a>
+                                            <h6 class="card-subtitle text-center mb-2 text-muted">@alcoleas96</h6>
                                             <p class="card-text">Some quick example text to build on the card title and
                                                 make up the bulk of the card's content.</p>
-                                            <a href="#" class="btn btn-outline-success">Unfollow</a>
+                                            <a href="#" class="btn btn-success">Unfollow</a>
                                         </div>
                                     </div>
                                     <div>&nbsp</div>
                                     <div class="card text-center">
-                                        <a class="justify-content-center just" href="#">
-                                            <img class="card-img-top rounded-circle" style="width:100px" src="https://s.gravatar.com/avatar/31e81597c7a59321931c6a76324c13fd?s=100"
+                                        <a class="justify-content-center mt-2" href="#">
+                                            <img class="card-img-top rounded-circle" style="width:75px" src="https://s.gravatar.com/avatar/31e81597c7a59321931c6a76324c13fd?s=100"
                                                 alt="Card image">
                                         </a>
                                         <div class="card-body">
-                                            <h4 class="card-title">Daniel Alcoleas</h4>
+                                            <a href="#" class="card-title text-dark font-weight-bold">Daniel Alcoleas</a>
+                                            <h6 class="card-subtitle text-center mb-2 text-muted">@alcoleas96</h6>
                                             <p class="card-text">Some quick example text to build on the card title and
                                                 make up the bulk of the card's content.</p>
-                                            <a href="#" class="btn btn-outline-success">Unfollow</a>
+                                            <a href="#" class="btn btn-success">Unfollow</a>
                                         </div>
                                     </div>
                                 </div>
@@ -513,23 +529,40 @@
                     </div>
                     <div class="tab-pane fade" id="photo" role="tabpanel" aria-labelledby="photo-tab">
                         <div class="container">
-                            <div class="row">
-                                <div class="col-lg-6 bordered text-center">
-                                    <img src="assets/img/huellita.png" alt="">
-                                    <img src="assets/img/dog.jpg" alt="">
-                                    <img src="assets/img/huellita.png" alt="">
+                            <div class="row1">
+                                <div class="column1">
+                                    <img src="assets/img/huellita.png">
+                                    <img src="assets/img/dog1.jpg">
+                                    <img src="assets/img/dog2.png">
+                                    <img src="assets/img/dog.jpg">
+                                    <img src="assets/img/huellita.png">
+                                    <img src="assets/img/dog1.jpg">
+                                    <img src="assets/img/huellita.png">
                                 </div>
-                                <div class="col-lg-6 bordered text-center">
-                                    <img src="assets/img/dog.jpg" alt="">
-                                    <img src="assets/img/huellita.png" alt="">
-                                    <img src="assets/img/dog.jpg" alt="">
+                                <div class="column1">
+                                    <img src="assets/img/dog.jpg">
+                                    <img src="assets/img/huellita.png">
+                                    <img src="assets/img/dog.jpg">
+                                    <img src="assets/img/huellita.png">
+                                    <img src="assets/img/dog1.jpg">
+                                    <img src="assets/img/dog2.png">
+                                    <img src="assets/img/huellita.png">
+                                </div>
+                                <div class="column1">
+                                    <img src="assets/img/huellita.png">
+                                    <img src="assets/img/dog1.jpg">
+                                    <img src="assets/img/huellita.png">
+                                    <img src="assets/img/dog.jpg">
+                                    <img src="assets/img/huellita.png">
+                                    <img src="assets/img/dog.jpg">
+                                    <img src="assets/img/huellita.png">
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 bordered">
+            <div class="col-lg-3 px-2">
                 <!-- Sugerencias -->
                 <div class="card mb-2">
                     <div class="card-header space-between px-2">
@@ -655,6 +688,7 @@
             crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
             crossorigin="anonymous"></script>
+
 </body>
 
 </html>
