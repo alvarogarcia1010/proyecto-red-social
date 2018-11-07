@@ -22,7 +22,7 @@ mongoose.connect('mongodb://localhost/crud-mongo', {
 
 //Setting
 app.engine('html', swig.renderFile);
-app.set('views', path.join(__dirname, '/views'));
+app.set('views', path.join(__dirname, '/Views'));
 app.set('view engine', 'html');
 
 app.set('view cache', true);
