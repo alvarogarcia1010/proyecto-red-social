@@ -1,0 +1,31 @@
+{
+  "name": "ayuda-un-peludo",
+  "version": "1.0.0",
+  "description": "Servidor para la red social ayudaunpeludo.com",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "serve": "nodemon ./bin/www"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alvarogarcia1010/ayuda-un-peludo.git"
+  },
+  "author": "Alvaro Francisco García",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alvarogarcia1010/ayuda-un-peludo/issues"
+  },
+  "homepage": "https://github.com/alvarogarcia1010/ayuda-un-peludo#readme",
+  "dependencies": {
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "express": "~4.16.0",
+    "mongoose": "^5.3.9",
+    "morgan": "~1.9.0",
+    "swig": "^1.4.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.5"
+  }
+}
