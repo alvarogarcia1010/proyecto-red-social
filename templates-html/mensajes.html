@@ -45,7 +45,7 @@
             </form>
         </div>
     </nav>
-    <h1>Ayuda un Peludo Mensajes [WIP]</h1>
+    <h1 class="pl-2">Ayuda un Peludo Mensajes [WIP]</h1>
 
     <div class="container-fluid">
         <div class="row ">
@@ -53,8 +53,10 @@
             <div class="col-md-4 mb-4">
                 <div class="card">
                     <div class="card-header bg-dark text-white">Todos los mensajes</div>
+                    <!--Todos mis mensajes-->
                     <div class="card-body px-0">
                         <ul class="list-group list-group-flush mx-0">
+                            <!--Mensaje 1-->
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 <div class="d-flex">
                                     <img width="50" height="50" class="rounded-circle mr-1" src="assets/img/default-user.jpg"
@@ -63,38 +65,91 @@
                                 </div>
                                 <span class="badge badge-success badge-pill">14</span>
                             </li>
+                            <!--Mensaje 2-->
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 <div class="d-flex">
                                     <img width="50" height="50" class="rounded-circle mr-1" src="assets/img/default-user.jpg"
                                         alt="">
                                     <p class="ml-2">Default user2</p>
                                 </div>
-                                <span class="badge badge-success badge-pill">14</span>
+                                <span class="badge badge-success badge-pill">6</span>
                             </li>
+                            <!--Mensaje 3-->
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 <div class="d-flex">
                                     <img width="50" height="50" class="rounded-circle mr-1" src="assets/img/default-user.jpg"
                                         alt="">
                                     <p class="ml-2">Default user3</p>
                                 </div>
-                                <span class="badge badge-success badge-pill">14</span>
+                                <span class="badge badge-success badge-pill">3</span>
                             </li>
                         </ul>
                     </div>
+                    <!--Fin todos mis mensajes-->
+                    <!--Inicio expandir todos mis mensajes-->
                     <div class="card-footer bg-light">
                         <a href="#" class="text-success">Ver todos</a>
                     </div>
+                    <!--Fin expandir mis mensajes-->
                 </div>
             </div>
             <!--fin lista de mensajes-->
+            
             <!--Inicio chat actual-->
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header bg-success">
-                        Chat actual
+                    <div class="card-header bg-success p-1">
+                        <p>Chat Activo</p>
                     </div>
                     <div class="card-body clearfix">
-                        
+                        <!--Inicio chat actual-->
+                        <ul class="list-group list-group-flush">
+                            <!--Inicio mensaje 1 emisor-->
+                            <li class="list-group-item mr-auto">
+                                <div class="d-flex">
+                                    <img class="rounded-circle" height="30" width="30" src="assets/img/default-user.jpg" alt="">
+                                    <p>@User <span>Says:</span></p>
+                                </div>
+                                <div class="bg-info text-white d-flex rounded p-2">
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate at libero
+                                        animi ab nisi incidunt corrupti eaque tenetur totam? Vel nihil quo officia
+                                        alias minus voluptatibus totam nobis assumenda beatae rem blanditiis corrupti
+                                        tenetur ad cum, dolore quia ut. Officiis ducimus sapiente tenetur voluptate
+                                        similique sequi pariatur porro voluptas a deserunt voluptatem vel sunt eaque
+                                        incidunt fugit, in accusamus corrupti quis temporibus fugiat ratione ipsa, cum
+                                        est! Laborum aperiam tenetur omnis facilis placeat? Provident quaerat maxime
+                                        sed assumenda, pariatur ex odio illum at reprehenderit reiciendis atque
+                                        veritatis sint iste exercitationem tempora numquam totam repellendus rerum
+                                        consequuntur cumque dolores nostrum quia! Quam nisi delectus molestias
+                                        veritatis voluptates. Veritatis cupiditate nobis magnam sapiente quam
+                                        voluptatem esse, perferendis fuga omnis expedita laborum, accusamus molestias
+                                        fugit earum maxime ullam, deserunt maiores suscipit quibusdam quidem. Aliquam,
+                                        expedita. Nesciunt, iste accusantium? Culpa numquam alias facere error.</p>
+                                </div>
+                            </li>
+                            <!--Inicio mensaje 1 cliente-->
+                            <li class="list-group-item ml-auto">
+                                <div class="bg-ligh text-dark rounded p-2">
+                                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rem quo ipsa, dolorem
+                                        quidem perspiciatis itaque optio incidunt deleniti, amet magni maxime dolores,
+                                        voluptatem ea quod exercitationem totam? Assumenda saepe labore dignissimos eos
+                                        ullam? Autem dolor natus libero voluptas doloremque hic.</p>
+                                </div>
+                            </li>
+                            <!--Inicio mensaje 2 emisor-->
+                            <li class="list-group-item mr-auto">
+                                <div class="d-flex">
+                                    <img class="rounded-circle" height="30" width="30" src="assets/img/default-user.jpg" alt="">
+                                    <p>@User <span>Says:</span></p>
+                                </div>
+                                <div class="bg-info text-white d-flex rounded p-2">
+                                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis enim
+                                        repudiandae molestiae aliquam alias eius. Dolorum numquam commodi itaque
+                                        maxime?</p>
+                                </div>
+                            </li>
+                        </ul>
+                        <!--Fin de chat actual-->
                     </div>
                     <div class="card-footer text-muted clearfix">
                         <textarea name="mensaje-actual" id="mensaje-actual" cols="50" rows="10"></textarea>
