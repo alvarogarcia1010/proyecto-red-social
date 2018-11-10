@@ -10,6 +10,7 @@ var UserSchema = Schema({
     username: String,
     password: String,
     urlImage: String,
+    role: String,
     created_at: {type: Date, default: Date.now},
 });
 
