@@ -3,9 +3,13 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var createError = require('http-errors');
-// var mongoose = require('mongoose');
-var ejs = require('ejs')
-
+var engine = require('ejs-mate');
+var flash = require('connect-flash');
+var session = require('express-session');
+var MongoStore = require('connect-mongo')(session);
+var passport = require('passport');
+var {mongodb}=require('./Configs/keys');
+var {sessionSecret}=require('./Configs/keys');
 
 //Importing Routes
 var indexRouter = require('./Routes/index');
@@ -15,9 +19,14 @@ var app = express();
 //Connecting to DB
 require('./Configs/database');
 
+//Logica Authentication
+require('./Authentication/local-authentication');
+
 //Setting
-app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, '/Views'));
+
+app.engine('ejs', engine);
 app.set('view engine', 'ejs');
 app.set('view cache', true);
 
@@ -26,6 +35,26 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session({
+  secret: sessionSecret,
+  resave: false,
+  saveUninitialized: false,
+  store: new MongoStore({
+    url: mongodb.URI,
+    autoReconnect: true
+  })
+}));
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use((req, res, next) =>{
+  app.locals.signupMessage = req.flash('signupMessage');
+  app.locals.loginMessage = req.flash('loginMessage');
+  app.locals.user = req.user;
+  next();
+});
+
 
 //Routes
 app.use('/', indexRouter.init);

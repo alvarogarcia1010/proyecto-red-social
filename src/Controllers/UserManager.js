@@ -3,7 +3,6 @@ var User = require('../Models/user');
 var bcrypt = require('bcrypt-nodejs');
 const AuthController = {};
 
-
 /*
 * Registra un nuevo usuario
 * @params Datos del usuario a registrar (nombre, apellidos, username, correo, contraseña)

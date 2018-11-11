@@ -7,5 +7,6 @@ module.exports = {
         password:'',
         server:'localhost',
         db: 'ayuda_un_peludo'
-    }
+    },
+    sessionSecret: 'ayudaUnPeludo'
 }
