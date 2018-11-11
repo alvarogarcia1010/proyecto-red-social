@@ -12,7 +12,7 @@
 
     <!-- Page CSS-->
     <link rel="stylesheet" href="css/mensajes.css" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:400,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cabin+Condensed:400,700" rel="stylesheet">
 
     <title>Mensajes</title>
 </head>
@@ -45,12 +45,12 @@
             </form>
         </div>
     </nav>
-    <h1 class="pl-2">Ayuda un Peludo Mensajes [WIP]</h1>
+    <!--<h1 class="mx-auto pl-5">Ayuda un Peludo Mensajes [WIP]</h1>-->
 
     <div class="container-fluid">
         <div class="row ">
             <!--Inicio lista de todos los mensajes-->
-            <div class="col-md-4 mb-4">
+            <div class="col-md-4 mb-4 mt-5">
                 <div class="card">
                     <div class="card-header bg-light">Todos los mensajes</div>
                     <!--Todos mis mensajes-->
@@ -121,12 +121,12 @@
             <!--fin lista de mensajes-->
 
             <!--Inicio chat actual-->
-            <div class="col-md-8">
+            <div class="col-md-8 mt-5">
                 <div class="card">
                     <div class="card-header bg-light p-1">
                         <p>Chat Activo</p>
                     </div>
-                    <div class="card-body clearfix">
+                    <div class="card-body clearfix y-scroll">
                         <!--Inicio chat actual-->
                         <ul class="list-group list-group-flush">
                             <!--Inicio mensaje 1 emisor-->
@@ -178,9 +178,14 @@
                         </ul>
                         <!--Fin de chat actual-->
                     </div>
-                    <div class="card-footer text-muted clearfix">
-                        <textarea name="mensaje-actual" id="mensaje-actual" cols="50" rows="10"></textarea>
-                        <button type="button" class="btn btn-success mb-4">Send</button>
+                    <div class="card-footer text-muted clearfix d-flex algin-items-center">
+                        <div>
+                            <textarea name="mensaje-actual" id="mensaje-actual" cols="70" rows="5"></textarea>
+                        </div>
+                        <div class="py-auto">
+                            <button type="button" class="btn btn-outline-success mt-auto my-sm-0">Send</button>
+                        </div>
+
                     </div>
                 </div>
 
