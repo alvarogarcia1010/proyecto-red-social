@@ -1,54 +1,25 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
+const UserManager = require('../Controllers/UserManager');
+const AuthMiddleware = require("../Middlewares/AuthMiddleware");
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index');
-});
+router.get('/', UserManager.init);
 
-router.get('/signup', function(req, res, next){
-  res.render('signup');
-});
+router.get('/login', UserManager.login);
 
-router.post('/signup', passport.authenticate('local-signup',{
-  successRedirect: '/home',
-  failureRedirect: '/signup',
-  passReqToCallback: true
-}));
+//Temporal
+router.get('/signup', UserManager.signUp);
 
-router.get('/login', function(req, res, next){
-  res.render('login');
-});
+router.post('/signup', UserManager.register);
 
-router.post('/login', passport.authenticate('local-login',{
-  successRedirect: '/home',
-  failureRedirect: '/login',
-  passReqToCallback: true
-}));
+router.post('/login', UserManager.signIn);
 
-router.get('/logout', (req, res, next)=>{
-  req.logout();
-  res.redirect('/')
-});
+router.get('/logout', UserManager.logOut);
 
-//Solo usuarios que hayan iniciado sesión
-router.use((req, res, next)=>{
-  isAuthenticated(req, res, next);
-  next();
-});
+//Middleware que verifica que solo los usuarios registrados podran ingresar a esta seccion
+router.use(AuthMiddleware.isAuthentication);
 
-router.get('/home', isAuthenticated, function(req, res, next){
-  res.render('home');
-});
-
-
-function isAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-  req.flash('error_msg', 'Not Authorized');
-  res.redirect('/');
-}
+router.get('/home', UserManager.home);
 
 module.exports = router;

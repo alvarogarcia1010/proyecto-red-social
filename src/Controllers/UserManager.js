@@ -1,6 +1,7 @@
 'use strict'
 var User = require('../Models/user');
 var bcrypt = require('bcrypt-nodejs');
+const passport = require('passport');
 const AuthController = {};
 
 /*
@@ -68,5 +69,44 @@ AuthController.createNewUser = function(req, res, next)
   }
 }
 
+AuthController.init = function (req, res, next){
+  if (req.isAuthenticated())
+  {
+    res.redirect('/home');
+  }
+  else
+  {
+    res.redirect('/login')
+  }
+};
+
+AuthController.login = function (req, res, next){
+  res.render('login');
+};
+
+AuthController.signUp = function (req, res, next){
+  res.render('signup');
+};
+
+AuthController.register = passport.authenticate('local-register',{
+  successRedirect: '/home',
+  failureRedirect: '/signup', //Temporalmente
+  passReqToCallback: true
+});
+
+AuthController.signIn = passport.authenticate('local-login',{
+  successRedirect: '/home',
+  failureRedirect: '/login',
+  passReqToCallback: true
+});
+
+AuthController.logOut = (req, res, next) => {
+  req.logout();
+  res.redirect('/')
+};
+
+AuthController.home = (req, res,next) =>{
+    res.render('home');
+};
 
 module.exports = AuthController;

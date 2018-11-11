@@ -12,7 +12,7 @@ passport.deserializeUser(async (id, done) =>{
   done(null, user);
 });
 
-passport.use('local-signup', new LocalStrategy({
+passport.use('local-register', new LocalStrategy({
   usernameField: 'username',
   emailField: 'email',
   passwordField: 'password',

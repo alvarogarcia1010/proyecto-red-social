@@ -20,7 +20,7 @@ var app = express();
 require('./Configs/database');
 
 //Logica Authentication
-require('./Authentication/local-authentication');
+require('./Authentication/local-auth');
 
 //Setting
 // app.use(express.static(path.join(__dirname, 'public')));
@@ -51,6 +51,7 @@ app.use(passport.session());
 app.use((req, res, next) =>{
   app.locals.signupMessage = req.flash('signupMessage');
   app.locals.loginMessage = req.flash('loginMessage');
+  app.locals.errorMessage = req.flash('error_msg');
   app.locals.user = req.user;
   next();
 });
