@@ -1,0 +1,7 @@
+<%- layout('Layout/template.ejs') %>
+
+<form action="/send" method="POST">
+  <input type="email" name="email" placeholder="email">
+  <textarea name="message" rows="5" placeholder="message"></textarea>
+  <button type="submit">Send Mail</button>
+</form>
