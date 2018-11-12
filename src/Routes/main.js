@@ -17,9 +17,4 @@ router.post('/login', UserManager.signIn);
 
 router.get('/logout', UserManager.logOut);
 
-//Middleware que verifica que solo los usuarios registrados podran ingresar a esta seccion
-router.use(AuthMiddleware.isAuthentication);
-
-router.get('/home', UserManager.home);
-
 module.exports = router;

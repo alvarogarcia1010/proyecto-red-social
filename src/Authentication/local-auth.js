@@ -61,7 +61,6 @@ passport.use('local-login', new LocalStrategy({
   passReqToCallback: true
 }, async (req, username, password, done) => {
   var user = await User.findOne({username: username});
-  console.log(username);
   if(username =='' || password == '')
   {
     return done(null, false,req.flash('loginMessage', 'Complete todos los campos'));

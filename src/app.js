@@ -59,7 +59,9 @@ app.use((req, res, next) =>{
 
 //Routes
 app.use('/', indexRouter.init);
-app.use('/users', indexRouter.user);
+app.use('/home', indexRouter.home);
+app.use('/', indexRouter.user);
+app.use('/messages', indexRouter.messages);
 
 // Catch 404 and forward to error handler
 app.use(function (req, res, next) {

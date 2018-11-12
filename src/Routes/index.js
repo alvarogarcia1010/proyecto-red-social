@@ -1,4 +1,7 @@
 module.exports = {
   init: require('./main'),
-  user: require('./users')
+  home: require('./home'),
+  user: require('./users'),
+  messages: require('./messages')
+
 }

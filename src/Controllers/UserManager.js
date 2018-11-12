@@ -1,8 +1,112 @@
 'use strict'
 var User = require('../Models/user');
 var bcrypt = require('bcrypt-nodejs');
+const mongoosePaginate = require('mongoose-pagination');
 const passport = require('passport');
 const AuthController = {};
+
+AuthController.init = function (req, res, next){
+  if (req.isAuthenticated())
+  {
+    res.redirect('/home');
+  }
+  else
+  {
+    res.redirect('/login')
+  }
+};
+
+AuthController.login = function (req, res, next){
+  res.render('login');
+};
+
+AuthController.signUp = function (req, res, next){
+  res.render('signup');
+};
+
+AuthController.register = passport.authenticate('local-register',{
+  successRedirect: '/home',
+  failureRedirect: '/signup', //Temporalmente
+  passReqToCallback: true
+});
+
+AuthController.signIn = passport.authenticate('local-login',{
+  successRedirect: '/home',
+  failureRedirect: '/login',
+  passReqToCallback: true
+});
+
+AuthController.logOut = (req, res, next) => {
+  req.logout();
+  res.redirect('/')
+};
+
+AuthController.home = (req, res,next) =>{
+    res.render('home');
+};
+
+/*
+* Obtener usuario
+* @params username
+* @return JSON
+*/
+AuthController.getUser = async (req, res, next) => {
+  //Agarro el username a buscar
+  var username = req.params.username;
+  //Lo busco en mi base de datos
+  await User.find({username: username.toLowerCase()}, (err, user) => {
+    if (err) return res.status(500).json({success: false, message: "Error en la petición"});
+
+    if(user && user.length > 0)
+    {
+      return res.status(200).json({success: true, message: "Usuario Encontrado", user});
+    }
+    else
+    {
+      return res.status(404).json({success: false, message: "Usuario no encontrado"});
+    }
+  });
+};
+
+/*
+* Obtener todos los usuarios paginados
+* @params paginacion
+* @return JSON
+*/
+AuthController.getUsers = async (req, res, next) => {
+  var userLoggerId = req.user.id
+  var page = 1;
+  var itemsPerPage = 20;
+  if(req.params.page)
+  {
+      page = req.params.page;
+  }
+
+  await User.find().sort('_id').paginate(page, itemsPerPage, (error, users, total) => {
+    if (error) return res.status(500).json({success: false, message: "Error en la petición"});
+
+    if(users && users.length > 0)
+    {
+      return res.status(200).json({success: true, total, users, pages: Math.ceil(total/itemsPerPage)});
+    }
+    else
+    {
+      return res.status(404).json({success: false, message: "No hay usuarios disponibles"});
+    }
+  })
+
+};
+
+/*
+* Actualizar información de usuario
+* @params paginacion
+* @return JSON
+*/
+AuthController.updateUser = async (req, res, next) => {
+
+  await User.findByIdAndUpdate
+};
+
 
 /*
 * Registra un nuevo usuario
@@ -68,45 +172,5 @@ AuthController.createNewUser = function(req, res, next)
       res.status(200).send({message: 'Campos obligatorios no completados', success: false})
   }
 }
-
-AuthController.init = function (req, res, next){
-  if (req.isAuthenticated())
-  {
-    res.redirect('/home');
-  }
-  else
-  {
-    res.redirect('/login')
-  }
-};
-
-AuthController.login = function (req, res, next){
-  res.render('login');
-};
-
-AuthController.signUp = function (req, res, next){
-  res.render('signup');
-};
-
-AuthController.register = passport.authenticate('local-register',{
-  successRedirect: '/home',
-  failureRedirect: '/signup', //Temporalmente
-  passReqToCallback: true
-});
-
-AuthController.signIn = passport.authenticate('local-login',{
-  successRedirect: '/home',
-  failureRedirect: '/login',
-  passReqToCallback: true
-});
-
-AuthController.logOut = (req, res, next) => {
-  req.logout();
-  res.redirect('/')
-};
-
-AuthController.home = (req, res,next) =>{
-    res.render('home');
-};
 
 module.exports = AuthController;
