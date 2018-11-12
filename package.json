@@ -29,6 +29,7 @@
     "express-session": "^1.15.6",
     "mongoose": "^5.3.11",
     "morgan": "~1.9.0",
+    "nodemailer": "^4.6.8",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0"
   },
