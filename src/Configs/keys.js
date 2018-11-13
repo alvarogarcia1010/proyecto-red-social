@@ -8,5 +8,10 @@ module.exports = {
         server:'localhost',
         db: 'ayuda_un_peludo'
     },
-    sessionSecret: 'ayudaUnPeludo'
+    sessionSecret: 'ayudaUnPeludo',
+    email:
+    {
+        email: 'ayudaunpeludoprueba@gmail.com',
+        password: 'peludo1234'
+    }
 }
