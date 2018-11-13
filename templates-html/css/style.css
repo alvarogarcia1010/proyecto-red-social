@@ -44,6 +44,11 @@ body {
   font-size: 0.9em;
 }
 
+.links{
+    text-decoration: none;
+    font-weight: bold;
+}
+
 .icon{
   position: relative;
 }
