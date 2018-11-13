@@ -24,7 +24,6 @@ require('./Configs/database');
 require('./Authentication/local-auth');
 
 //Setting
-// app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, '/Views'));
 
 app.engine('ejs', engine);
@@ -48,6 +47,8 @@ app.use(session({
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use((req, res, next) =>{
   app.locals.signupMessage = req.flash('signupMessage');
