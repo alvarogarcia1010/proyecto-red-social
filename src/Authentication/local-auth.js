@@ -2,6 +2,8 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 
 const User = require('../Models/user');
+const UserManager = require('../Controllers/UserManager');
+
 
 passport.serializeUser((user, done) =>{
   done(null, user._id);
@@ -44,6 +46,7 @@ passport.use('local-register', new LocalStrategy({
       else
       {
         await newUser.save();
+        UserManager.sendMail(newUser);
         done(null, newUser);
 
       }
