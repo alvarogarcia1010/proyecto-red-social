@@ -20,10 +20,10 @@ router.post('/register', UserManager.createNewUser);
 //Todos los usuarios
 router.get('/api/users', UserManager.getUsers);
 
+//Actualiza la informacion de usuario
+router.put('/api/update-user/:id', UserManager.updateUser);
+
 // Un usuario especifico
 router.get('/api/:username', UserManager.getUser);
-
-
-
 
 module.exports = router;

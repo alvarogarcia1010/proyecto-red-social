@@ -115,17 +115,39 @@ AuthController.getUsers = async (req, res, next) => {
 };
 
 /*
- * Actualizar información de usuario
- * @params paginacion
- * @return JSON
- */
+* Actualizar información de usuario logeado
+* @params req.body
+* @return JSON
+*/
 AuthController.updateUser = async (req, res, next) => {
+  var userId = req.params.id;
+  var updatedUser = req.body;
 
-  await User.findByIdAndUpdate
+  delete updatedUser.password;
+
+  if(userId != req.user._id)
+  {
+    return res.status(500).json({message:'Permiso para actualizar usuario denegado', success: false});
+  }
+
+  await User.findByIdAndUpdate(userId, updatedUser, {new: true}, (error, user) => {
+    if (error) return res.status(500).json({success: false, message: "Error en la petición"});
+
+    if (user && user.length > 0)
+    {
+      return res.status(200).json({success: true, message: "Usuario actualizado", user});
+    }
+    else
+    {
+      return res.status(404).json({success: false, message: "Usuario no actualizado"});
+    }
+  });
 };
 
 /*
-Enviar correo de bienvenida al registrarse.
+* Enviar correo de bienvenida al registrarse.
+* @params UserModel
+* @return JSON
 */
 AuthController.sendMail = (user) => {
   const welcome = `
@@ -160,8 +182,6 @@ AuthController.sendMail = (user) => {
       return console.log(error);
     }
     console.log('Message sent: %s', info.messageId);
-
-    res.render('contact');
 
     // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
     // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...

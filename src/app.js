@@ -9,6 +9,7 @@ var flash = require('connect-flash');
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 var passport = require('passport');
+var fileUpload = require('express-fileupload');
 var {mongodb}=require('./Configs/keys');
 var {sessionSecret}=require('./Configs/keys');
 
@@ -31,6 +32,7 @@ app.set('view engine', 'ejs');
 app.set('view cache', true);
 
 //Middlewares
+app.use(fileUpload());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -64,6 +66,7 @@ app.use('/', indexRouter.init);
 app.use('/home', indexRouter.home);
 app.use('/', indexRouter.user);
 app.use('/messages', indexRouter.messages);
+app.use('/file', indexRouter.file);
 
 // Catch 404 and forward to error handler
 app.use(function (req, res, next) {
