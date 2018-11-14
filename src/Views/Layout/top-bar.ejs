@@ -30,12 +30,18 @@
           </form>
           <li class="nav-item dropdown px-2">
             <a class="nav-link dropdown-toggle" href="#" id="navbar-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <img class="rounded-circle" src="https://s.gravatar.com/avatar/47dc454dc555e624caf972e9ecb3a67c?" style="width:35px;">
+              <% if (user.urlImage) { %>
+              <img class="rounded-circle" src="<%= '/images/avatarUser/'+ user.urlImage %>" style="width:35px;">
+              <% } else { %>
+                <img class="rounded-circle" src="https://s.gravatar.com/avatar/47dc454dc555e624caf972e9ecb3a67c?" style="width:35px;">
+              <% } %>
               <%= user.name %>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbar-dropdown">
               <a class="dropdown-item" href="#">Configuración</a>
+              <% if(user.role == 'ROLE_ADMIN') { %>
               <a class="dropdown-item" href="#">Dashboard</a>
+              <% } %>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="/logout">Cerrar Sesión</a>
             </div>
