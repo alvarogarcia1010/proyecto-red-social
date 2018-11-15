@@ -35,6 +35,20 @@ AuthController.signIn = passport.authenticate('local-login', {
   passReqToCallback: true
 });
 
+AuthController.facebookLogin = passport.authenticate('FacebookLogin');
+
+AuthController.facebookLoginCallback = passport.authenticate('FacebookLogin', {
+  failureRedirect: '/login',
+  successRedirect: '/home'
+});
+
+AuthController.googleLogin = passport.authenticate('GoogleLogin');
+
+AuthController.googleLoginCallback = passport.authenticate('GoogleLogin', {
+  failureRedirect: '/login',
+  successRedirect: '/home'
+});
+
 AuthController.logOut = (req, res, next) => {
   req.logout();
   res.redirect('/')

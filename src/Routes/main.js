@@ -16,6 +16,14 @@ router.post('/signup', UserManager.register);
 
 router.post('/login', UserManager.signIn);
 
+router.get('/facebook-login', UserManager.facebookLogin);
+
+router.get('/facebook-login/callback', UserManager.facebookLoginCallback);
+
+router.get('/google-login', UserManager.googleLogin);
+
+router.get('/google-login/callback', UserManager.googleLoginCallback);
+
 router.get('/logout', UserManager.logOut);
 
 router.get('/contact', (req, res) => {

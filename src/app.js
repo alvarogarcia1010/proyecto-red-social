@@ -22,7 +22,9 @@ var app = express();
 require('./Configs/database');
 
 //Logica Authentication
-require('./Authentication/local-auth');
+require('./Authentication/LocalAuth');
+require('./Authentication/FacebookAuth');
+require('./Authentication/GoogleAuth');
 
 //Setting
 app.set('views', path.join(__dirname, '/Views'));
