@@ -7,6 +7,7 @@ $(document).ready(function() {
         '<i class="fas fa-user"></i>' +
         '</button>';
     $("#avatar-1").fileinput({
+        theme: "fas",
         overwriteInitial: true,
         maxFileSize: 1500,
         showClose: false,
@@ -22,4 +23,5 @@ $(document).ready(function() {
         layoutTemplates: {main2: '{preview} ' +  btnCust + ' {remove} {browse}'},
         allowedFileExtensions: ["jpg", "png", "gif"]
     });
+
 });

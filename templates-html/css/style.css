@@ -66,6 +66,11 @@ body {
   color: green;
 }
 
+textarea {
+  max-height: 130px;
+  overflow-x: hidden;
+}
+
 @media (min-width: 992px) and (max-width: 1199px){
   .text-lg-small{
     font-size: 0.75em;
