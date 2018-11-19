@@ -32,8 +32,17 @@ passport.use('local-register', new LocalStrategy({
       newUser.email = params.email;
       newUser.password = newUser.encryptPassword(params.password);
       newUser.role = 'ROLE_USER';
+<<<<<<< HEAD
+      newUser.urlImage = '/home/alvaro/Documents/ayuda-un-peludo/src/public/images/avatarUser/defaulAvatarUser.jpg';
+      newUser.provider_id = Math.random() * Date.now();
+      newUser.provider = 'AYUDA_UN_PELUDO';
+      newUser.fecha_nacimiento = '';
+      newUser.sobre_mi = '';
+      newUser.pais = '';
+=======
       newUser.urlImage = 'images/avatarUser/defaultAvatarUser.jpg';
 
+>>>>>>> e85570c867ca5554ab4866831b394d94617f6aae
       var user =  await User.find({ $or: [
           {email: newUser.email.toLowerCase()},
           {username: newUser.username.toLowerCase()}
@@ -45,7 +54,10 @@ passport.use('local-register', new LocalStrategy({
       }
       else
       {
-        await newUser.save();
+        await newUser.save((error, user) =>{
+          if (error) console.log(error);
+          if(user) console.log(user);
+        });
         UserManager.sendMail(newUser);
         // req.session.cookie.expires = new Date(Date.now() + )
         done(null, newUser);

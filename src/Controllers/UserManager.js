@@ -2,6 +2,7 @@
 var User = require('../Models/user');
 var bcrypt = require('bcrypt-nodejs');
 var nodemailer = require('nodemailer');
+var crypto = require('crypto');
 const {email} = require('../Configs/keys');
 const mongoosePaginate = require('mongoose-pagination');
 const passport = require('passport');
@@ -42,7 +43,9 @@ AuthController.facebookLoginCallback = passport.authenticate('FacebookLogin', {
   successRedirect: '/home'
 });
 
-AuthController.googleLogin = passport.authenticate('GoogleLogin');
+AuthController.googleLogin = passport.authenticate('GoogleLogin',{
+  scope: ['profile']
+});
 
 AuthController.googleLoginCallback = passport.authenticate('GoogleLogin', {
   failureRedirect: '/login',
@@ -52,6 +55,12 @@ AuthController.googleLoginCallback = passport.authenticate('GoogleLogin', {
 AuthController.logOut = (req, res, next) => {
   req.logout();
   res.redirect('/')
+};
+
+AuthController.forgot = (req, res) =>{
+  res.render('forgot', {
+    user: req.user
+  });
 };
 
 AuthController.home = (req, res, next) => {
@@ -168,6 +177,64 @@ AuthController.updateUser = async (req, res, next) => {
   });
 };
 
+
+AuthController.recoverPassword = async(req, res, next)=>{
+  var email = req.params.email;
+  async(done)=>{
+    crypto.randomBytes(20, function(err,buf){
+      var token = buf.toString('hex');
+      done(err,token);
+    });
+  };
+
+  async (token, done)=>{
+    await User.findOne({email: email }, function(err,user){
+      if(!user){
+        console.log("No existe esa cuenta asociada");
+        return res.redirect('/forgot');
+      }
+      user.resetOasswordToken = token;
+      user.resetPasswordExpires = Date.now() + 3600000;
+
+      user.save((err) => {
+        done(err, token, user);
+      });
+    });
+  };
+
+  async (token, user, done) =>{
+    let transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth:{
+        user: email.email, 
+        pass: email.password 
+      },
+      tls: {
+        rejectUnauthorized: false
+      }
+    });
+    let mailOptions = {
+      from: '"Ayuda un Peludo" <ayudaunpeludoprueba@gmail.com>',
+      to: user.email,
+      subject: 'Password Reset',
+      text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
+      'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
+      'http://' + req.headers.host + '/reset/' + token + '\n\n' +
+      'If you did not request this, please ignore this email and your password will remain unchanged.\n'
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        return console.log(error);
+      }
+      console.log('Message sent: %s', info.messageId);
+    });
+  };
+  async (err)=>{
+    if(err) return next(err);
+    res.redirect('/forgot');
+  };
+};
 /*
 * Enviar correo de bienvenida al registrarse.
 * @params UserModel
@@ -183,8 +250,8 @@ AuthController.sendMail = (user) => {
   let transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: email.email, // generated ethereal user
-      pass: email.password // generated ethereal password
+      user: email.email, 
+      pass: email.password 
     },
     tls: {
       rejectUnauthorized: false
@@ -207,8 +274,6 @@ AuthController.sendMail = (user) => {
     }
     console.log('Message sent: %s', info.messageId);
 
-    // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
-    // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
   });
 };
 

@@ -16,7 +16,11 @@ router.post('/signup', UserManager.register);
 
 router.post('/login', UserManager.signIn);
 
+router.post('/forgot', UserManager.recoverPassword);
+
 router.get('/facebook-login', UserManager.facebookLogin);
+
+router.get('/forgot', UserManager.forgot);
 
 router.get('/facebook-login/callback', UserManager.facebookLoginCallback);
 
