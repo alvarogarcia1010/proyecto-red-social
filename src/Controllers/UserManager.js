@@ -75,7 +75,6 @@ AuthController.dashboard = (req, res, next) => {
  * @return JSON
  */
 
-
 AuthController.getUser = async (req, res, next) => {
   //Agarro el username a buscar
   var username = req.params.username;
