@@ -1,9 +1,0 @@
-*{
-    font-family: 'Cabin Condensed', sans-serif;
-}
-
-.y-scroll{
-    height:15em;
-    overflow:scroll;
-    overflow-x:hidden;
-}

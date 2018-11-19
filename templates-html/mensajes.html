@@ -10,7 +10,6 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
   <!-- Page CSS-->
-  <link rel="stylesheet" href="css/mensajes.css" type="text/css">
   <link rel="stylesheet" href="css/style.css" type="text/css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Cabin+Condensed" rel="stylesheet">
@@ -50,30 +49,30 @@
     <div class="row">
       <!--Inicio lista de todos los mensajes-->
       <div class="col-md-4 px-2">
-        <div class="card">
-          <div class="card-header space-between align-items-center">
+        <div class="card vh-all">
+          <div class="card-header space-between align-items-center text-md-small">
             <h5 class="card-title font-weight-bold my-1">Mensajes directos</h5>
             <button class="btn btn-outline-success btn-sm" data-toggle="modal" data-target="#send-private-message"> Mensaje nuevo</button>
           </div>
           <!--Todos mis mensajes-->
-          <div class="card-body p-0 clearfix y-scroll">
+          <div class="card-body p-0 clearfix y-scroll-panel">
             <form class="form p-2">
               <input class="form-control form-control-sm" type="search" placeholder="Buscar..." aria-label="Search">
             </form>
             <div class="list-group list-group-flush">
               <a href="#" class="list-group-item list-group-item-action px-2 py-3">
                 <div class="row">
-                <div class="col-lg-1 col-2 pl-md-3 pl-lg-2 pl-xl-3">
-                  <img class="rounded-circle" src="https://s.gravatar.com/avatar/47dc454dc555e624caf972e9ecb3a67c?s=45">
-                </div>
-                  <div class="col-lg-11 col-10 pr-md-3 pr-lg-2 pr-xl-3">
-                    <div class="pl-md-3 pl-lg-2 pl-xl-3">
+                  <div class="col-2 col-xl-1 ">
+                    <img class="rounded-circle" src="https://s.gravatar.com/avatar/47dc454dc555e624caf972e9ecb3a67c?s=40">
+                  </div>
+                  <div class="col-10 col-xl-11 pl-2 pr-3">
+                    <div class="pl-md-3 pl-lg-1 pl-xl-4">
                       <div class="d-flex justify-content-between">
                         <h6 class="text-dark font-weight-bold mb-1">Alvaro García</h6>
-                        <small class="text-muted d-inline d-lg-none d-xl-inline">3 days ago</small>
+                        <small class="text-muted">3 day ago</small>
                       </div>
                       <div class="d-flex justify-content-between">
-                        <p class="mb-0 text-truncate">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+                        <p class="mb-0 text-truncate">Lorem ipsum dolor sit, amet consectetur.</p>
                         <div>
                           <span class="badge badge-success mx-2">15</span>
                         </div>
@@ -84,19 +83,19 @@
               </a>
               <a href="#" class="list-group-item list-group-item-action px-2 py-3">
                 <div class="row">
-                <div class="col-lg-1 col-2 pl-md-3 pl-lg-2 pl-xl-3">
-                  <img class="rounded-circle" src="https://s.gravatar.com/avatar/47dc454dc555e624caf972e9ecb3a67c?s=45">
-                </div>
-                  <div class="col-lg-11 col-10 pr-md-3 pr-lg-2 pr-xl-3">
-                    <div class="pl-md-3 pl-lg-2 pl-xl-3">
+                  <div class="col-2 col-xl-1 ">
+                    <img class="rounded-circle" src="https://s.gravatar.com/avatar/47dc454dc555e624caf972e9ecb3a67c?s=40">
+                  </div>
+                  <div class="col-10 col-xl-11 pl-2 pr-3">
+                    <div class="pl-md-3 pl-lg-1 pl-xl-4">
                       <div class="d-flex justify-content-between">
                         <h6 class="text-dark font-weight-bold mb-1">Alvaro García</h6>
-                        <small class="text-muted d-inline d-lg-none d-xl-inline">3 days ago</small>
+                        <small class="text-muted">09:59</small>
                       </div>
                       <div class="d-flex justify-content-between">
-                        <p class="mb-0 text-truncate">Ok.</p>
+                        <p class="mb-0 text-truncate">ok.</p>
                         <div>
-                          <span class="badge badge-success mx-2">15</span>
+                          <span class="badge badge-success mx-2">1</span>
                         </div>
                       </div>
                     </div>
@@ -105,25 +104,26 @@
               </a>
               <a href="#" class="list-group-item list-group-item-action px-2 py-3">
                 <div class="row">
-                <div class="col-lg-1 col-2 pl-md-3 pl-lg-2 pl-xl-3">
-                  <img class="rounded-circle" src="https://s.gravatar.com/avatar/47dc454dc555e624caf972e9ecb3a67c?s=45">
-                </div>
-                  <div class="col-lg-11 col-10 pr-md-3 pr-lg-2 pr-xl-3">
-                    <div class="pl-md-3 pl-lg-2 pl-xl-3">
+                  <div class="col-2 col-xl-1 ">
+                    <img class="rounded-circle" src="https://s.gravatar.com/avatar/47dc454dc555e624caf972e9ecb3a67c?s=40">
+                  </div>
+                  <div class="col-10 col-xl-11 pl-2 pr-3">
+                    <div class="pl-md-3 pl-lg-1 pl-xl-4">
                       <div class="d-flex justify-content-between">
                         <h6 class="text-dark font-weight-bold mb-1">Alvaro García</h6>
-                        <small class="text-muted d-inline d-lg-none d-xl-inline">3 days ago</small>
+                        <small class="text-muted">Ayer</small>
                       </div>
                       <div class="d-flex justify-content-between">
-                        <p class="mb-0 text-truncate">Donec id elit non mi po.</p>
+                        <p class="mb-0 text-truncate">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rem quo ipsa.</p>
                         <div>
-                          <span class="badge badge-success mx-2">15</span>
+                          <!-- <span class="badge badge-success mx-2">1</span> -->
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </a>
+
             </div>
 
           </div>
@@ -134,7 +134,7 @@
 
       <!--Inicio chat actual-->
       <div class="col-md-8 px-2">
-        <div class="card">
+        <div class="card vh-all">
           <div class="card-header p-1">
             <div class="d-flex">
               <div class="pl-1">
@@ -159,43 +159,60 @@
               </div>
             </div>
           </div>
-          <div class="card-body clearfix y-scroll">
+          <div class="card-body clearfix y-scroll p-1">
             <!--Inicio chat actual-->
-            <ul class="list-group list-group-flush">
+            <ul class="p-2 mb-0">
               <!--Inicio mensaje 1 emisor-->
-              <li class="list-group-item mr-auto">
-                <div class="text-dark d-flex rounded p-2" style="background-color:#c1f79e;">
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate at libero
-                    animi ab nisi incidunt corrupti eaque tenetur totam? Vel nihil quo officia
-                    alias minus voluptatibus totam nobis assumenda beatae rem blanditiis corrupti
-                    tenetur ad cum, dolore quia ut. Officiis ducimus sapiente tenetur voluptate
-                    similique sequi pariatur porro voluptas a deserunt voluptatem vel sunt eaque
-                    incidunt fugit, in accusamus corrupti quis temporibus fugiat ratione ipsa, cum
-                    est! Laborum aperiam tenetur omnis facilis placeat? Provident quaerat maxime
-                    sed assumenda, pariatur ex odio illum at reprehenderit reiciendis atque
-                    veritatis sint iste exercitationem tempora numquam totam repellendus rerum
-                    consequuntur cumque dolores nostrum quia! Quam nisi delectus molestias
-                    veritatis voluptates. Veritatis cupiditate nobis magnam sapiente quam
+              <li class=" pr-0 d-flex justify-content-end mb-3">
+                <div class="text-dark rounded p-2 w-75" style="background-color:#c1f79e;">
+                  <p class="mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate at libero
+                     animi ab nisi incidunt corrupti eaque tenetur totam? Vel nihil quo officia
                     voluptatem esse, perferendis fuga omnis expedita laborum, accusamus molestias
                     fugit earum maxime ullam, deserunt maiores suscipit quibusdam quidem. Aliquam,
                     expedita. Nesciunt, iste accusantium? Culpa numquam alias facere error.</p>
                 </div>
               </li>
               <!--Inicio mensaje 1 cliente-->
-              <li class="list-group-item ml-auto">
-                <div class="bg-ligh text-dark rounded p-2">
-                  <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rem quo ipsa, dolorem
+              <li class="pl-0 d-flex justify-content-start mb-3">
+                <div class="bg-gray text-dark rounded p-2 w-75">
+                  <p class="mb-0">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rem quo ipsa, dolorem
                     quidem perspiciatis itaque optio incidunt deleniti, amet magni maxime dolores,
                     voluptatem ea quod exercitationem totam? Assumenda saepe labore dignissimos eos
                     ullam? Autem dolor natus libero voluptas doloremque hic.</p>
                 </div>
               </li>
               <!--Inicio mensaje 2 emisor-->
-              <li class="list-group-item mr-auto">
-                <div class="text-dark d-flex rounded p-2" style="background-color:#c1f79e;">
-                  <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis enim
-                    repudiandae molestiae aliquam alias eius. Dolorum numquam commodi itaque
-                    maxime?</p>
+              <li class=" pr-0 d-flex justify-content-end mb-3">
+                <div class="text-dark rounded p-2 w-75" style="background-color:#c1f79e;">
+                  <p class="mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate at libero
+                     animi ab nisi incidunt corrupti eaque tenetur totam? Vel nihil quo officia
+                    voluptatem esse, perferendis fuga omnis expedita laborum, accusamus molestias
+                    fugit earum maxime ullam, deserunt maiores suscipit quibusdam quidem. Aliquam,
+                    expedita. Nesciunt, iste accusantium? Culpa numquam alias facere error.</p>
+                </div>
+              </li>
+              <!--Inicio mensaje 1 cliente-->
+              <li class="pl-0 d-flex justify-content-start mb-3">
+                <div class="bg-gray text-dark rounded p-2 w-75">
+                  <p class="mb-0">Hola</p>
+                </div>
+              </li>
+              <!--Inicio mensaje 2 emisor-->
+              <li class=" pr-0 d-flex justify-content-end mb-3">
+                <div class="text-dark rounded p-2 w-75" style="background-color:#c1f79e;">
+                  <p class="mb-0 text-right">Hola que tal</p>
+                </div>
+              </li>
+              <!--Inicio mensaje 1 cliente-->
+              <li class="pl-0 d-flex justify-content-start mb-3">
+                <div class="bg-gray text-dark rounded p-2 w-75">
+                  <p class="mb-0">te envie un mensaje</p>
+                </div>
+              </li>
+              <!--Inicio mensaje 2 emisor-->
+              <li class=" pr-0 d-flex justify-content-end mb-3">
+                <div class="text-dark rounded p-2 w-75" style="background-color:#c1f79e;">
+                  <p class="mb-0 text-right">Estoy probando</p>
                 </div>
               </li>
             </ul>

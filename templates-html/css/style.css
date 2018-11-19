@@ -71,6 +71,27 @@ textarea {
   overflow-x: hidden;
 }
 
+.vh-all{
+  height:87vh;
+}
+
+.y-scroll{
+    /* height:70vh; */
+    overflow:scroll;
+    overflow-x:hidden;
+}
+
+.y-scroll-panel{
+    /* height:77vh; */
+    overflow:scroll;
+    overflow-x:hidden;
+}
+
+.bg-gray{
+  background-color: #f2f2f2;
+}
+
+/* Tamaño lg */
 @media (min-width: 992px) and (max-width: 1199px){
   .text-lg-small{
     font-size: 0.75em;
@@ -83,6 +104,15 @@ textarea {
   .text-small{
     font-size: 0.8em;
   }
+}
+
+/* Tamaño md */
+@media (min-width: 769px) and (max-width: 991px){
+
+  .text-md-small h5{
+    font-size: 0.95em;
+  }
+
 }
 
 .row1{
