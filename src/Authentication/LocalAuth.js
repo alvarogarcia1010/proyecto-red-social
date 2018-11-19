@@ -32,7 +32,7 @@ passport.use('local-register', new LocalStrategy({
       newUser.email = params.email;
       newUser.password = newUser.encryptPassword(params.password);
       newUser.role = 'ROLE_USER';
-      newUser.urlImage = '/home/alvaro/Documents/ayuda-un-peludo/src/public/images/avatarUser/defaulAvatarUser.jpg';
+      newUser.urlImage = 'images/avatarUser/defaultAvatarUser.jpg';
 
       var user =  await User.find({ $or: [
           {email: newUser.email.toLowerCase()},

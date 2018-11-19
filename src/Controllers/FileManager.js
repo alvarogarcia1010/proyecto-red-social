@@ -1,9 +1,11 @@
 'use strict'
 var path = require('path');
 var fs = require('fs');
+var moment = require('moment');
 var User = require('../Models/user');
-
 const FileManager = {};
+
+moment().format();
 
 /*
 * Subir archivo de imagen
@@ -25,9 +27,10 @@ FileManager.uploadAvatarUser = async function (req, res, next) {
   else
   {
     var sampleFile = req.files.file;
-    var uploadPath = '/home/alvaro/Documents/ayuda-un-peludo/src/public/images/avatarUser/' + sampleFile.name;
     var extName = path.extname(sampleFile.name);
-
+    var uploadPath = __dirname;
+    uploadPath = uploadPath.replace("Controllers", "") + "public/images/avatarUser/" + req.user.username + "-"+ moment() +extName;
+    var uploadPathSave = "images/avatarUser/" + req.user.username + "-"+ moment() +extName
     if(extName == ".png" || extName == ".jpg" || extName == ".jpeg" )
     {
       //Hacer validacion que el archivo no exista
@@ -36,9 +39,9 @@ FileManager.uploadAvatarUser = async function (req, res, next) {
             res.status(400).json({message:'Extensión de archivo no valida.', success: false});
         }
 
-        await User.findOneAndUpdate({_id:userId}, {urlImage: sampleFile.name}, {new:true}, (error, user) => {
+        await User.findOneAndUpdate({_id:userId}, {urlImage: uploadPathSave}, {new:true}, (error, user) => {
           if (error) return res.status(500).json({success: false, message: "Error en la petición"});
-console.log(user);
+
           if (user)
           {
             return res.status(200).json({ message : 'File upload', success: true })
