@@ -47,6 +47,7 @@ passport.use('local-register', new LocalStrategy({
       {
         await newUser.save();
         UserManager.sendMail(newUser);
+        // req.session.cookie.expires = new Date(Date.now() + )
         done(null, newUser);
 
       }
