@@ -34,13 +34,9 @@ router.get('/contact', (req, res) => {
     res.render('contact')
 });
 
-router.post('/send', (req, res) => {
-
-});
-
 //Middleware que verifica que solo los usuarios registrados podran ingresar a esta seccion
 router.use(AuthMiddleware.isAuthentication);
 
-router.get('/home', UserManager.home);
+router.get('/dashboard', UserManager.dashboard);
 
 module.exports = router;

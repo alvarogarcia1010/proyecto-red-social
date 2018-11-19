@@ -43,6 +43,7 @@ app.use(session({
   secret: sessionSecret,
   resave: false,
   saveUninitialized: false,
+  cookie: { _expires: new Date(Date.now() + 10800000)},
   store: new MongoStore({
     url: mongodb.URI,
     autoReconnect: true
