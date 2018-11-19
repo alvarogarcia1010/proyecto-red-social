@@ -31,7 +31,7 @@
           <li class="nav-item dropdown px-2">
             <a class="nav-link dropdown-toggle" href="#" id="navbar-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <% if (user.urlImage) { %>
-              <img class="rounded-circle" src="<%= '/images/avatarUser/'+ user.urlImage %>" style="width:35px;">
+              <img class="rounded-circle" src="<%= user.urlImage %>" style="width:35px;">
               <% } else { %>
                 <img class="rounded-circle" src="https://s.gravatar.com/avatar/47dc454dc555e624caf972e9ecb3a67c?" style="width:35px;">
               <% } %>

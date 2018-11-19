@@ -33,7 +33,11 @@ passport.use('local-register', new LocalStrategy({
       newUser.password = newUser.encryptPassword(params.password);
       newUser.role = 'ROLE_USER';
       newUser.urlImage = '/home/alvaro/Documents/ayuda-un-peludo/src/public/images/avatarUser/defaulAvatarUser.jpg';
-
+      newUser.provider_id = Math.random() * Date.now();
+      newUser.provider = 'AYUDA_UN_PELUDO';
+      newUser.fecha_nacimiento = '';
+      newUser.sobre_mi = '';
+      newUser.pais = '';
       var user =  await User.find({ $or: [
           {email: newUser.email.toLowerCase()},
           {username: newUser.username.toLowerCase()}
@@ -45,7 +49,10 @@ passport.use('local-register', new LocalStrategy({
       }
       else
       {
-        await newUser.save();
+        await newUser.save((error, user) =>{
+          if (error) console.log(error);
+          if(user) console.log(user);
+        });
         UserManager.sendMail(newUser);
         done(null, newUser);
 
