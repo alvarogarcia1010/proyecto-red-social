@@ -1,8 +1,171 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+:root
+{
+  box-sizing: border-box;
+  /* font-size: calc(0.3em + 1vw); */
 }
 
-a {
-  color: #00B7FF;
+*, ::before, ::after
+{
+  box-sizing: inherit;
+}
+
+body {
+  padding-top: 70px;
+  font-family: 'Cabin Condensed', sans-serif;
+}
+
+.text-inline{
+  display: inline-block;
+}
+
+.space-between{
+  display: flex;
+  justify-content: space-between;
+}
+
+.space-around{
+  display: flex;
+  justify-content: space-around;
+}
+
+.flex-center{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.flex-align-center{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.flex-end{
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+
+.text-small{
+  font-size: 0.9em;
+}
+
+.links{
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.icon{
+  position: relative;
+}
+
+.icon i{
+  position: absolute;
+  right: 0px;
+  top: 4px;
+  padding: 9px 8px;
+  color: green;
+}
+
+textarea {
+  max-height: 130px;
+  overflow-x: hidden;
+}
+
+.vh-all{
+  height:87vh;
+}
+
+.y-scroll{
+    /* height:70vh; */
+    overflow:scroll;
+    overflow-x:hidden;
+}
+
+.y-scroll-panel{
+    /* height:77vh; */
+    overflow:scroll;
+    overflow-x:hidden;
+}
+
+.bg-gray{
+  background-color: #f2f2f2;
+}
+
+/* Tamaño lg */
+@media (min-width: 992px) and (max-width: 1199px){
+  .text-lg-small{
+    font-size: 0.75em;
+  }
+
+  .text-lg-small .btn{
+    font-size: 0.9em;
+  }
+
+  .text-small{
+    font-size: 0.8em;
+  }
+}
+
+/* Tamaño md */
+@media (min-width: 769px) and (max-width: 991px){
+
+  .text-md-small h5{
+    font-size: 0.95em;
+  }
+
+}
+
+.row1{
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 4px;
+}
+
+/* Create four equal columns that sits next to each other */
+.column1 {
+  flex: 33.3%;
+  max-width: 33.3%;
+  padding: 0 3px;
+}
+
+.column1 img {
+  margin-top: 8px;
+  vertical-align: middle;
+  width: 100%;
+}
+
+.kv-avatar .krajee-default.file-preview-frame,.kv-avatar .krajee-default.file-preview-frame:hover {
+    margin: 0;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    text-align: center;
+}
+.kv-avatar {
+    display: inline-block;
+}
+.kv-avatar .file-input {
+    display: table-cell;
+    width: 213px;
+}
+.kv-reqd {
+    color: red;
+    font-family: monospace;
+    font-weight: normal;
+}
+
+/* Responsive layout - makes a two column-layout instead of four columns */
+@media screen and (max-width: 800px) {
+  .column1 {
+    flex: 66.6%;
+    max-width: 66.6%;
+  }
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column1 {
+    flex: 100%;
+    max-width: 100%;
+  }
 }

@@ -58,6 +58,17 @@ AuthController.home = (req, res, next) => {
   res.render('home');
 };
 
+AuthController.dashboard = (req, res, next) => {
+  if(req.user.role == 'ROLE_ADMIN')
+  {
+    res.render('dashboard');
+  }
+  else
+  {
+    res.redirect('home')
+  }
+};
+
 /*
  * Obtener usuario
  * @params username
