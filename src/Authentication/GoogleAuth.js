@@ -20,10 +20,16 @@ passport.use('GoogleLogin', new GoogleStrategy({
         var user = new User({
             provider_id: profile.id,
             provider: profile.provider,
-            name: profile.name,
-            surname: profile.name,
+            name: profile.displayName,
+            surname: profile.displayName,
             urlImage: img,
-            username: '@' + profile.name
+            username: '@' + profile.displayName,
+            role: 'ROLE_USER',
+            fecha_nacimiento: '',
+            sobre_mi: '',
+            pais: '',
+            password: '',
+            email: profile.emails
         });
         await user.save(function (err) {
             if (err) throw err;

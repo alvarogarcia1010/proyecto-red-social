@@ -43,6 +43,7 @@ app.use(session({
   secret: sessionSecret,
   resave: false,
   saveUninitialized: false,
+  cookie: { _expires: new Date(Date.now() + 10800000)},
   store: new MongoStore({
     url: mongodb.URI,
     autoReconnect: true
@@ -66,9 +67,11 @@ app.use((req, res, next) =>{
 //Routes
 app.use('/', indexRouter.init);
 app.use('/home', indexRouter.home);
-app.use('/', indexRouter.user);
 app.use('/messages', indexRouter.messages);
 app.use('/file', indexRouter.file);
+app.use('/api', indexRouter.follow);
+app.use('/', indexRouter.user);
+
 
 // Catch 404 and forward to error handler
 app.use(function (req, res, next) {

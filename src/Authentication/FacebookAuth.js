@@ -20,14 +20,20 @@ passport.use('FacebookLogin', new FacebookStrategy({
         var user = new User({
             provider_id: profile.id,
             provider: profile.provider,
-            name: profile.name.givenName,
-            surname: profile.name.familyName,
+            name: profile.displayName,
+            surname: profile.displayName,
             urlImage: profile.photos[0].value,
-            username: '@' + profile.name.familyName
+            username: '@' + profile.displayName,
+            role: 'ROLE_USER',
+            fecha_nacimiento: profile.birthday,
+            sobre_mi: '',
+            pais: '',
+            password: '',
+            email: profile.emails
         });
         await user.save(function (err) {
             if (err) throw err;
-            console.log(user);
+            console.log('se guardó'+ user);
             done(null, user);
         });
     });

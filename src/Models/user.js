@@ -7,12 +7,17 @@ var UserSchema = Schema({
     name: String,
     surname: String,
     provider: String,
-    provider_id: {type:String, unique:true},
+    provider_id: {type: String, unique: true},
     email: {type: String, require: true, unique: true},
     username: {type: String, require: true, unique: true},
     password: String,
     urlImage: String,
     role: String,
+    fecha_nacimiento: String,
+    pais: String,
+    sobre_mi: String,
+    resetPasswordToken: String,
+    resetPasswordExpires: Date,
     created_at: {type: Date, default: Date.now},
 });
 
