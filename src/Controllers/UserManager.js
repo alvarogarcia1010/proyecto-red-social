@@ -17,7 +17,12 @@ AuthController.init = function (req, res, next) {
 };
 
 AuthController.login = function (req, res, next) {
-  res.render('login');
+  if (req.isAuthenticated()) {
+    res.redirect('/home');
+  } else {
+    res.render('login');
+  }
+
 };
 
 AuthController.signUp = function (req, res, next) {
