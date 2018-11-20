@@ -14,3 +14,139 @@
     <a href='/google-login'> Sign Up With Google</a>
   </li>
 </ul>
+<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <title>Login</title>
+</head>
+<body>
+  <!--Navbar login-->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-success fixed-top">
+    <a class="navbar-brand" href="#">
+        <img src="assets/img/huellita.png" alt="" height="30">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Registrarme <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Iniciar Sesion</a>
+            </li>
+        </ul>
+    </div>
+  </nav>
+  <!--navbar login-->
+
+  <div class="container">
+    <div class="row">
+        <div class="col-md-8 px-2">
+            <%- include('./carrusel.ejs') %>
+        </div>
+        <div class="col-md-4 px-2">
+              <ul class="nav nav-tabs" id="myTab" role="tablist">
+                  <li class="nav-item">
+                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" style="color:green" aria-selected="true">Inciar Sesión</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" style="color:green" aria-selected="false">Registrarme</a>
+                  </li>
+              </ul>
+
+                <div class="tab-content" id="myTabContent">
+                      <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                          <%- include('./inicio-sesion.ejs') %>
+                      </div>
+                      <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                          <%- include('./signup.ejs') %>
+                      </div>
+                </div>
+          </div>
+      </div>
+  </div>
+
+    <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Condiciones de uso -->
+  <div class="modal fade" id="termsOfUse" tabindex="-1" role="dialog" aria-labelledby="termsOfUseTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title font-weight-bold" id="termsOfUseTitle">Condiciones de uso</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae ullam sapiente consectetur temporibus cupiditate totam molestias vero voluptas eum impedit, fugit accusantium iusto autem, explicabo eos quisquam maxime excepturi quas eaque itaque numquam voluptatibus iste. Deleniti labore et tempore consectetur saepe autem, perferendis debitis molestias maiores at ex aut hic.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Politicas de privacidad -->
+  <div class="modal fade" id="privacyPolicies" tabindex="-1" role="dialog" aria-labelledby="privacyPoliciesTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title font-weight-bold" id="privacyPoliciesTitle">Politicas de privacidad</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae ullam sapiente consectetur temporibus cupiditate totam molestias vero voluptas eum impedit, fugit accusantium iusto autem, explicabo eos quisquam maxime excepturi quas eaque itaque numquam voluptatibus iste. Deleniti labore et tempore consectetur saepe autem, perferendis debitis molestias maiores at ex aut hic.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+      crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+      crossorigin="anonymous"></script>
+
+</body>
+</html>
