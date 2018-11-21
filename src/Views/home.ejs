@@ -1,366 +1,44 @@
 <%- layout('Layout/template.ejs') %>
 
-<h1>Estoy en home</h1>
   <div class="container">
     <div class="row">
       <div class="col-lg-3 col-md-5 px-2">
         <!-- Mi Perfil -->
-        
+        <%- include('Components/myProfile.ejs') %>
         <!-- Fin de mi perfil   -->
-
         <!-- Sugerencias -->
-
+        <%- include('Components/Suggestions.ejs') %>
         <!-- Fin de sugerencias -->
       </div>
         <div class="col-lg-6 col-md-7 px-2">
-            <div class="card mb-2">
-                <div class="card-body py-2 px-3">
-                    <form>
-                        <div class="d-flex">
-                            <div class="">
-                            <a href="#">
-                                <img class="rounded-circle" src="https://s.gravatar.com/avatar/47dc454dc555e624caf972e9ecb3a67c?s=45">
-                            </a>
-                            </div>
-                            <div class="flex-align-center pl-2 pr-0 flex-fill">
-                            <textarea class="form-control js-auto-size" rows="1" placeholder="Escribe una publicación..."></textarea>
-                            </div>
-                        </div>
-                        <div class="collapse my-2" id="upload-image">
-                            <div class="card card-body">
-                            aqui ira boostrap file input
-                            </div>
-                        </div>
-                        <div class="d-flex justify-content-end my-2">
-                            <a class="px-3" data-toggle="collapse" href="#upload-image" role="button" aria-expanded="false" aria-controls="upload-image" style="font-size:1.5rem;"><i class="fas fa-image text-success"></i></a>
-                            <input type="submit" class="btn btn-outline-success text-align-center px-3" value="Publicar">
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-          <i class="fas fa-check-circle"></i> Publicación realizada con exito.
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <!-- Publicacion #1 -->
-        <div class="card mb-2">
-          <div class="card-body p-2">
-            <!-- Información personal de la publicación -->
-            <div class="d-flex">
-              <div class="pl-1">
-                <a href="#">
-                  <img class="rounded-circle" src="https://s.gravatar.com/avatar/47dc454dc555e624caf972e9ecb3a67c?s=45">
-                </a>
-              </div>
-              <div class="flex-align-center px-2">
-                <h6 class="card-title mb-0">
-                  <a href="#" class="text-dark font-weight-bold">Alvaro García</a>
-                </h6>
-                <p class="card-subtitle"><small class="text-muted">Last updated 3 mins ago</small></p>
-              </div>
-              <div class="ml-auto">
-                <div class="dropdown flex-end">
-                  <i class="fas fa-ellipsis-h btn" id="publication-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
-                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="publication-1">
-                    <a class="dropdown-item" href="#">Editar publicación</a>
-                    <a class="dropdown-item" href="#">Eliminar publicación</a>
-                    <a class="dropdown-item" href="#">Copiar enlace de publicación</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Fin de la información personal -->
-            <!-- Texto -->
-            <p class="card-text my-1">With supporting text below as a natural lead-in to additional content.</p>
-            <!-- Footer -->
-            <div class="d-flex btn-group w-100" role="group" aria-label="post-action">
-              <button type="button" class="btn btn-outline-success btn-sm flex-fill"><i class="fas fa-paw"></i> <span class="d-none d-sm-inline d-md-none d-xl-inline">Me empeluda</span> <span class="badge badge-light">20</span></button>
-              <button type="button" class="btn btn-outline-success btn-sm flex-fill" data-toggle="collapse" data-target="#collapse-comment" aria-expanded="false" aria-controls="collapse-comment"><i class="far fa-comment"></i> <span class="d-none d-sm-inline d-md-none d-xl-inline">Comentar</span>
-                <span class="badge badge-light">20</span></button>
-              <button type="button" class="btn btn-outline-success btn-sm flex-fill" data-toggle="modal" data-target="#share-publication"><i class="fas fa-share"></i> <span class="d-none d-sm-inline d-md-none d-xl-inline">Compartir</span> <span
-                  class="badge badge-light">20</span></button>
-              <button type="button" class="btn btn-outline-success btn-sm flex-fill" data-toggle="modal" data-target="#send-private-message"><i class="fas fa-envelope"></i> <span class="d-none d-sm-inline d-md-none d-xl-inline">Mensaje directo</span> </button>
-            </div>
-
-            <div class="collapse" id="collapse-comment">
-              <div class="card card-body border-0 py-2 px-0">
-                <form class="form-inline">
-                  <div class="">
-                    <a href="#">
-                      <img class="rounded-circle" src="https://s.gravatar.com/avatar/47dc454dc555e624caf972e9ecb3a67c?s=35">
-                    </a>
-                  </div>
-                  <div class="form-group flex-grow-1 mx-2 my-0">
-                    <textarea class="form-control form-control-sm w-100 js-auto-size" id="comment-box" rows="1" placeholder="Escribe un comentario..."></textarea>
-                  </div>
-                  <button type="submit" class="btn btn-outline-success btn-sm">Enviar</button>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Fin de publicación #1 -->
-        <!-- Publicacion #2 -->
-        <div class="card mb-2">
-          <div class="card-body p-2">
-            <!-- Información personal de la publicación -->
-            <div class="d-flex">
-              <div class="pl-1">
-                <a href="#">
-                  <img class="rounded-circle" src="https://s.gravatar.com/avatar/47dc454dc555e624caf972e9ecb3a67c?s=45">
-                </a>
-              </div>
-              <div class="flex-align-center px-2">
-                <h6 class="card-title mb-0">
-                  <a href="#" class="text-dark font-weight-bold">Alvaro García</a>
-                </h6>
-                <p class="card-subtitle"><small class="text-muted">Last updated 3 mins ago</small></p>
-              </div>
-              <div class="ml-auto">
-                <div class="dropdown flex-end">
-                  <i class="fas fa-ellipsis-h btn" id="publication-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
-                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="publication-1">
-                    <a class="dropdown-item" href="#">Editar publicación</a>
-                    <a class="dropdown-item" href="#">Eliminar publicación</a>
-                    <a class="dropdown-item" href="#">Copiar enlace de publicación</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Fin de la información personal -->
-            <!-- Texto -->
-            <p class="card-text my-1">With supporting text below as a natural lead-in to additional content.</p>
-            <!-- Footer -->
-            <div class="d-flex btn-group w-100" role="group" aria-label="post-action">
-              <button type="button" class="btn btn-outline-success btn-sm flex-fill"><i class="fas fa-paw"></i> <span class="d-none d-sm-inline d-md-none d-xl-inline">Me empeluda</span> <span class="badge badge-light">20</span></button>
-              <button type="button" class="btn btn-outline-success btn-sm flex-fill" data-toggle="collapse" data-target="#collapse-comment2" aria-expanded="false" aria-controls="collapse-comment"><i class="far fa-comment"></i> <span class="d-none d-sm-inline d-md-none d-xl-inline">Comentar</span>
-                <span class="badge badge-light">20</span></button>
-              <button type="button" class="btn btn-outline-success btn-sm flex-fill" data-toggle="modal" data-target="#exampleModalCenter"><i class="fas fa-share"></i> <span class="d-none d-sm-inline d-md-none d-xl-inline">Compartir</span> <span
-                  class="badge badge-light">20</span></button>
-              <button type="button" class="btn btn-outline-success btn-sm flex-fill"><i class="fas fa-envelope"></i> <span class="d-none d-sm-inline d-md-none d-xl-inline">Mensaje directo</span> </button>
-            </div>
-
-            <div class="collapse" id="collapse-comment2">
-              <div class="card card-body border-0 py-2 px-0">
-                <form class="form-inline">
-                  <div class="">
-                    <a href="#">
-                      <img class="rounded-circle" src="https://s.gravatar.com/avatar/47dc454dc555e624caf972e9ecb3a67c?s=35">
-                    </a>
-                  </div>
-                  <div class="form-group flex-grow-1 mx-2 my-0">
-                    <input type="text" class="form-control form-control-sm w-100" id="comment-box2" placeholder="Escribe un comentario...">
-                  </div>
-                  <button type="submit" class="btn btn-outline-success btn-sm">Enviar</button>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Fin de publicación #2 -->
-        <!-- Publicacion #3 -->
-        <div class="card mb-2">
-          <div class="card-body p-2">
-            <!-- Información personal de la publicación -->
-            <div class="d-flex">
-              <div class="pl-1">
-                <a href="#">
-                  <img class="rounded-circle" src="https://s.gravatar.com/avatar/47dc454dc555e624caf972e9ecb3a67c?s=45">
-                </a>
-              </div>
-              <div class="flex-align-center px-2">
-                <h6 class="card-title mb-0">
-                  <a href="#" class="text-dark font-weight-bold">Alvaro García</a>
-                </h6>
-                <p class="card-subtitle"><small class="text-muted">Last updated 3 mins ago</small></p>
-              </div>
-              <div class="ml-auto">
-                <div class="dropdown flex-end">
-                  <i class="fas fa-ellipsis-h btn" id="publication-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
-                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="publication-1">
-                    <a class="dropdown-item" href="#">Editar publicación</a>
-                    <a class="dropdown-item" href="#">Eliminar publicación</a>
-                    <a class="dropdown-item" href="#">Copiar enlace de publicación</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Fin de la información personal -->
-            <!-- Texto -->
-            <p class="card-text my-1">With supporting text below as a natural lead-in to additional content.</p>
-            <img class="card-img-top" src="assets/img/huellita.png" alt="Card image cap">
-            <!-- Footer -->
-            <div class="d-flex btn-group w-100" role="group" aria-label="post-action">
-              <button type="button" class="btn btn-outline-success btn-sm flex-fill"><i class="fas fa-paw"></i> <span class="d-none d-sm-inline d-md-none d-xl-inline">Me empeluda</span> <span class="badge badge-light">20</span></button>
-              <button type="button" class="btn btn-outline-success btn-sm flex-fill" data-toggle="collapse" data-target="#collapse-comment2" aria-expanded="false" aria-controls="collapse-comment"><i class="far fa-comment"></i> <span class="d-none d-sm-inline d-md-none d-xl-inline">Comentar</span>
-                <span class="badge badge-light">20</span></button>
-              <button type="button" class="btn btn-outline-success btn-sm flex-fill" data-toggle="modal" data-target="#exampleModalCenter"><i class="fas fa-share"></i> <span class="d-none d-sm-inline d-md-none d-xl-inline">Compartir</span> <span
-                  class="badge badge-light">20</span></button>
-              <button type="button" class="btn btn-outline-success btn-sm flex-fill"><i class="fas fa-envelope"></i> <span class="d-none d-sm-inline d-md-none d-xl-inline">Mensaje directo</span> </button>
-            </div>
-
-            <div class="collapse" id="collapse-comment2">
-              <div class="card card-body border-0 py-2 px-0">
-                <form class="form-inline">
-                  <div class="">
-                    <a href="#">
-                      <img class="rounded-circle" src="https://s.gravatar.com/avatar/47dc454dc555e624caf972e9ecb3a67c?s=35">
-                    </a>
-                  </div>
-                  <div class="form-group flex-grow-1 mx-2 my-0">
-                    <input type="text" class="form-control form-control-sm w-100" id="comment-box2" placeholder="Escribe un comentario...">
-                  </div>
-                  <button type="submit" class="btn btn-outline-success btn-sm">Enviar</button>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Fin de publicación #3 -->
-        <!-- Publicacion #4 -->
-        <div class="card mb-2">
-          <div class="card-body p-2">
-            <!-- Información personal de la publicación -->
-            <div class="d-flex">
-              <div class="pl-1">
-                <a href="#">
-                  <img class="rounded-circle" src="https://s.gravatar.com/avatar/47dc454dc555e624caf972e9ecb3a67c?s=45">
-                </a>
-              </div>
-              <div class="flex-align-center px-2">
-                <h6 class="card-title mb-0">
-                  <a href="#" class="text-dark font-weight-bold">Alvaro García</a>
-                </h6>
-                <p class="card-subtitle"><small class="text-muted">Last updated 3 mins ago</small></p>
-              </div>
-              <div class="ml-auto">
-                <div class="dropdown flex-end">
-                  <i class="fas fa-ellipsis-h btn" id="publication-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
-                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="publication-1">
-                    <a class="dropdown-item" href="#">Editar publicación</a>
-                    <a class="dropdown-item" href="#">Eliminar publicación</a>
-                    <a class="dropdown-item" href="#">Copiar enlace de publicación</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Fin de la información personal -->
-            <!-- Texto -->
-            <p class="card-text my-1">With supporting text below as a natural lead-in to additional content.</p>
-            <img class="card-img-top" src="assets/img/huellita.png" alt="Card image cap">
-            <img class="card-img-top" src="assets/img/huellita.png" alt="Card image cap">
-            <!-- Footer -->
-            <div class="d-flex btn-group w-100" role="group" aria-label="post-action">
-              <button type="button" class="btn btn-outline-success btn-sm flex-fill"><i class="fas fa-paw"></i> <span class="d-none d-sm-inline d-md-none d-xl-inline">Me empeluda</span> <span class="badge badge-light">20</span></button>
-              <button type="button" class="btn btn-outline-success btn-sm flex-fill" data-toggle="collapse" data-target="#collapse-comment4" aria-expanded="false" aria-controls="collapse-comment"><i class="far fa-comment"></i> <span class="d-none d-sm-inline d-md-none d-xl-inline">Comentar</span>
-                <span class="badge badge-light">20</span></button>
-              <button type="button" class="btn btn-outline-success btn-sm flex-fill" data-toggle="modal" data-target="#exampleModalCenter"><i class="fas fa-share"></i> <span class="d-none d-sm-inline d-md-none d-xl-inline">Compartir</span> <span
-                  class="badge badge-light">20</span></button>
-              <button type="button" class="btn btn-outline-success btn-sm flex-fill"><i class="fas fa-envelope"></i> <span class="d-none d-sm-inline d-md-none d-xl-inline">Mensaje directo</span> </button>
-            </div>
-
-            <div class="collapse" id="collapse-comment4">
-              <div class="card card-body border-0 py-2 px-0">
-                <form class="form-inline">
-                  <div class="">
-                    <a href="#">
-                      <img class="rounded-circle" src="https://s.gravatar.com/avatar/47dc454dc555e624caf972e9ecb3a67c?s=35">
-                    </a>
-                  </div>
-                  <div class="form-group flex-grow-1 mx-2 my-0">
-                    <input type="text" class="form-control form-control-sm w-100" id="comment-box4" placeholder="Escribe un comentario...">
-                  </div>
-                  <button type="submit" class="btn btn-outline-success btn-sm">Enviar</button>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Fin de publicación #4 -->
+          <!--Agregar Publicacion-->
+          <%- include('Components/addPost.ejs') %>
+          <!--Fin Agregar publicacion-->
+          <!--Alerta publicacion-->
+          <%- include('Components/postAlert.ejs') %>
+          <!--Fin alerta publicacion-->
+          <!-- Publicacion #1 -->
+          <%- include('Components/post.ejs') %>
+          <!-- Fin de publicación #1 -->
+          <!-- Publicacion #2 -->
+          <%- include('Components/post.ejs') %>
+          <!-- Fin de publicación #2 -->
+          <!-- Publicacion #3 -->
+          <%- include('Components/post.ejs') %>
+          <!-- Fin de publicación #3 -->
+          <!-- Publicacion #4 -->
+          <%- include('Components/post.ejs') %>
+          <!-- Fin de publicación #4 -->
       </div>
       <!-- Publicidad -->
       <div class="col-lg-3 px-2 d-none d-lg-inline">
-        <div class="card">
-          <div class="card-body p-2">
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-success">Go somewhere</a>
-          </div>
-        </div>
+          <%- include('Components/ads.ejs') %>
       </div>
+      <!--Fin de publicidad-->
     </div>
   </div>
 
   <!-- Modal Compartir publicación-->
-  <div class="modal fade" id="share-publication" tabindex="-1" role="dialog" aria-labelledby="share-publication-title" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="share-publication-title">Compartir con tus seguidores</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <!-- Mi comentario -->
-          <form class="form-inline">
-            <div class="form-group flex-grow-1 mb-3">
-              <textarea class="form-control js-auto-size form-control-sm w-100" id="share-comment-box" rows="1" placeholder="Escribe un comentario..."></textarea>
-            </div>
-          </form>
-          <!-- Publicacion -->
-          <div class="card card-body p-2">
-            <!-- Información personal de la publicación -->
-            <div class="d-flex">
-              <div class="pl-1">
-                <a href="#">
-                  <img class="rounded-circle" src="https://s.gravatar.com/avatar/47dc454dc555e624caf972e9ecb3a67c?s=45">
-                </a>
-              </div>
-              <div class="flex-align-center px-2">
-                <h6 class="card-title mb-0">
-                  <a href="#" class="text-dark font-weight-bold">Alvaro García</a>
-                </h6>
-                <p class="card-subtitle"><small class="text-muted">Last updated 3 mins ago</small></p>
-              </div>
-            </div>
-            <!-- Fin de la información personal -->
-            <!-- Texto -->
-            <p class="card-text my-1">With supporting text below as a natural lead-in to additional content.</p>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-outline-success">Compartir</button>
-        </div>
-      </div>
-    </div>
-  </div>
+
 
   <!-- Modal Enviar mensaje privado-->
-  <div class="modal fade" id="send-private-message" tabindex="-1" role="dialog" aria-labelledby="send-private-message-title" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="send-private-message-title">Nuevo mensaje privado para <a href="#" class="text-success" >@alvarogarcia1010</a></h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <!-- Mi comentario -->
-          <form class="form-inline">
-            <div class="form-group flex-grow-1 mb-3">
-              <label for="message-box" class="col-form-label">Mensaje:</label>
-              <textarea class="form-control js-auto-size form-control-sm w-100" id="message-box" rows="1" placeholder="Escribe un mensaje..."></textarea>
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-outline-success">Enviar</button>
-        </div>
-      </div>
-    </div>
-  </div>
