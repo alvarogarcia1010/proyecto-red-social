@@ -41,7 +41,9 @@ AuthController.signIn = passport.authenticate('local-login', {
   passReqToCallback: true
 });
 
-AuthController.facebookLogin = passport.authenticate('FacebookLogin');
+AuthController.facebookLogin = passport.authenticate('FacebookLogin',{
+  scope: ['email']
+});
 
 AuthController.facebookLoginCallback = passport.authenticate('FacebookLogin', {
   failureRedirect: '/login',
