@@ -3,6 +3,22 @@
         <h6 class="card-title font-weight-bold m-0"><i class="fas fa-lock"></i> Inicio de Sesion</h6>
     </div>
     <div class="card-body py-3 px-2">
+        <% if (loginMessage != '') { %>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert" id="login-error-alert">
+                <%= loginMessage %>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        <% } %>
+        <% if (signupMessage != '') { %>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert" id="signup-error-alert">
+                <%= signupMessage %>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        <% } %>
         <form action="/login" method="POST" class="needs-validation" novalidate>
             <div class="form-group mt-1">
                 <div class="input-group ">

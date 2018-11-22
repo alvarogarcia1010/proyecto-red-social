@@ -31,7 +31,7 @@ AuthController.signUp = function (req, res, next) {
 
 AuthController.register = passport.authenticate('local-register', {
   successRedirect: '/home',
-  failureRedirect: '/signup', //Temporalmente
+  failureRedirect: '/login', //Temporalmente
   passReqToCallback: true
 });
 
