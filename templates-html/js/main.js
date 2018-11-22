@@ -1,4 +1,3 @@
-
 $(document).ready(function() {
     console.log( "ready!" );
 
@@ -8,7 +7,9 @@ $(document).ready(function() {
         '</button>';
     $("#avatar-1").fileinput({
         theme: "fas",
+        //autoOrientImage: false,
         overwriteInitial: true,
+        showUpload: true,
         maxFileSize: 1500,
         showClose: false,
         showCaption: false,

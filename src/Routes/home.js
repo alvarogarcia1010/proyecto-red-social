@@ -8,5 +8,8 @@ const AuthMiddleware = require("../Middlewares/AuthMiddleware");
 router.use(AuthMiddleware.isAuthentication);
 
 router.get('/', UserManager.home);
+router.get('/profile', (req,res)=>{
+    res.render('perfil')
+});
 
 module.exports = router;
