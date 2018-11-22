@@ -9,7 +9,7 @@ passport.use('FacebookLogin', new FacebookStrategy({
     clientID: facebook.id,
     clientSecret: facebook.secret,
     callbackURL: "/facebook-login/callback",
-    profileFields: ['id', 'displayName', 'emails' ,'name', 'photos']
+    profileFields: ['id', 'displayName', 'emails' ,'name','picture.type(large)']
 }, function (accessToken, refreshToken, profile, done) {
     console.log(profile);
     User.findOne({

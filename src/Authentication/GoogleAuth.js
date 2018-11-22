@@ -29,7 +29,7 @@ passport.use('GoogleLogin', new GoogleStrategy({
             sobre_mi: '',
             pais: '',
             password: '',
-            email: profile.emails
+            email: profile.emails[0].values
         });
         await user.save(function (err) {
             if (err) throw err;

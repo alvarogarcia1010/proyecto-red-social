@@ -51,7 +51,7 @@ AuthController.facebookLoginCallback = passport.authenticate('FacebookLogin', {
 });
 
 AuthController.googleLogin = passport.authenticate('GoogleLogin',{
-  scope: ['profile']
+  scope: ['profile', 'email']
 });
 
 AuthController.googleLoginCallback = passport.authenticate('GoogleLogin', {
@@ -184,29 +184,25 @@ AuthController.updateUser = async (req, res, next) => {
 
 
 AuthController.recoverPassword = function(req, res, next){
-  var email = req.params.email;
-  async ([
-    async (done)=>{
-      crypto.randomBytes(20, function(err,buf){
+        var email = req.params.email;
+        crypto.randomBytes(20, function(err,buf){
         var token = buf.toString('hex');
-        done(err,token);
       });
-    },
-    async (token, done)=>{
-      await User.findOne({email: email }, function(err,user){
+    async (token)=>{
+      await User.findByIdAndUpdate({_id: id }, function(err,user){
         if(!user){
           console.log("No existe esa cuenta asociada");
           return res.redirect('/forgot');
         }
         user.resetPasswordToken = token;
         user.resetPasswordExpires = Date.now() + 3600000;
-  
+
         user.save((err) => {
           done(err, token, user);
         });
       });
-    },
-    async (token, user, done) =>{
+    };
+    (token, user) =>{
       let transporter = nodemailer.createTransport({
         service: 'gmail',
         auth:{
@@ -232,11 +228,11 @@ AuthController.recoverPassword = function(req, res, next){
         }
         console.log('Message sent: %s', info.messageId);
       });
-    }],
+    };
     async (err)=>{
       if(err) return next(err);
       res.redirect('/forgot');
-    });
+    };
 };
 /*
 * Enviar correo de bienvenida al registrarse.
