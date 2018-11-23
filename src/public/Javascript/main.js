@@ -15,27 +15,38 @@ $(document).ready(function()
         }
     };
 
-
-    $('#aup-profile').click(function()
-    {
-        console.log('presione ir al perfil');
+    function callToDashboard(pageRefInput){
         $.ajax(    
         {
-            url: "/dashboard",
+            url: pageRefInput,
             type: "GET",
-            dataType: "text/html",
+           dataType: "text",
 
             success: function( response ) {
+                console.log("jnksnioas" + response);
                 console.log('the page was loaded', response);
-            },
-            success: function( error ) {
+                $('#main-content').html(response);
+                history.pushState(null, "", "dashboard");
+            }
+            /*success: function( error ) {
                 console.log('the page was NOT loaded', error);
             },
             success: function( error ) {
                 console.log('the page was NOT loaded', error);
-            },
-
+            },*/
         });
+    }
+
+
+    $('#aup-profile').on('click', function(e){
+        e.preventDefault();
+        console.log('presione ir al perfil');
+        var pageRef = $(this).attr('href');
+        console.log(pageRef);
+        callToDashboard(pageRef);
+
+    });
+
         // $.ajax(
         // {
         //     type: 'POST',
@@ -82,7 +93,6 @@ $(document).ready(function()
         //         enableAll();
         //     }
         // });
-    });
 
 });
 
