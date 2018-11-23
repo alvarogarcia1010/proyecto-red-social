@@ -57,23 +57,64 @@
                 <div class="list-group" id="list-tab" role="tablist">
                     <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list"
                         href="#list-home" role="tab" aria-controls="home">Home</a>
-                    <a class="list-group-item list-group-item-action" id="list-account-list" data-toggle="list"
-                        href="#list-account" role="tab" aria-controls="account">Account</a>
+                    <a class="list-group-item list-group-item-action" id="list-account-list" data-toggle="list" href="#list-account"
+                        role="tab" aria-controls="account">Cuenta</a>
                     <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile"
                         role="tab" aria-controls="profile">Profile</a>
-                    <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages"
-                        role="tab" aria-controls="messages">Messages</a>
-                    <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings"
-                        role="tab" aria-controls="settings">Settings</a>
                 </div>
             </div>
             <div class="col-8">
                 <div class="tab-content" id="nav-tabContent">
-                    <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">.aaa..</div>
-                    <div class="tab-pane fade" id="list-account" role="tabpanel" aria-labelledby="list-account-list">.123..</div>
-                    <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">.bbb..</div>
-                    <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">.ccc..</div>
-                    <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">.ddd..</div>
+                    <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
+                        <h2>Home</h2>
+                        <p>
+                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. In quas vero nulla enim
+                            reiciendis assumenda ipsa explicabo deleniti rem quibusdam neque nam architecto
+                            necessitatibus saepe harum, non earum maxime quam delectus fugiat ut at numquam?
+                            Praesentium, autem? Saepe iure repellat a expedita totam impedit, dolorum suscipit animi
+                            modi porro obcaecati.
+                        </p>
+                    </div>
+                    <div class="tab-pane fade" id="list-account" role="tabpanel" aria-labelledby="list-account-list">
+                        <form action="">
+                            <div class="form-group">
+                                <h2>Cuenta</h2>
+                                <label for="password-actual">Password actual:</label>
+                                <input type="password" id="password-actual" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="password-nuevo">Password nuevo:</label>
+                                <input type="password" id="password-nuevo" class="form-control">
+                                <label for="password-nuevo-confirm">Confirmar password nuevo:</label>
+                                <input type="password" id="password-nuevo-confirm" class="form-control">
+                            </div>
+                            <button type="submit" class="btn btn-success">Guardar cambios</button>
+                        </form>
+
+                    </div>
+                    <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
+                        <form action="">
+                            <div class="form-group">
+                                <h2>Perfil</h2>
+                                <label for="cambiar-username">Cambiar username:</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">@</span>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="Username" aria-label="Username"
+                                        aria-describedby="basic-addon1">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-success">Cambiar username</button>
+
+                            <div class="form-group">
+                                <h2 class="mt-5">Cambiar foto de perfil:</h2>
+                                <label for="nueva-foto-perfil">Seleccionar una foto:</label>
+                                <input type="file" class="form-control-file" id="nueva-foto-perfil">
+                            </div>
+                            <button type="submit" class="btn btn-success">Cambiar foto de perfil</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
