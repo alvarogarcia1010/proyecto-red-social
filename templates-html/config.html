@@ -55,8 +55,8 @@
         <div class="row">
             <div class="col-4">
                 <div class="list-group" id="list-tab" role="tablist">
-                    <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list"
-                        href="#list-home" role="tab" aria-controls="home">Home</a>
+                    <a class="list-group-item list-group-item-action active" id="list-email-list" data-toggle="list"
+                        href="#list-email" role="tab" aria-controls="email">Email</a>
                     <a class="list-group-item list-group-item-action" id="list-account-list" data-toggle="list" href="#list-account"
                         role="tab" aria-controls="account">Cuenta</a>
                     <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile"
@@ -65,15 +65,15 @@
             </div>
             <div class="col-8">
                 <div class="tab-content" id="nav-tabContent">
-                    <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
-                        <h2>Home</h2>
-                        <p>
-                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. In quas vero nulla enim
-                            reiciendis assumenda ipsa explicabo deleniti rem quibusdam neque nam architecto
-                            necessitatibus saepe harum, non earum maxime quam delectus fugiat ut at numquam?
-                            Praesentium, autem? Saepe iure repellat a expedita totam impedit, dolorum suscipit animi
-                            modi porro obcaecati.
-                        </p>
+                    <div class="tab-pane fade show active" id="list-email" role="tabpanel" aria-labelledby="list-email-list">
+                        <form action="">
+                            <div class="form-group">
+                                <h2>Cambia tu correo</h2>
+                                <label for="new-email">Nuevo correo electronico:</label>
+                                <input type="email" id="new-email" class="form-control">
+                            </div>
+                            <button type="submit" class="btn btn-success">Guardar cambios</button>
+                        </form>
                     </div>
                     <div class="tab-pane fade" id="list-account" role="tabpanel" aria-labelledby="list-account-list">
                         <form action="">
