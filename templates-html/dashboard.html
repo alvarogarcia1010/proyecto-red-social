@@ -16,6 +16,11 @@
         crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Cabin+Condensed" rel="stylesheet">
 
+    <!--custom css-->
+    <link rel="stylesheet" href="./css/dashboard.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+        crossorigin="anonymous">
+
     <title>Dashboard</title>
 </head>
 
@@ -48,21 +53,65 @@
         </div>
     </nav>
 
-    <div class="container mt-5 border border-success pb-2">
-        <h1>Dashboard</h1>
-        <form>
-            <div class="form-group">
-                <label for="new-window">Crear nueva seccion</label>
-                <input type="text" class="form-control" id="new-window" aria-describedby="emailHelp"
-                    placeholder="Nombre de la nueva seccion">
+    <!--CARDS INFORMATIVAS-->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Usuarios</h5>
+                    </div>
+                    <div class="card-body card-usuarios">
+                        <div class="d-flex justify-content-around align-items-center">
+                            <i class="fas fa-user"></i>
+                            <h3>40</h3>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="admin-pass">Password para confrmar cambios</label>
-                <input type="password" class="form-control" id="admin-pass" placeholder="Password">
+            <div class="col-sm-3">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Administradores</h5>
+                    </div>
+                    <div class="card-body card-administradores">
+                        <div class="d-flex justify-content-around align-items-center">
+                            <i class="fas fa-user-tie"></i>
+                            <h3>4</h3>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <button type="submit" class="btn btn-primary">Guardar cambios</button>
-        </form>
+            <div class="col-sm-3">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Publicaciones</h5>
+                    </div>
+                    <div class="card-body card-publicaciones">
+                        <div class="d-flex justify-content-around align-items-center">
+                            <i class="fas fa-newspaper"></i>
+                            <h3>100</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Me enpeluda</h5>
+                    </div>
+                    <div class="card-body card-likes">
+                        <div class="d-flex justify-content-around align-items-center">
+                            <i class="fas fa-paw"></i>
+                            <h3>5000</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
 
 
     <!-- Optional JavaScript -->
