@@ -1,6 +1,10 @@
 $(document).ready(function() {
     console.log( "ready!" );
 
+    //CODE TU MAKE TABLES WORK///////////////
+    $('#myTable').DataTable();
+    ////////////////////////////////////
+
     var btnCust = '<button type="button" class="btn btn-secondary" title="Add picture tags" ' +
         'onclick="alert(\'Call your custom code here.\')">' +
         '<i class="fas fa-user"></i>' +

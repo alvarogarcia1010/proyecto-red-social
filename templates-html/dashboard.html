@@ -21,6 +21,10 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
         crossorigin="anonymous">
 
+    <!-- CSS Files to load tables-->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+
+
     <title>Dashboard</title>
 </head>
 
@@ -112,9 +116,60 @@
         </div>
     </div>
 
+    <!--TABLA CON TODOS LOS USUARIOS REGISTRADOS-->
+
+    <div class="container mt-5">
+        <h4>Usuarios registrados:</h4>
+        <table id="myTable" class="display">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Username</th>
+                    <th>Admin option</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>John</td>
+                    <td>Denver</td>
+                    <td>@johndenver</td>
+                    <td><button class="btn btn-success">Make admin</button></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Dan</td>
+                    <td>Marino</td>
+                    <td>@danmarino</td>
+                    <td><button class="btn btn-success">Make admin</button></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Tom</td>
+                    <td>Brady</td>
+                    <td>@tombrady</td>
+                    <td><button class="btn btn-success">Make admin</button></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Aaron</td>
+                    <td>Rodgers</td>
+                    <td>@arodgers12</td>
+                    <td><button class="btn btn-success">Remove admin</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+
+
 
 
     <!-- Optional JavaScript -->
+
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
@@ -124,6 +179,11 @@
         crossorigin="anonymous"></script>
     <script src="js/jquery.textarea_autosize.js"></script>
     <script src="js/index.js"></script>
+
+    <!--JAVACRIPT TO RUN TABLES-->
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="./js/main.js"></script>
+
 </body>
 
 </html>
