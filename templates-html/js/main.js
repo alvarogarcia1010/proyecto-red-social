@@ -1,9 +1,14 @@
-$(document).ready(function() {
-    console.log( "ready!" );
+$(document).ready(function () {
+    console.log("ready!");
 
     //CODE TU MAKE TABLES WORK///////////////
     $('#myTable').DataTable();
     ////////////////////////////////////
+
+    /////////////codigo para validar formularios//////////////////
+    
+    /////////////////////////////////////////////////////////////
+
 
     var btnCust = '<button type="button" class="btn btn-secondary" title="Add picture tags" ' +
         'onclick="alert(\'Call your custom code here.\')">' +
@@ -25,7 +30,7 @@ $(document).ready(function() {
         elErrorContainer: '#kv-avatar-errors-1',
         msgErrorClass: 'alert alert-block alert-danger',
         defaultPreviewContent: '<img src="https://s.gravatar.com/avatar/31e81597c7a59321931c6a76324c13fd?s=100" alt="Your Avatar">',
-        layoutTemplates: {main2: '{preview} ' +  btnCust + ' {remove} {browse}'},
+        layoutTemplates: { main2: '{preview} ' + btnCust + ' {remove} {browse}' },
         allowedFileExtensions: ["jpg", "png", "gif"]
     });
 
