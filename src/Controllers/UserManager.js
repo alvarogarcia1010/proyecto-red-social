@@ -51,7 +51,10 @@ AuthController.facebookLoginCallback = passport.authenticate('FacebookLogin', {
 });
 
 AuthController.googleLogin = passport.authenticate('GoogleLogin',{
-  scope: ['profile', 'email']
+  scope: [
+    'https://www.googleapis.com/auth/userinfo.profile',
+    'https://www.googleapis.com/auth/userinfo.email'
+  ]
 });
 
 AuthController.googleLoginCallback = passport.authenticate('GoogleLogin', {
@@ -184,6 +187,11 @@ AuthController.updateUser = async (req, res, next) => {
 
 
 AuthController.recoverPassword = function(req, res, next){
+    //Buscame el correo con await  findAndUpdate
+    //if error Retorname status con error
+    //if found
+      //create el token (mira si requiere el await)
+      //guardar al usuario
         var email = req.params.email;
         crypto.randomBytes(20, function(err,buf){
         var token = buf.toString('hex');
