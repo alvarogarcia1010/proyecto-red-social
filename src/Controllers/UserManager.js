@@ -229,7 +229,6 @@ AuthController.recoverPassword = async (req, res, next)=>{
         res.status(200).json({success: true, message: "Favor revise su correo"});
         //else
         res.status(404).json({success: true, message: "Error en la peticion"});
-
       }
       else
       {
@@ -237,6 +236,7 @@ AuthController.recoverPassword = async (req, res, next)=>{
       }
     });
 };
+
 /*
 * Enviar correo de bienvenida al registrarse.
 * @params UserModel
