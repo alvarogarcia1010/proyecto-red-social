@@ -9,18 +9,3 @@ h3{
     color: white;
 }
 
-.card-usuarios{
-    background-color: #3a82f4;
-}
-.card-usuarios *{
-    color: white;
-}
-.card-administradores{
-    background-color: #0fff3f;
-}
-.card-publicaciones{
-    background-color: #dded04;
-}
-.card-likes{
-    background-color: #ed2e04;
-}

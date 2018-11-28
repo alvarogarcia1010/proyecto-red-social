@@ -11,7 +11,9 @@ router.use(AuthMiddleware.isAuthentication);
 //   res.send('Ruta: /users');
 // });
 
-router.get('/notifications', UserManager.createNewUser);
+router.get('/notificaciones', UserManager.notification);
+
+router.get('/configuraciones',UserManager.configuration);
 
 router.post('/register', UserManager.createNewUser);
 
