@@ -96,6 +96,15 @@
                             <div class="form-group">
                                 <label for="password-nuevo">Password nuevo:</label>
                                 <input type="password" id="password-nuevo" class="form-control" required>
+
+                                <div class="valid-feedback">
+                                    Confirmacion correcta
+                                </div>
+                                <div class="invalid-feedback">
+                                    Ingrese datos correctos para la confirmacion
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label for="password-nuevo-confirm">Confirmar password nuevo:</label>
                                 <input type="password" id="password-nuevo-confirm" class="form-control" required>
                                 <div class="valid-feedback">
@@ -129,7 +138,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-success">Cambiar username</button>
+                            <button id="boton-cambiar-username" type="submit" class="btn btn-success">Cambiar username</button>
                         </form>
                         <form class="needs-validation" novalidate>
                             <div class="form-group">
@@ -145,9 +154,7 @@
         </div>
     </div>
 
-    <!--SCRIPT PARA VALIDAR FORMULARIOS-->
-    <script src="./js/ValidacionFormularios/form-validation.js"></script>
-    <script src="./js/ValidacionFormularios/validacion-username.js"></script>
+    
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -158,6 +165,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
     <script src="js/jquery.textarea_autosize.js"></script>
+
+    <!--script para validar formularios-->
+    <script src="./js/main.js"></script>
 </body>
 
 </html>

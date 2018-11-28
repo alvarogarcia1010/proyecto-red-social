@@ -35,3 +35,45 @@ $(document).ready(function () {
     });
 
 });
+
+
+//SCRIPT PARA LA VALIDACION DE FORMULARIOS
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function () {
+    'use strict';
+    window.addEventListener('load', function () {
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.getElementsByClassName('needs-validation');
+        // Loop over them and prevent submission
+        var validation = Array.prototype.filter.call(forms, function (form) {
+            form.addEventListener('submit', function (event) {
+                if (form.checkValidity() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+            }, false);
+        });
+    }, false);
+
+
+    //validacion para el username
+    var botonUsername= document.getElementById('boton-cambiar-username');
+    botonUsername.onclick= validarUsername;
+    var newUsername = document.getElementById('nuevo-username');
+    var regExp = /(@\w{1,15})/;
+
+    function validarUsername() {
+        if (regExp.test(newUsername.value) === false) {
+            newUsername.setCustomValidity("este username no es valido");
+            alert("El nuevo username debe empezar con una arroba(@)")
+            return false;
+        } else {
+            newUsername.setCustomValidity('');
+        }
+    }
+
+    //validacion para confirmar password
+    
+})();
+
