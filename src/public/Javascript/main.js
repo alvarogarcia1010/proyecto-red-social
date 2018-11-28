@@ -23,9 +23,9 @@ $(document).ready(function()
            dataType: "text",
 
             success: function( response ) {
-                console.log("jnksnioas" + response);
-                console.log('the page was loaded', response);
-                $('#main-content').html(response);
+                hoola = response.split("<!-- mainContainer -->");
+                console.log(hoola[1]);
+                $('#main-content').html(hoola[1]);
                 history.pushState(null, "", "dashboard");
             }
             /*success: function( error ) {
@@ -47,53 +47,9 @@ $(document).ready(function()
 
     });
 
-        // $.ajax(
-        // {
-        //     type: 'POST',
-        //     data: JSON.stringify(data),
-        //     dataType : 'json',
-        //     url: url,
-        //     error: function (jqXHR, textStatus, errorThrown)
-        //     {
-        //         handleServerExceptions(jqXHR, 'sale-cm-form');
-        //     },
-        //     beforeSend:function()
-        //     {
-        //         $('#app-loader').removeClass('hidden');
-        //         disabledAll();
-        //     },
-        //     success:function(json)
-        //     {
-        //         if(json.success)
-        //         {
-        //             if($('#sale-cm-journals-section').attr('data-target-id') == '#sale-cm-form-section')
-        //             {
-        //                 $('#sale-cm-btn-close').click();
-        //                 $('#sale-cm-btn-toolbar').showAlertAfterElement('alert-success alert-custom',json.success, 6000);
-        //                 acctJmClientLabelArrayData = saleSomClientLabelArrayData = json.clients;
-        //                 $('#acct-jm-client-label, #sale-som-client-label').autocomplete('option', 'source', json.clients);
-        //             }
-        //             else
-        //             {
-        //                 // $('#sale-cm-form').showAlertAsFirstChild('alert-success', json.info);
-        //             }
-        //         }
-        //         else if(json.info)
-        //         {
-        //             if($('#sale-cm-journals-section').attr('data-target-id') == '#sale-cm-form-section')
-        //             {
-        //                 $('#sale-cm-form').showAlertAsFirstChild('alert-info', json.info);
-        //             }
-        //             else
-        //             {
-        //                 // $('#sale-cm-form').showAlertAsFirstChild('alert-info', json.info);
-        //             }
-        //         }
-        //         $('#app-loader').addClass('hidden');
-        //         enableAll();
-        //     }
-        // });
-
+    console.log("ready from dashboard!");
+    $('#user-register').DataTable();
+    
 });
 
 setTimeout(function(){
