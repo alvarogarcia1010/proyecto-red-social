@@ -154,6 +154,16 @@ textarea {
     font-weight: normal;
 }
 
+.cardcolor{
+  font-size: 5rem;
+  font-weight: bold;
+  color: white;
+}
+.h3color{
+  font-size: 3rem;
+  color: white;
+}
+
 /* Responsive layout - makes a two column-layout instead of four columns */
 @media screen and (max-width: 800px) {
   .column1 {
@@ -169,3 +179,5 @@ textarea {
     max-width: 100%;
   }
 }
+
+
