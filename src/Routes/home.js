@@ -12,4 +12,6 @@ router.get('/profile', (req,res)=>{
     res.render('perfil')
 });
 
+
+
 module.exports = router;

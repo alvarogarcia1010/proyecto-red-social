@@ -81,24 +81,37 @@
                     </div>
                     <div class="tab-pane fade" id="list-account" role="tabpanel" aria-labelledby="list-account-list">
                         <!--VALIDACION FORM PARA CAMBIAR PASSWORD-->
-                        <form action="">
+                        <form class="needs-validation" novalidate action="">
                             <div class="form-group">
                                 <h2>Cuenta</h2>
                                 <label for="password-actual">Password actual:</label>
-                                <input type="password" id="password-actual" class="form-control">
+                                <input type="password" id="password-actual" class="form-control" required>
+                                <div class="valid-feedback">
+                                    Password ingresado correctamente
+                                </div>
+                                <div class="invalid-feedback">
+                                    Porfavor ingrese un valor para password valido
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="password-nuevo">Password nuevo:</label>
-                                <input type="password" id="password-nuevo" class="form-control">
+                                <input type="password" id="password-nuevo" class="form-control" required>
                                 <label for="password-nuevo-confirm">Confirmar password nuevo:</label>
-                                <input type="password" id="password-nuevo-confirm" class="form-control">
+                                <input type="password" id="password-nuevo-confirm" class="form-control" required>
+                                <div class="valid-feedback">
+                                    Confirmacion correcta
+                                </div>
+                                <div class="invalid-feedback">
+                                    Ingrese datos correctos para la confirmacion
+                                </div>
                             </div>
                             <button type="submit" class="btn btn-success">Guardar cambios</button>
                         </form>
 
                     </div>
                     <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
-                        <form action="">
+                        <!--VALIDACION FORM PARA CAMBIAR USERNAME-->
+                        <form class="needs-validation" novalidate>
                             <div class="form-group">
                                 <h2>Perfil</h2>
                                 <label for="cambiar-username">Cambiar username:</label>
@@ -106,12 +119,19 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon1">@</span>
                                     </div>
-                                    <input type="text" class="form-control" placeholder="Username" aria-label="Username"
-                                        aria-describedby="basic-addon1">
+                                    <input id="nuevo-username" required type="text" class="form-control" placeholder="Username"
+                                        aria-label="Username" aria-describedby="basic-addon1">
+                                    <div class="valid-feedback">
+                                        Username valido
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Username no valido
+                                    </div>
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-success">Cambiar username</button>
-
+                        </form>
+                        <form class="needs-validation" novalidate>
                             <div class="form-group">
                                 <h2 class="mt-5">Cambiar foto de perfil:</h2>
                                 <label for="nueva-foto-perfil">Seleccionar una foto:</label>
@@ -126,7 +146,8 @@
     </div>
 
     <!--SCRIPT PARA VALIDAR FORMULARIOS-->
-    <script src="./js/form-validation.js"></script>
+    <script src="./js/ValidacionFormularios/form-validation.js"></script>
+    <script src="./js/ValidacionFormularios/validacion-username.js"></script>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -138,4 +159,5 @@
         crossorigin="anonymous"></script>
     <script src="js/jquery.textarea_autosize.js"></script>
 </body>
+
 </html>

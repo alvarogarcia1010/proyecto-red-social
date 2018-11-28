@@ -86,6 +86,13 @@ AuthController.dashboard = (req, res, next) => {
   }
 };
 
+AuthController.configuration = (req, res, next) => {
+  res.render('config');
+};
+
+AuthController.notification = (req, res, next) => {
+  res.render('notification');
+};
 /*
  * Obtener usuario
  * @params username

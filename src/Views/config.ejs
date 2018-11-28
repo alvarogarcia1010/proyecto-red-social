@@ -16,58 +16,14 @@
             <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="list-email" role="tabpanel" aria-labelledby="list-email-list">
                     <!--VALIDACION FORM PARA CAMBIAR CORREO-->
-                    <form class="needs-validation" novalidate>
-                        <div class="form-group">
-                            <h2>Cambia tu correo</h2>
-                            <label for="new-email">Nuevo correo electronico:</label>
-                            <input type="email" id="new-email" class="form-control" required>
-                            <div class="invalid-feedback">
-                                debe ingresar datos correctos para el correo
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-success">Guardar cambios</button>
-                    </form>
+                    <%- include('Components/ChangeEmail.ejs') %>
                 </div>
                 <div class="tab-pane fade" id="list-account" role="tabpanel" aria-labelledby="list-account-list">
                     <!--VALIDACION FORM PARA CAMBIAR PASSWORD-->
-                    <form action="">
-                        <div class="form-group">
-                            <h2>Cuenta</h2>
-                            <label for="password-actual">Password actual:</label>
-                            <input type="password" id="password-actual" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="password-nuevo">Password nuevo:</label>
-                            <input type="password" id="password-nuevo" class="form-control">
-                            <label for="password-nuevo-confirm">Confirmar password nuevo:</label>
-                            <input type="password" id="password-nuevo-confirm" class="form-control">
-                        </div>
-                        <button type="submit" class="btn btn-success">Guardar cambios</button>
-                    </form>
-
+                    <%- include('Components/ChangePassword.ejs') %>
                 </div>
                 <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
-                    <form action="">
-                        <div class="form-group">
-                            <h2>Perfil</h2>
-                            <label for="cambiar-username">Cambiar username:</label>
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1">@</span>
-                                </div>
-                                <input type="text" class="form-control" placeholder="Username" aria-label="Username"
-                                    aria-describedby="basic-addon1">
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-success">Cambiar username</button>
-
-                        <div class="form-group">
-                            <h2 class="mt-5">Cambiar foto de perfil:</h2>
-                            <label for="nueva-foto-perfil">Seleccionar una foto:</label>
-                            <input type="file" class="form-control-file" id="nueva-foto-perfil">
-                        </div>
-                        <button type="submit" class="btn btn-success">Cambiar foto de perfil</button>
-                    </form>
+                    <%- include('Components/ChangeProfilePic.ejs') %>
                 </div>
             </div>
         </div>
