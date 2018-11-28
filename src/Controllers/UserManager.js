@@ -107,6 +107,10 @@ AuthController.configuration = (req, res, next) => {
 AuthController.notification = (req, res, next) => {
   res.render('notification');
 };
+
+AuthController.messages = (req, res, next) => {
+  res.render('messages');
+}
 /*
  * Obtener usuario
  * @params username

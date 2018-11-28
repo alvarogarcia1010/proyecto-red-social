@@ -1,0 +1,23 @@
+<%- layout('Layout/template.ejs') %>
+
+<!-- mainContainer -->
+  <div class="container-fluid">
+    <div class="row">
+      <!--Inicio lista de todos los mensajes-->
+      <div class="col-md-4 px-2">
+        <%- include('Components/Allmsgs.ejs') %>      
+      </div>
+      <!--fin lista de mensajes-->
+
+      <!--Inicio chat actual-->
+      <div class="col-md-8 px-2">
+        <%- include('Components/ActiveChat.ejs') %>
+      </div>
+      <!--Fin chat actual-->
+    </div>
+  </div>
+<!-- mainContainer -->
+
+  <!-- Modal Enviar mensaje privado-->
+
+  <%- include('Components/ModalPrivatemsg.ejs') %>
