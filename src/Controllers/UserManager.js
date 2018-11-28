@@ -71,6 +71,20 @@ AuthController.forgot = (req, res) =>{
   res.render('forgot');
 };
 
+AuthController.reset = (req,res) =>{
+  console.log(req.params);
+  var param = {resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } };
+  User.findOne(param, function(err,user){
+    if(err){
+      return res.redirect('/forgot');
+    }
+    else{
+      console.log(user);
+      res.render('reset', {user});
+      };
+    })
+  };
+
 AuthController.home = (req, res, next) => {
   res.render('home');
 };
@@ -162,6 +176,46 @@ AuthController.getUsers = async (req, res, next) => {
 
 };
 
+AuthController.resetPass = async(req,res, next)=>{
+  var newUser = new User();
+  var pass = newUser.encryptPassword(req.body.password);
+  console.log(pass);
+  var param = {resetPasswordToken: undefined, resetPasswordExpires: undefined , password: pass };
+  var username = req.body.username;
+  //console.log(req.body)
+  //return next();
+  await User.findOneAndUpdate(username,param,{new: true}, (error, user) => {
+     if (error) return res.status(500).json({success: false, message: "Error en la petición"});
+     if(user){
+       let transporter = nodemailer.createTransport({
+         service: 'gmail',
+         auth:{
+           user: email.email, 
+           pass: email.password 
+         },
+         tls: {
+           rejectUnauthorized: false
+         }
+       });
+       let mailOptions = {
+         from: '"Ayuda un Peludo" <ayudaunpeludoprueba@gmail.com>',
+         to: user.email,
+         subject: 'Password Reset',
+         text: 'Hello,\n\n' +
+         'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n'
+       };
+       transporter.sendMail(mailOptions, (error, info) => {
+         if (error) {
+           return console.log(error);
+         }
+         res.redirect('/login');
+       }); 
+     }
+     else{
+       return res.status(404).json({success: false, message: "Token Invalido"});
+     }
+   })
+}
 /*
 * Actualizar información de usuario logeado
 * @params req.body
@@ -229,13 +283,12 @@ AuthController.recoverPassword = async (req, res, next)=>{
           if (error) {
             return console.log(error);
           }
-          console.log('Message sent: %s', info.messageId);
+          res.redirect('home');
         });
         //Metodo hasta aqui, quitar los console log y que solo return true o false
         //if retorno true
-        res.status(200).json({success: true, message: "Favor revise su correo"});
+        
         //else
-        res.status(404).json({success: true, message: "Error en la peticion"});
       }
       else
       {

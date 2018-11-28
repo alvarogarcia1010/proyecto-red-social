@@ -10,6 +10,10 @@ router.get('/', UserManager.init);
 router.get('/login', UserManager.login);
 
 //Temporal
+router.get('/reset/:token', UserManager.reset);
+
+router.post('/reset/:token', UserManager.resetPass);
+
 router.get('/signup', UserManager.signUp);
 
 router.post('/signup', UserManager.register);
