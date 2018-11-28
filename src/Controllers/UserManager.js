@@ -1,5 +1,6 @@
 'use strict'
 var User = require('../Models/user');
+var UserManagement = require('../Services/UserManagement');
 var bcrypt = require('bcrypt-nodejs');
 var nodemailer = require('nodemailer');
 var crypto = require('crypto');
@@ -86,7 +87,10 @@ AuthController.reset = (req,res) =>{
   };
 
 AuthController.home = (req, res, next) => {
-  res.render('home');
+  UserManagement.getUsers(1,5,function (result){
+    console.log(result);
+    res.render('home', {result});
+  });
 };
 
 AuthController.dashboard = (req, res, next) => {
@@ -152,7 +156,7 @@ AuthController.getUser = async (req, res, next) => {
 AuthController.getUsers = async (req, res, next) => {
   var userLoggerId = req.user.id
   var page = 1;
-  var itemsPerPage = 20;
+  var itemsPerPage = 3;
   if (req.params.page) {
     page = req.params.page;
   }
@@ -286,7 +290,7 @@ AuthController.recoverPassword = async (req, res, next)=>{
         transporter.sendMail(mailOptions, (error, info) => {
           if (error) {
             return console.log(error);
-          }
+          } 
           res.redirect('home');
         });
         //Metodo hasta aqui, quitar los console log y que solo return true o false
