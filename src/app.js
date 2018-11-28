@@ -71,7 +71,7 @@ app.use('/messages', indexRouter.messages);
 app.use('/file', indexRouter.file);
 app.use('/api', indexRouter.follow);
 app.use('/', indexRouter.user);
-app.use('/api',indexRouter.publicacion);
+app.use('/post',indexRouter.publicacion);
 
 
 // Catch 404 and forward to error handler
