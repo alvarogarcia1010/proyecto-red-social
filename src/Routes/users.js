@@ -15,6 +15,8 @@ router.get('/notificaciones', UserManager.notification);
 
 router.get('/configuraciones',UserManager.configuration);
 
+router.get('/mensajes', UserManager.messages);
+
 router.post('/register', UserManager.createNewUser);
 
 
