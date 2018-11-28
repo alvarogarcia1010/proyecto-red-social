@@ -74,6 +74,26 @@ $(document).ready(function () {
     }
 
     //validacion para confirmar password
-    
+    var botonPassword = document.getElementById('boton-password-confirm');
+    var password = document.getElementById('password-nuevo');
+    var passwordConfirm = document.getElementById('password-nuevo-confirm');
+
+    var regex = /\w{6,}/;
+
+    function validarPassword(){
+        if(regex.test(password.value)===false){
+            alert("el password debe contener minimo 6 caracteres");
+            return false;
+        }
+        if(password.value != passwordConfirm.value){
+            alert("asegurese de que la password que escribio sea la misma")
+            return false;
+        }else{
+            passwordConfirm.setCustomValidity('');
+        }
+    }
+
+    botonPassword.onclick = validarPassword;
+
 })();
 
