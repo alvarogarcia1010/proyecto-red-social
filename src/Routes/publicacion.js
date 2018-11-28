@@ -12,6 +12,8 @@ api.get('/',function(req,res,next){
     res.render('dashboard');
 });
 
+//RUTAS QUE VIENEN DESDE EL /post
 api.get('/testing-pub',md_auth.isAuthentication,publicationController.testing);
+api.post('/publicacion',md_auth.isAuthentication,publicationController.savePublicacion);
 
 module.exports = api;
