@@ -1,4 +1,5 @@
-<form action="">
+<!--VALIDACION FORM PARA CAMBIAR USERNAME-->
+<form class="needs-validation" novalidate>
     <div class="form-group">
         <h2>Perfil</h2>
         <label for="cambiar-username">Cambiar username:</label>
@@ -6,12 +7,19 @@
             <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1">@</span>
             </div>
-            <input type="text" class="form-control" placeholder="Username" aria-label="Username"
-                aria-describedby="basic-addon1">
+            <input id="nuevo-username" required type="text" class="form-control" placeholder="Username"
+                aria-label="Username" aria-describedby="basic-addon1">
+            <div class="valid-feedback">
+                Username valido
+            </div>
+            <div class="invalid-feedback">
+                Username no valido
+            </div>
         </div>
     </div>
-    <button type="submit" class="btn btn-success">Cambiar username</button>
-
+    <button id="boton-cambiar-username" type="submit" class="btn btn-success">Cambiar username</button>
+</form>
+<form class="needs-validation" novalidate>
     <div class="form-group">
         <h2 class="mt-5">Cambiar foto de perfil:</h2>
         <label for="nueva-foto-perfil">Seleccionar una foto:</label>
