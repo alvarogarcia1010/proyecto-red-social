@@ -186,61 +186,56 @@ AuthController.updateUser = async (req, res, next) => {
 };
 
 
-AuthController.recoverPassword = function(req, res, next){
-    //Buscame el correo con await  findAndUpdate
-    //if error Retorname status con error
-    //if found
-      //create el token (mira si requiere el await)
-      //guardar al usuario
-        var email = req.params.email;
-        crypto.randomBytes(20, function(err,buf){
-        var token = buf.toString('hex');
-      });
-    async (token)=>{
-      await User.findByIdAndUpdate({_id: id }, function(err,user){
-        if(!user){
-          console.log("No existe esa cuenta asociada");
-          return res.redirect('/forgot');
-        }
-        user.resetPasswordToken = token;
-        user.resetPasswordExpires = Date.now() + 3600000;
+AuthController.randomValue = function (len){
+  return crypto.randomBytes(len).toString('hex').slice(0,len);
+}
 
-        user.save((err) => {
-          done(err, token, user);
+AuthController.recoverPassword = async (req, res, next)=>{
+    var token = AuthController.randomValue(20);
+    var updatedUser = {resetPasswordToken : token, resetPasswordExpires: Date.now() + 3600000};
+
+    await User.findOneAndUpdate({email: req.body.email}, updatedUser ,{new: true}, (error, user) => {
+      if (error) return res.status(500).json({success: false, message: "Error en la petición"});
+
+      if (user){
+        //CREAR METODO PARA ENVIAR
+        let transporter = nodemailer.createTransport({
+          service: 'gmail',
+          auth:{
+            user: email.email, 
+            pass: email.password 
+          },
+          tls: {
+            rejectUnauthorized: false
+          }
         });
-      });
-    };
-    (token, user) =>{
-      let transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth:{
-          user: email.email, 
-          pass: email.password 
-        },
-        tls: {
-          rejectUnauthorized: false
-        }
-      });
-      let mailOptions = {
-        from: '"Ayuda un Peludo" <ayudaunpeludoprueba@gmail.com>',
-        to: user.email,
-        subject: 'Password Reset',
-        text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
-        'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
-        'http://' + req.headers.host + '/reset/' + token + '\n\n' +
-        'If you did not request this, please ignore this email and your password will remain unchanged.\n'
-      };
-      transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-          return console.log(error);
-        }
-        console.log('Message sent: %s', info.messageId);
-      });
-    };
-    async (err)=>{
-      if(err) return next(err);
-      res.redirect('/forgot');
-    };
+        let mailOptions = {
+          from: '"Ayuda un Peludo" <ayudaunpeludoprueba@gmail.com>',
+          to: user.email,
+          subject: 'Password Reset',
+          text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
+          'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
+          'http://' + req.headers.host + '/reset/' + token + '\n\n' +
+          'If you did not request this, please ignore this email and your password will remain unchanged.\n'
+        };
+        transporter.sendMail(mailOptions, (error, info) => {
+          if (error) {
+            return console.log(error);
+          }
+          console.log('Message sent: %s', info.messageId);
+        });
+        //Metodo hasta aqui, quitar los console log y que solo return true o false
+        //if retorno true
+        res.status(200).json({success: true, message: "Favor revise su correo"});
+        //else
+        res.status(404).json({success: true, message: "Error en la peticion"});
+
+      }
+      else
+      {
+        return res.status(404).json({success: false, message: "Correo no encontrado"});
+      }
+    });
 };
 /*
 * Enviar correo de bienvenida al registrarse.

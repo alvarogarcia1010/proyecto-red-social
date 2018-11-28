@@ -1,8 +1,8 @@
 <%- layout('Layout/template.ejs') %>
 
-<form method="POST">
+<form action="/forgot" method="POST">
     <h1>Forgot Password</h1>
     <label for="email">Email</label>
-    <input type="text" name="email">
+    <input type="email" name="email">
     <button type="submit">Reset Password</button>
 </form>
