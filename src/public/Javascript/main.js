@@ -26,7 +26,7 @@ $(document).ready(function()
                 hoola = response.split("<!-- mainContainer -->");
                 console.log(hoola[1]);
                 $('#main-content').html(hoola[1]);
-                history.pushState(null, "", "dashboard");
+                
             }
             /*success: function( error ) {
                 console.log('the page was NOT loaded', error);
@@ -44,6 +44,47 @@ $(document).ready(function()
         var pageRef = $(this).attr('href');
         console.log(pageRef);
         callToDashboard(pageRef);
+        history.pushState(null, "", "profile");
+
+    });
+
+    $('#aup-notification').on('click', function(e){
+        e.preventDefault();
+        console.log('presione ir al notificaciones');
+        var pageRef = $(this).attr('href');
+        console.log(pageRef);
+        callToDashboard(pageRef);
+        history.pushState(null, "", "notificaciones");
+
+    });
+
+    $('#aup-messages').on('click', function(e){
+        e.preventDefault();
+        console.log('presione ir al mensajes');
+        var pageRef = $(this).attr('href');
+        console.log(pageRef);
+        callToDashboard(pageRef);
+        history.pushState(null, "", "mensajes");
+
+    });
+
+    $('#aup-config').on('click', function(e){
+        e.preventDefault();
+        console.log('presione ir al config');
+        var pageRef = $(this).attr('href');
+        console.log(pageRef);
+        callToDashboard(pageRef);
+        history.pushState(null, "", "configuraciones");
+
+    });
+
+    $('#aup-dashboard').on('click', function(e){
+        e.preventDefault();
+        console.log('presione ir al dashboard');
+        var pageRef = $(this).attr('href');
+        console.log(pageRef);
+        callToDashboard(pageRef);
+        history.pushState(null, "", "dashboard");
 
     });
 
