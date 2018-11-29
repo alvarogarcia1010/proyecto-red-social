@@ -37,8 +37,9 @@ $(document).ready(function()
             data: {email: $('#email').val()},
 
             success: function(response){
-                alertify.alert('Alert Title', 'Alert Message!');
-                $('#recoverPass').modal('hide')
+                //alertify.alert("Mensaje enviado con éxito. Favor revise su correo.", function(){alertify.message('OK');});
+                $('#recoverPass').modal('hide');
+                alertify.success('Mensaje Enviado. Favor revise su correo.');
                 console.log(response);
             }
         })
