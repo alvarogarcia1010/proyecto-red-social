@@ -91,6 +91,14 @@ $(document).ready(function()
     console.log("ready from dashboard!");
     $('#user-register').DataTable();
     
+
+    $("#input-20").fileinput({
+        browseClass: "btn btn-primary btn-block",
+        showCaption: false,
+        showRemove: false,
+        showUpload: false
+    });
+    
 });
 
 setTimeout(function(){
