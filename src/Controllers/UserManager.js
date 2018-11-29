@@ -72,6 +72,31 @@ AuthController.forgot = (req, res) =>{
   res.render('forgot');
 };
 
+AuthController.dashboard = (req, res, next) => {
+  if(req.user.role == 'ROLE_ADMIN')
+  {
+    res.render('dashboard');
+  }
+  else
+  {
+    res.redirect('home')
+  }
+};
+
+AuthController.configuration = (req, res, next) => {
+  res.render('config');
+};
+
+AuthController.notification = (req, res, next) => {
+  UserManagement.getUsers(1,3,function (users){
+    res.render('notification', {users});
+  });
+};
+
+AuthController.messages = (req, res, next) => {
+  res.render('messages');
+}
+
 AuthController.reset = (req,res) =>{
   console.log(req.params);
   var param = {resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } };
@@ -124,28 +149,7 @@ AuthController.profile = (req, res, next) => {
   });
 };
 
-AuthController.dashboard = (req, res, next) => {
-  if(req.user.role == 'ROLE_ADMIN')
-  {
-    res.render('dashboard');
-  }
-  else
-  {
-    res.redirect('home')
-  }
-};
 
-AuthController.configuration = (req, res, next) => {
-  res.render('config');
-};
-
-AuthController.notification = (req, res, next) => {
-  res.render('notification');
-};
-
-AuthController.messages = (req, res, next) => {
-  res.render('messages');
-}
 /*
  * Obtener usuario
  * @params username
@@ -220,8 +224,8 @@ AuthController.confMail=function(user,token,req,res){
   let transporter = nodemailer.createTransport({
     service: 'gmail',
     auth:{
-      user: email.email, 
-      pass: email.password 
+      user: email.email,
+      pass: email.password
     },
     tls: {
       rejectUnauthorized: false
@@ -238,9 +242,9 @@ AuthController.confMail=function(user,token,req,res){
   };transporter.sendMail(mailOptions, (error) => {
     if (error) {
       return console.log(error);
-    } 
+    }
     res.status(200).json({success:true, message: "El correo se ha enviado con exito."});
-  });  
+  });
 }
 
 AuthController.resetPass = async(req,res, next)=>{
@@ -256,8 +260,8 @@ AuthController.resetPass = async(req,res, next)=>{
       let transporter = nodemailer.createTransport({
         service: 'gmail',
         auth:{
-          user: email.email, 
-          pass: email.password 
+          user: email.email,
+          pass: email.password
         },
         tls: {
           rejectUnauthorized: false

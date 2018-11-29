@@ -1,11 +1,11 @@
 <div class="d-flex m-1">
     <div class="flex-align-center pr-2">
-      <a href="#">
+      <a href="<%= '/' + user.username %>">
         <img class="rounded-circle" src="<%= user.urlImage %>" style="width: 45px; height: 45px;">
       </a>
     </div>
     <div class="flex-align-center px-2">
-      <a href="#" class="card-link text-dark font-weight-bold"><%= user.name + ' ' + user.surname %></a>
+      <a href="<%= '/' + user.username %>" class="card-link text-dark font-weight-bold"><%= user.name + ' ' + user.surname %></a>
       <p class="m-0 text-muted"><%= user.username %></p>
     </div>
     <div class="flex-align-center ml-auto">
