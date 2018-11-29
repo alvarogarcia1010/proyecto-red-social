@@ -15,8 +15,6 @@ router.get('/notifications', UserManager.notification);
 
 router.get('/config',UserManager.configuration);
 
-router.get('/messages', UserManager.messages);
-
 router.get('/:username', UserManager.profile);
 
 
