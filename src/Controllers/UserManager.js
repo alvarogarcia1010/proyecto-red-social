@@ -1,5 +1,6 @@
 'use strict'
 var User = require('../Models/user');
+var UserManagement = require('../Services/UserManagement');
 var bcrypt = require('bcrypt-nodejs');
 var nodemailer = require('nodemailer');
 var crypto = require('crypto');
@@ -68,7 +69,7 @@ AuthController.logOut = (req, res, next) => {
 };
 
 AuthController.forgot = (req, res) =>{
-  res.render('forgot');
+  res.render('login');
 };
 
 AuthController.reset = (req,res) =>{
@@ -86,7 +87,41 @@ AuthController.reset = (req,res) =>{
   };
 
 AuthController.home = (req, res, next) => {
-  res.render('home');
+  UserManagement.getUsers(1,3,function (users){
+    res.render('home', {users});
+  });
+};
+
+AuthController.profile = (req, res, next) => {
+  var userProfile, index;
+  UserManagement.getUsers(1,3,function (users){
+    users.forEach(user => {
+      if(user.username == req.params.username)
+      {
+        userProfile = user;
+      }
+    });
+
+    users.forEach(user => {
+      if(req.user.username == user.username)
+      {
+        index = users.indexOf(user);
+        if ( index !== -1 )
+        {
+          users.splice( index, 1 );
+        }
+      }
+    });
+
+
+    if(userProfile)
+    {
+      res.render('perfil', {userProfile, users});
+    }
+    else{
+      res.send("Usuario no encontrado")
+    }
+  });
 };
 
 AuthController.dashboard = (req, res, next) => {
@@ -152,7 +187,7 @@ AuthController.getUser = async (req, res, next) => {
 AuthController.getUsers = async (req, res, next) => {
   var userLoggerId = req.user.id
   var page = 1;
-  var itemsPerPage = 20;
+  var itemsPerPage = 3;
   if (req.params.page) {
     page = req.params.page;
   }
@@ -194,8 +229,8 @@ AuthController.resetPass = async(req,res, next)=>{
        let transporter = nodemailer.createTransport({
          service: 'gmail',
          auth:{
-           user: email.email, 
-           pass: email.password 
+           user: email.email,
+           pass: email.password
          },
          tls: {
            rejectUnauthorized: false
@@ -213,7 +248,7 @@ AuthController.resetPass = async(req,res, next)=>{
            return console.log(error);
          }
          res.redirect('/login');
-       }); 
+       });
      }
      else{
        return res.status(404).json({success: false, message: "Token Invalido"});
@@ -267,8 +302,8 @@ AuthController.recoverPassword = async (req, res, next)=>{
         let transporter = nodemailer.createTransport({
           service: 'gmail',
           auth:{
-            user: email.email, 
-            pass: email.password 
+            user: email.email,
+            pass: email.password
           },
           tls: {
             rejectUnauthorized: false
@@ -283,15 +318,15 @@ AuthController.recoverPassword = async (req, res, next)=>{
           'http://' + req.headers.host + '/reset/' + token + '\n\n' +
           'If you did not request this, please ignore this email and your password will remain unchanged.\n'
         };
-        transporter.sendMail(mailOptions, (error, info) => {
+        transporter.sendMail(mailOptions, (error) => {
           if (error) {
             return console.log(error);
           }
-          res.redirect('home');
+          res.redirect('login');
         });
         //Metodo hasta aqui, quitar los console log y que solo return true o false
         //if retorno true
-        
+
         //else
       }
       else
@@ -316,8 +351,8 @@ AuthController.sendMail = (user) => {
   let transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: email.email, 
-      pass: email.password 
+      user: email.email,
+      pass: email.password
     },
     tls: {
       rejectUnauthorized: false

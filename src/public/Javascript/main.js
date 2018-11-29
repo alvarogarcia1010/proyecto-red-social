@@ -1,88 +1,64 @@
+function isEmpty()
+{
+    if(this.is("select"))
+    {
+        return this.val() == "";
+    }
+    else
+    {
+        return $.trim(this.val()) == "";
+    }
+};
+
+function callToPage(pageRefInput){
+    $.ajax(
+    {
+        url: pageRefInput,
+        type: "GET",
+        dataType: "text",
+
+        success: function( response ) {
+            mainContainer = response.split("<!-- mainContainer -->");
+            $('#main-content').html(mainContainer[1]);
+        }
+    });
+}
+
 
 $(document).ready(function()
 {
-    console.log('i am ready')
-
-    function isEmpty()
-    {
-        if(this.is("select"))
-        {
-            return this.val() == "";
-        }
-        else
-        {
-            return $.trim(this.val()) == "";
-        }
-    };
-
-    function callToDashboard(pageRefInput){
-        $.ajax(    
-        {
-            url: pageRefInput,
-            type: "GET",
-           dataType: "text",
-
-            success: function( response ) {
-                hoola = response.split("<!-- mainContainer -->");
-                console.log(hoola[1]);
-                $('#main-content').html(hoola[1]);
-                
-            }
-            /*success: function( error ) {
-                console.log('the page was NOT loaded', error);
-            },
-            success: function( error ) {
-                console.log('the page was NOT loaded', error);
-            },*/
-        });
-    }
-
+    console.log('i am ready');
 
     $('#aup-profile').on('click', function(e){
         e.preventDefault();
-        console.log('presione ir al perfil');
         var pageRef = $(this).attr('href');
-        console.log(pageRef);
-        callToDashboard(pageRef);
+        callToPage(pageRef);
         history.pushState(null, "", "profile");
-
     });
 
     $('#aup-notification').on('click', function(e){
         e.preventDefault();
-        console.log('presione ir al notificaciones');
         var pageRef = $(this).attr('href');
-        console.log(pageRef);
-        callToDashboard(pageRef);
-        history.pushState(null, "", "notificaciones");
-
+        history.pushState(null, "", "notifications");
     });
 
     $('#aup-messages').on('click', function(e){
         e.preventDefault();
-        console.log('presione ir al mensajes');
         var pageRef = $(this).attr('href');
-        console.log(pageRef);
-        callToDashboard(pageRef);
-        history.pushState(null, "", "mensajes");
-
+        history.pushState(null, "", "messages");
     });
 
     $('#aup-config').on('click', function(e){
         e.preventDefault();
-        console.log('presione ir al config');
         var pageRef = $(this).attr('href');
-        console.log(pageRef);
         callToDashboard(pageRef);
-        history.pushState(null, "", "configuraciones");
+        history.pushState(null, "", "config");
 
     });
 
     $('#aup-dashboard').on('click', function(e){
         e.preventDefault();
-        console.log('presione ir al dashboard');
         var pageRef = $(this).attr('href');
-        console.log(pageRef);
         callToDashboard(pageRef);
         history.pushState(null, "", "dashboard");
 
@@ -90,6 +66,7 @@ $(document).ready(function()
 
     console.log("ready from dashboard!");
     $('#user-register').DataTable();
+<<<<<<< HEAD
     
 
     $("#input-20").fileinput({
@@ -99,6 +76,9 @@ $(document).ready(function()
         showUpload: false
     });
     
+=======
+
+>>>>>>> d2e23963ac403ff54309f48c381a98220e8e41ce
 });
 
 setTimeout(function(){

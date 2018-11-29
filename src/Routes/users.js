@@ -11,18 +11,21 @@ router.use(AuthMiddleware.isAuthentication);
 //   res.send('Ruta: /users');
 // });
 
-router.get('/notificaciones', UserManager.notification);
+router.get('/notifications', UserManager.notification);
 
-router.get('/configuraciones',UserManager.configuration);
+router.get('/config',UserManager.configuration);
 
-router.get('/mensajes', UserManager.messages);
+router.get('/messages', UserManager.messages);
 
-router.post('/register', UserManager.createNewUser);
+router.get('/:username', UserManager.profile);
 
 
 //Rutas para obtener información JSON
 //Todos los usuarios
-router.get('/api/users', UserManager.getUsers);
+router.get('/api/users/', UserManager.getUsers);
+
+//Todos los usuarios paginados
+router.get('/api/users/:page', UserManager.getUsers);
 
 //Actualiza la informacion de usuario
 router.put('/api/update-user/:id', UserManager.updateUser);
