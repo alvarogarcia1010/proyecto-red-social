@@ -15,5 +15,7 @@ api.get('/',function(req,res,next){
 //RUTAS QUE VIENEN DESDE EL /post
 api.get('/testing-pub',md_auth.isAuthentication,publicationController.testing);
 api.post('/publicacion',md_auth.isAuthentication,publicationController.savePublicacion);
+api.get('/publicaciones/:page',md_auth.isAuthentication,publicationController.getPublicaciones);
+api.delete('/publicacion/:id',md_auth.isAuthentication,publicationController.eliminarPublicacion);
 
 module.exports = api;

@@ -69,7 +69,7 @@ AuthController.logOut = (req, res, next) => {
 };
 
 AuthController.forgot = (req, res) =>{
-  res.render('forgot');
+  res.render('login');
 };
 
 AuthController.reset = (req,res) =>{
@@ -318,11 +318,16 @@ AuthController.recoverPassword = async (req, res, next)=>{
           'http://' + req.headers.host + '/reset/' + token + '\n\n' +
           'If you did not request this, please ignore this email and your password will remain unchanged.\n'
         };
-        transporter.sendMail(mailOptions, (error, info) => {
+        transporter.sendMail(mailOptions, (error) => {
           if (error) {
             return console.log(error);
+<<<<<<< HEAD
           }
           res.redirect('home');
+=======
+          } 
+          res.redirect('login');
+>>>>>>> 545a8bbf2a6ab3e788030b26d7984eef99bfeadf
         });
         //Metodo hasta aqui, quitar los console log y que solo return true o false
         //if retorno true
