@@ -84,8 +84,26 @@ function getPublicaciones(req,res){
     });
 }
 
+function eliminarPublicacion(req,res){
+    var idPublicacion = req.params.id;
+
+    Publicacion.find({'user_Id': req.user.sub,'_id':idPublicacion}).remove((err,publicacionRemoved)=>{
+        if(err){
+            res.status(500);
+            return res.send({message:"error eliminar la publicacion"});
+        }
+        if(!publicacionRemoved){
+            res.status(404);
+            return res.send({message:"no se encontro la publicacion a eliminar"});
+        }
+        res.status(200);
+        res.send({publicacion: publicacionRemoved});
+    });
+}
+
 module.exports={
     testing,
     savePublicacion,
-    getPublicaciones
+    getPublicaciones,
+    eliminarPublicacion
 }
