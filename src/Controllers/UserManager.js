@@ -101,7 +101,7 @@ AuthController.profile = (req, res, next) => {
         userProfile = user;
       }
     });
-    
+
     users.forEach(user => {
       if(req.user.username == user.username)
       {
@@ -321,13 +321,8 @@ AuthController.recoverPassword = async (req, res, next)=>{
         transporter.sendMail(mailOptions, (error) => {
           if (error) {
             return console.log(error);
-<<<<<<< HEAD
           }
-          res.redirect('home');
-=======
-          } 
           res.redirect('login');
->>>>>>> 545a8bbf2a6ab3e788030b26d7984eef99bfeadf
         });
         //Metodo hasta aqui, quitar los console log y que solo return true o false
         //if retorno true
