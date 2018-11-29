@@ -43,29 +43,39 @@ $(document).ready(function()
             }
         })
     });
+
+    $('#aup-home').on('click', function(e){
+        e.preventDefault();
+        var pageRef = $(this).attr('href');
+        callToPage(pageRef);
+        history.pushState(null, "", "home");
+    });
+
     $('#aup-profile').on('click', function(e){
         e.preventDefault();
         var pageRef = $(this).attr('href');
         callToPage(pageRef);
-        history.pushState(null, "", "profile");
+        history.pushState(null, "", pageRef);
     });
 
     $('#aup-notification').on('click', function(e){
         e.preventDefault();
         var pageRef = $(this).attr('href');
+        callToPage(pageRef);
         history.pushState(null, "", "notifications");
     });
 
     $('#aup-messages').on('click', function(e){
         e.preventDefault();
         var pageRef = $(this).attr('href');
+        callToPage(pageRef);
         history.pushState(null, "", "messages");
     });
 
     $('#aup-config').on('click', function(e){
         e.preventDefault();
         var pageRef = $(this).attr('href');
-        callToDashboard(pageRef);
+        callToPage(pageRef);
         history.pushState(null, "", "config");
 
     });
@@ -73,7 +83,7 @@ $(document).ready(function()
     $('#aup-dashboard').on('click', function(e){
         e.preventDefault();
         var pageRef = $(this).attr('href');
-        callToDashboard(pageRef);
+        callToPage(pageRef);
         history.pushState(null, "", "dashboard");
 
     });
