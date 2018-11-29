@@ -66,19 +66,16 @@ $(document).ready(function()
 
     console.log("ready from dashboard!");
     $('#user-register').DataTable();
-<<<<<<< HEAD
     
 
-    $("#input-20").fileinput({
+    /*$("#input-20").fileinput({
         browseClass: "btn btn-primary btn-block",
         showCaption: false,
         showRemove: false,
         showUpload: false
-    });
+    });*/
     
-=======
 
->>>>>>> d2e23963ac403ff54309f48c381a98220e8e41ce
 });
 
 setTimeout(function(){
