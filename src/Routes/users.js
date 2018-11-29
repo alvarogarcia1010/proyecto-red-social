@@ -22,7 +22,10 @@ router.post('/register', UserManager.createNewUser);
 
 //Rutas para obtener información JSON
 //Todos los usuarios
-router.get('/api/users', UserManager.getUsers);
+router.get('/api/users/', UserManager.getUsers);
+
+//Todos los usuarios paginados
+router.get('/api/users/:page', UserManager.getUsers);
 
 //Actualiza la informacion de usuario
 router.put('/api/update-user/:id', UserManager.updateUser);

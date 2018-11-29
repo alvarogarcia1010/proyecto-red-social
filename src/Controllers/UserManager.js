@@ -87,9 +87,8 @@ AuthController.reset = (req,res) =>{
   };
 
 AuthController.home = (req, res, next) => {
-  UserManagement.getUsers(1,5,function (result){
-    console.log(result);
-    res.render('home', {result});
+  UserManagement.getUsers(1,3,function (users){
+    res.render('home', {users});
   });
 };
 
