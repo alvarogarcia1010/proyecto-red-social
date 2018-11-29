@@ -97,16 +97,16 @@ AuthController.messages = (req, res, next) => {
   res.render('messages');
 }
 
-AuthController.reset = (req,res) =>{
+AuthController.reset = (req,res, next) =>{
   console.log(req.params);
   var param = {resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } };
-  User.findOne(param, function(err,user){
+  User.findOne(param, function(err,userFound){
     if(err){
-      return res.redirect('/forgot');
+      next();    
     }
     else{
-      console.log("usuario"+user);
-      res.render('reset', {user});
+      console.log("usuario"+userFound);
+      return res.render('reset', {userFound});
       };
     })
   };
@@ -278,7 +278,9 @@ AuthController.resetPass = async(req,res, next)=>{
         if (error) {
           return console.log(error);
         }
-        res.redirect('login');
+        if(info){
+          return res.status(200).redirect('/');
+        }
       });
      }
      else{

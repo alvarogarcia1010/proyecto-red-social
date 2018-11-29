@@ -66,6 +66,7 @@ app.use((req, res, next) =>{
 
 //Routes
 app.use('/', indexRouter.init);
+app.use('/reset',indexRouter.reset);
 app.use('/home', indexRouter.home);
 app.use('/messages', indexRouter.messages);
 app.use('/file', indexRouter.file);

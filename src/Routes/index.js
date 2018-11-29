@@ -5,5 +5,6 @@ module.exports = {
   messages: require('./messages'),
   file: require('./file'),
   follow: require('./follow'),
-  publicacion:require('./publicacion')
+  publicacion:require('./publicacion'),
+  reset: require('./reset')
 }
