@@ -11,7 +11,7 @@ function isEmpty()
 };
 
 function callToPage(pageRefInput){
-    $.ajax(    
+    $.ajax(
     {
         url: pageRefInput,
         type: "GET",
@@ -52,35 +52,27 @@ $(document).ready(function()
 
     $('#aup-notification').on('click', function(e){
         e.preventDefault();
-        console.log('presione ir al notificaciones');
         var pageRef = $(this).attr('href');
-        callToPage(pageRef);
-        history.pushState(null, "", "notificaciones");
+        history.pushState(null, "", "notifications");
     });
 
     $('#aup-messages').on('click', function(e){
         e.preventDefault();
-        console.log('presione ir al mensajes');
         var pageRef = $(this).attr('href');
-        callToPage(pageRef);
-        history.pushState(null, "", "mensajes");
+        history.pushState(null, "", "messages");
     });
 
     $('#aup-config').on('click', function(e){
         e.preventDefault();
-        console.log('presione ir al config');
         var pageRef = $(this).attr('href');
-        console.log(pageRef);
         callToDashboard(pageRef);
-        history.pushState(null, "", "configuraciones");
+        history.pushState(null, "", "config");
 
     });
 
     $('#aup-dashboard').on('click', function(e){
         e.preventDefault();
-        console.log('presione ir al dashboard');
         var pageRef = $(this).attr('href');
-        console.log(pageRef);
         callToDashboard(pageRef);
         history.pushState(null, "", "dashboard");
 
@@ -88,7 +80,7 @@ $(document).ready(function()
 
     console.log("ready from dashboard!");
     $('#user-register').DataTable();
-    
+
 });
 
 setTimeout(function(){
