@@ -7,6 +7,6 @@ const AuthMiddleware = require("../Middlewares/AuthMiddleware");
 //Middleware que verifica que solo los usuarios registrados podran ingresar a esta seccion
 router.use(AuthMiddleware.isAuthentication);
 
-router.get('/', UserManager.home);
+router.get('/', UserManager.messages);
 
 module.exports = router;

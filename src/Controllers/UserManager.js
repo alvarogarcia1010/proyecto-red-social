@@ -112,7 +112,18 @@ AuthController.reset = (req,res) =>{
   };
 
 AuthController.home = (req, res, next) => {
-  UserManagement.getUsers(1,3,function (users){
+  var index;
+  UserManagement.getUsers(1,4,function (users){
+    users.forEach(user => {
+      if(req.user.username == user.username)
+      {
+        index = users.indexOf(user);
+        if ( index !== -1 )
+        {
+          users.splice( index, 1 );
+        }
+      }
+    });
     res.render('home', {users});
   });
 };
