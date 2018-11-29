@@ -1,10 +1,10 @@
 <div class="card mb-2">
     <div class="card-body p-2">
-      <a class="d-flex justify-content-center mb-1" href="#">
+      <a class="d-flex justify-content-center mb-1" href="<%= '/' + user.username %>">
         <img class="rounded-circle" src="<%= user.urlImage %>" style="height: 100px; width: 100px;">
       </a>
       <h5 class="card-title text-center mb-1">
-        <a href="#" class="text-dark font-weight-bold"><%= user.name + ' ' + user.surname %></a>
+        <a href="<%= '/' + user.username %>" class="text-dark font-weight-bold"><%= user.name + ' ' + user.surname %></a>
       </h5>
       <h6 class="card-subtitle text-center mb-2 text-muted"><%= user.username %></h6>
       <p class="card-text text-justify mb-2"><%= user.sobre_mi %></p>
