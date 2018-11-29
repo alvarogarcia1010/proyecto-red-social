@@ -9,16 +9,19 @@
 </head>
 <body>
     <pre><%= error.stack %></pre>
+    <h1> <%= message %></h1>
+    <h2> <%= error.status %></h2>
 
     <div id="notfound">
-        <div class="notfound">
-            <div class="notfound-404">
-                <h1> <%= message %></h1>
-            </div>
-            <h2> <%= error.status %></h2>
-            <a href="#"><span class="arrow"></span>Return To Homepage</a>
-        </div>
+		<div class="notfound">
+			<div class="notfound-404">
+				<h1>404</h1>
+			</div>
+			<h2>Oops, USer you are looking for can't be found!</h2>
+			<a href="/"><span class="arrow"></span>Regresar</a>
+		</div>
     </div>
+    
 </body>
 </html>
 

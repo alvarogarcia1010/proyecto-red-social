@@ -144,7 +144,8 @@ AuthController.profile = (req, res, next) => {
       res.render('perfil', {userProfile, users});
     }
     else{
-      res.send("Usuario no encontrado")
+      //res.send("Usuario no encontrado")
+      res.render('user404');
     }
   });
 };
