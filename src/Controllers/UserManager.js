@@ -69,8 +69,33 @@ AuthController.logOut = (req, res, next) => {
 };
 
 AuthController.forgot = (req, res) =>{
-  res.render('login');
+  res.render('forgot');
 };
+
+AuthController.dashboard = (req, res, next) => {
+  if(req.user.role == 'ROLE_ADMIN')
+  {
+    res.render('dashboard');
+  }
+  else
+  {
+    res.redirect('home')
+  }
+};
+
+AuthController.configuration = (req, res, next) => {
+  res.render('config');
+};
+
+AuthController.notification = (req, res, next) => {
+  UserManagement.getUsers(1,3,function (users){
+    res.render('notification', {users});
+  });
+};
+
+AuthController.messages = (req, res, next) => {
+  res.render('messages');
+}
 
 AuthController.reset = (req,res) =>{
   console.log(req.params);
@@ -80,7 +105,7 @@ AuthController.reset = (req,res) =>{
       return res.redirect('/forgot');
     }
     else{
-      console.log(user);
+      console.log("usuario"+user);
       res.render('reset', {user});
       };
     })
@@ -124,28 +149,7 @@ AuthController.profile = (req, res, next) => {
   });
 };
 
-AuthController.dashboard = (req, res, next) => {
-  if(req.user.role == 'ROLE_ADMIN')
-  {
-    res.render('dashboard');
-  }
-  else
-  {
-    res.redirect('home')
-  }
-};
 
-AuthController.configuration = (req, res, next) => {
-  res.render('config');
-};
-
-AuthController.notification = (req, res, next) => {
-  res.render('notification');
-};
-
-AuthController.messages = (req, res, next) => {
-  res.render('messages');
-}
 /*
  * Obtener usuario
  * @params username
@@ -215,46 +219,73 @@ AuthController.getUsers = async (req, res, next) => {
 
 };
 
+
+AuthController.confMail=function(user,token,req,res){
+  let transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth:{
+      user: email.email,
+      pass: email.password
+    },
+    tls: {
+      rejectUnauthorized: false
+    }
+  });
+  let mailOptions = {
+    from: '"Ayuda un Peludo" <ayudaunpeludoprueba@gmail.com>',
+    to: user.email,
+    subject: 'Cambio de contraseña',
+    text: 'Usted ha recibido este correo porque ha solicitado cambiar la contraseña de su cuenta.\n\n' +
+    'Por favor, dele click al siguiente link, o copielo en su navegador de preferencia para poder continuar con el proceso:\n\n' +
+    'http://' + req.headers.host + '/reset/' + token + '\n\n' +
+    'Si usted no ha solicitado este cambio, por favor ignore este correo. Su contraseña seguirá siendo la misma.\n'
+  };transporter.sendMail(mailOptions, (error) => {
+    if (error) {
+      return console.log(error);
+    }
+    res.status(200).json({success:true, message: "El correo se ha enviado con exito."});
+  });
+}
+
 AuthController.resetPass = async(req,res, next)=>{
   var newUser = new User();
   var pass = newUser.encryptPassword(req.body.password);
-  console.log(pass);
   var param = {resetPasswordToken: undefined, resetPasswordExpires: undefined , password: pass };
   var username = req.body.username;
-  //console.log(req.body)
-  //return next();
+
   await User.findOneAndUpdate(username,param,{new: true}, (error, user) => {
+    console.log(user);
      if (error) return res.status(500).json({success: false, message: "Error en la petición"});
      if(user){
-       let transporter = nodemailer.createTransport({
-         service: 'gmail',
-         auth:{
-           user: email.email,
-           pass: email.password
-         },
-         tls: {
-           rejectUnauthorized: false
-         }
-       });
-       let mailOptions = {
-         from: '"Ayuda un Peludo" <ayudaunpeludoprueba@gmail.com>',
-         to: user.email,
-         subject: 'Password Reset',
-         text: 'Hello,\n\n' +
-         'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n'
-       };
-       transporter.sendMail(mailOptions, (error, info) => {
-         if (error) {
-           return console.log(error);
-         }
-         res.redirect('/login');
-       });
+      let transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth:{
+          user: email.email,
+          pass: email.password
+        },
+        tls: {
+          rejectUnauthorized: false
+        }
+      });
+      let mailOptions = {
+        from: '"Ayuda un Peludo" <ayudaunpeludoprueba@gmail.com>',
+        to: user.email,
+        subject: 'Confirmación de cambio de contraseña',
+        text: 'Hola,\n\n' +
+        'Este correo es para confirmar que la contraseña de la cuenta asociada a ' + user.email + ' ha sido cambiada.\n'
+      };
+      transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+          return console.log(error);
+        }
+        res.redirect('login');
+      });
      }
      else{
        return res.status(404).json({success: false, message: "Token Invalido"});
      }
-   })
-}
+   });
+};
 /*
 * Actualizar información de usuario logeado
 * @params req.body
@@ -299,31 +330,7 @@ AuthController.recoverPassword = async (req, res, next)=>{
 
       if (user){
         //CREAR METODO PARA ENVIAR
-        let transporter = nodemailer.createTransport({
-          service: 'gmail',
-          auth:{
-            user: email.email,
-            pass: email.password
-          },
-          tls: {
-            rejectUnauthorized: false
-          }
-        });
-        let mailOptions = {
-          from: '"Ayuda un Peludo" <ayudaunpeludoprueba@gmail.com>',
-          to: user.email,
-          subject: 'Password Reset',
-          text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
-          'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
-          'http://' + req.headers.host + '/reset/' + token + '\n\n' +
-          'If you did not request this, please ignore this email and your password will remain unchanged.\n'
-        };
-        transporter.sendMail(mailOptions, (error) => {
-          if (error) {
-            return console.log(error);
-          }
-          res.redirect('login');
-        });
+        AuthController.confMail(user,token,req,res);
         //Metodo hasta aqui, quitar los console log y que solo return true o false
         //if retorno true
 
