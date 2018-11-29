@@ -1,87 +1,112 @@
 <div class="card mt-2">
     <div class="card-header text-center">
-      <h6 class="card-title font-weight-bold m-0"><i class="fas fa-lock"></i> Registrarme</h6>
+        <h6 class="card-title font-weight-bold m-0"><i class="fas fa-lock"></i> Registrarme</h6>
     </div>
     <div class="card-body pt-3 px-2 pb-0">
-      <form action="/signup" method="POST" class="needs-validation" novalidate>
-          <div class="form-group input-group-sm">
-              <input type="text" class="form-control" placeholder="Nombres" name="name" aria-label="Nombres" required>
-              <div class="invalid-feedback">
-                    Ingrese un nombre
-              </div>
-          </div>
-          <div class="form-group input-group-sm">
-              <input type="text" class="form-control" placeholder="Apellidos" name="surname" aria-label="Apellidos" required>
-          </div>
-          <div class="form-group">
-              <div class="input-group input-group-sm">
-                  <div class="input-group-prepend">
-                    <div class="input-group-text"><i class="fas fa-user"></i></div>
-                  </div>
-                  <input type="text" class="form-control" placeholder="@NombreDeUsuario" name="username" aria-label="Nombre de usuario" pattern="^@?(\w){1,15}$" required>
-                  <!-- <p><small id="emailHelp" class="form-text text-muted">Ejemplo: @username.</small></p> -->
-              </div>
-          </div>
-          <div class="form-group">
-              <div class="input-group input-group-sm">
-                  <div class="input-group-prepend">
-                  <div class="input-group-text"><i class="far fa-envelope"></i></div>
-                  </div>
-                  <input type="email" class="form-control" placeholder="peludoamigo@ayudaunpeludo.com" name="email" aria-label="Correo electronico" required>
-              </div>
-          </div>
-          <div class="form-group">
-              <div class="input-group input-group-sm">
-                      <div class="input-group-prepend">
-                      <div class="input-group-text"><i class="fas fa-key"></i></div>
-                      </div>
-                      <input type="password" class="form-control" placeholder="Contraseña" name="password" aria-label="Contraseña" required>
-              </div>
-  
-              <div class="input-group mt-3 input-group-sm">
-                  <div class="input-group-prepend">
-                  <div class="input-group-text"><i class="fas fa-key"></i></div>
-                  </div>
-                  <input type="password" class="form-control" placeholder="Confirmar contraseña" name="confirm-password" aria-label="Confirmar contraseña" required>
-              </div>
-              <p><small id="emailHelp" class="form-text text-muted mt-2">Al hacer clic en "Registrarme" indicas que has leído y aceptas las <a data-toggle="modal" data-target="#termsOfUse" class="text-success" href="">condiciones de servicio</a> y a la <a data-toggle="modal" data-target="#privacyPolicies" href="" class="text-success">política de privacidad</a> de Ayuda Un Peludo.</small></p>
-  
-              <div class="d-flex justify-content-center my-3">
-                  <button type="submit" class="btn btn-outline-success btn-sm text-center">Registrarme</button>
-              </div>
-              <div class="space-around">
-                <div class="">
-                    <a class="btn btn-primary btn-sm" href='/facebook-login'><i class="fab fa-facebook-f"></i>  Seguir con Facebook</a>
-                </div>
-                <div class="">
-                    <a class="btn btn-danger btn-sm" href='/google-login'><i class="fab fa-google"></i>   Seguir con Google</a>
+        <form action="/signup" method="POST" class="needs-validation" novalidate>
+            <div class="form-group input-group-sm">
+                <input type="text" class="form-control" placeholder="Nombres" name="name" aria-label="Nombres" required>
+                <div class="invalid-feedback">
+                    Ingrese nombres validos
                 </div>
             </div>
-          </div>
-      </form>
+            <div class="form-group input-group-sm">
+                <input type="text" class="form-control" placeholder="Apellidos" name="surname" aria-label="Apellidos"
+                    required>
+                <div class="invalid-feedback">
+                    Ingrese apellidos validos
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group input-group-sm">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="fas fa-user"></i></div>
+                    </div>
+                    <input type="text" class="form-control" placeholder="@NombreDeUsuario" name="username" aria-label="Nombre de usuario"
+                        pattern="^@?(\w){1,15}$" required>
+                    <!-- <p><small id="emailHelp" class="form-text text-muted">Ejemplo: @username.</small></p> -->
+                    <div class="invalid-feedback">
+                        Ingrese nombre de usuario valido
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group input-group-sm">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="far fa-envelope"></i></div>
+                    </div>
+                    <input type="email" class="form-control" placeholder="peludoamigo@ayudaunpeludo.com" name="email"
+                        aria-label="Correo electronico" required>
+                    <div class="invalid-feedback">
+                        Ingrese un correo valido
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group input-group-sm">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="fas fa-key"></i></div>
+                    </div>
+                    <input type="password" class="form-control" placeholder="Contraseña" name="password" aria-label="Contraseña"
+                        required>
+                    <div class="invalid-feedback">
+                        Ingrese un password valido
+                    </div>
+                </div>
+
+                <div class="input-group mt-3 input-group-sm">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="fas fa-key"></i></div>
+                    </div>
+                    <input type="password" class="form-control" placeholder="Confirmar contraseña" name="confirm-password"
+                        aria-label="Confirmar contraseña" required>
+                    <div class="invalid-feedback">
+                        Confirme que sea el mismo password
+                    </div>
+                </div>
+                <p><small id="emailHelp" class="form-text text-muted mt-2">Al hacer clic en "Registrarme" indicas que
+                        has leído y aceptas las <a data-toggle="modal" data-target="#termsOfUse" class="text-success"
+                            href="">condiciones de servicio</a> y a la <a data-toggle="modal" data-target="#privacyPolicies"
+                            href="" class="text-success">política de privacidad</a> de Ayuda Un Peludo.</small></p>
+
+                <div class="d-flex justify-content-center my-3">
+                    <button type="submit" class="btn btn-outline-success btn-sm text-center">Registrarme</button>
+                </div>
+                <div class="space-around">
+                    <div class="">
+                        <a class="btn btn-primary btn-sm" href='/facebook-login'><i class="fab fa-facebook-f"></i>
+                            Seguir con Facebook</a>
+                    </div>
+                    <div class="">
+                        <a class="btn btn-danger btn-sm" href='/google-login'><i class="fab fa-google"></i> Seguir con
+                            Google</a>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
     <div class="card-footer text-center text-muted">
-      <p class="mb-0">Ayuda un peludo 2018</p>
+        <p class="mb-0">Ayuda un peludo 2018</p>
     </div>
 </div>
 
 <script>
     // Example starter JavaScript for disabling form submissions if there are invalid fields
-    (function() {
+    (function () {
         'use strict';
-        window.addEventListener('load', function() {
-        // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        var forms = document.getElementsByClassName('needs-validation');
-        // Loop over them and prevent submission
-        var validation = Array.prototype.filter.call(forms, function(form) {
-            form.addEventListener('submit', function(event) {
-            if (form.checkValidity() === false) {
-                event.preventDefault();
-                event.stopPropagation();
-            }
-            form.classList.add('was-validated');
-            }, false);
-        });
+        window.addEventListener('load', function () {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
         }, false);
     })();
 </script>
