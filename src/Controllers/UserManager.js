@@ -92,6 +92,38 @@ AuthController.home = (req, res, next) => {
   });
 };
 
+AuthController.profile = (req, res, next) => {
+  var userProfile, index;
+  UserManagement.getUsers(1,3,function (users){
+    users.forEach(user => {
+      if(user.username == req.params.username)
+      {
+        userProfile = user;
+      }
+    });
+    
+    users.forEach(user => {
+      if(req.user.username == user.username)
+      {
+        index = users.indexOf(user);
+        if ( index !== -1 )
+        {
+          users.splice( index, 1 );
+        }
+      }
+    });
+
+
+    if(userProfile)
+    {
+      res.render('perfil', {userProfile, users});
+    }
+    else{
+      res.send("Usuario no encontrado")
+    }
+  });
+};
+
 AuthController.dashboard = (req, res, next) => {
   if(req.user.role == 'ROLE_ADMIN')
   {
@@ -197,8 +229,8 @@ AuthController.resetPass = async(req,res, next)=>{
        let transporter = nodemailer.createTransport({
          service: 'gmail',
          auth:{
-           user: email.email, 
-           pass: email.password 
+           user: email.email,
+           pass: email.password
          },
          tls: {
            rejectUnauthorized: false
@@ -216,7 +248,7 @@ AuthController.resetPass = async(req,res, next)=>{
            return console.log(error);
          }
          res.redirect('/login');
-       }); 
+       });
      }
      else{
        return res.status(404).json({success: false, message: "Token Invalido"});
@@ -270,8 +302,8 @@ AuthController.recoverPassword = async (req, res, next)=>{
         let transporter = nodemailer.createTransport({
           service: 'gmail',
           auth:{
-            user: email.email, 
-            pass: email.password 
+            user: email.email,
+            pass: email.password
           },
           tls: {
             rejectUnauthorized: false
@@ -289,12 +321,12 @@ AuthController.recoverPassword = async (req, res, next)=>{
         transporter.sendMail(mailOptions, (error, info) => {
           if (error) {
             return console.log(error);
-          } 
+          }
           res.redirect('home');
         });
         //Metodo hasta aqui, quitar los console log y que solo return true o false
         //if retorno true
-        
+
         //else
       }
       else
@@ -319,8 +351,8 @@ AuthController.sendMail = (user) => {
   let transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: email.email, 
-      pass: email.password 
+      user: email.email,
+      pass: email.password
     },
     tls: {
       rejectUnauthorized: false

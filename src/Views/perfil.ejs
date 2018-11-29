@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-lg-3 mt-7 px-2">
         <!-- Mi Perfil -->
-        <%- include('Components/myProfile.ejs') %>
+        <%- include('Components/myProfile.ejs', {user: userProfile}) %>
         <!-- Fin de mi perfil   -->
       </div>
       <div class="col-lg-6 mt-7 px-2">
@@ -100,7 +100,7 @@
         <!-- Fin de sugerencias -->
       </div>
     </div>
-    
+
     <!-- Modal Compartir publicación-->
 
     <!--Modal Editar Perfil-->
@@ -116,4 +116,3 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/js/fileinput.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/themes/fas/theme.min.js"></script>
-    
