@@ -87,7 +87,7 @@ function getPublicaciones(req,res){
 function eliminarPublicacion(req,res){
     var idPublicacion = req.params.id;
 
-    Publicacion.find({'user_Id': req.user.sub,'_id':idPublicacion}).remove((err,publicacionRemoved)=>{
+    Publicacion.find({'user_Id': req.user.sub,'_id':idPublicacion}).remove(err=>{
         if(err){
             res.status(500);
             return res.send({message:"error eliminar la publicacion"});
@@ -97,7 +97,7 @@ function eliminarPublicacion(req,res){
             return res.send({message:"no se encontro la publicacion a eliminar"});
         }
         res.status(200);
-        res.send({publicacion: publicacionRemoved});
+        res.send({message: 'publicacion borrada correctamente'});
     });
 }
 
