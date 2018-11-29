@@ -19,7 +19,7 @@ function savePublicacion(req,res){
 
     if(!params.text){
         res.status(200);
-        return res.send({message:"debes enviar un texto"});
+        return res.json({message:"debes enviar un texto"});
     }
 
     var publicacion = new Publicacion();
@@ -31,14 +31,14 @@ function savePublicacion(req,res){
     publicacion.save((err,publicacionStored)=>{
         if(err){
             res.status(500);
-            return res.send({message:"error al guardar la publicacion"});
+            return res.json({message:"error al guardar la publicacion"});
         }
         if(!publicacionStored){
             res.status(404);
-            return res.send({message:"la publicacion NOOO ha sido guardada :("});
+            return res.json({message:"la publicacion NOOO ha sido guardada :("});
         }
         res.status(200);
-        return res.send({publicacion: publicacionStored});
+        return res.json({publicacion: publicacionStored});
     });
 
 }
@@ -54,7 +54,7 @@ function getPublicaciones(req,res){
     Follow.find({user_follower: req.user.sub}).populate('user_following').exec((err,follows)=>{
         if(err){
             res.status(500);
-            return res.send({message:"error al devolver el seguimiento"});
+            return res.json({message:"error al devolver el seguimiento"});
         }
 
         var follow_clean = [];
@@ -66,14 +66,14 @@ function getPublicaciones(req,res){
         Publicacion.find({user:{"$in": follows_clean}}).sort('-created_at').populate('user_Id').paginate(page,itemsPerPage,(err,publications,total)=>{
             if(err){
                 res.status(500);
-                return res.send({message:"error al devolver publicaciones"});
+                return res.json({message:"error al devolver publicaciones"});
             }
             if(!publications){
                 res.status(404);
-                return res.send({message:"no hay publicaciones"});
+                return res.json({message:"no hay publicaciones"});
             }
             res.status(200);
-            res.send({
+            res.json({
                 total_items:total,
                 pages: Math.ceil(total/itemsPerPage),
                 page:page,
@@ -90,14 +90,14 @@ function eliminarPublicacion(req,res){
     Publicacion.find({'user_Id': req.user.sub,'_id':idPublicacion}).remove(err=>{
         if(err){
             res.status(500);
-            return res.send({message:"error eliminar la publicacion"});
+            return res.json({message:"error eliminar la publicacion"});
         }
         if(!publicacionRemoved){
             res.status(404);
-            return res.send({message:"no se encontro la publicacion a eliminar"});
+            return res.json({message:"no se encontro la publicacion a eliminar"});
         }
         res.status(200);
-        res.send({message: 'publicacion borrada correctamente'});
+        res.json({message: 'publicacion borrada correctamente'});
     });
 }
 
