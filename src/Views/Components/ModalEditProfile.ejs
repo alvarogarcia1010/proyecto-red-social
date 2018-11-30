@@ -14,7 +14,7 @@
                     <div class="col-sm-4 text-center">
                         <div class="kv-avatar">
                             <div class="file-loading">
-                                <input id="avatar-1" name="avatar-1" type="file" data-browse-on-zone-click="false" required>
+                                <input id="avatar-1" name="avatar-1" type="file" data-browse-on-zone-click="true" required>
                             </div>
                         </div>
                         <div class="kv-avatar-hint"><small>Select file < 1500 KB</small></div>
@@ -24,13 +24,13 @@
                       <div class="row">
                         <div class="col-sm-6">
                           <div class="form-group">
-                            <label for="name">Nombre<span class="kv-reqd">*</span></label>
+                            <label for="name">Nombre<span class="kv-reqd"></span></label>
                             <input type="text" class="form-control" name="name" required>
                           </div>
                         </div>
                         <div class="col-sm-6">
                           <div class="form-group">
-                            <label for="surname">Apellido<span class="kv-reqd">*</span></label>
+                            <label for="surname">Apellido<span class="kv-reqd"></span></label>
                             <input type="text" class="form-control" name="surname" required>
                           </div>
                         </div>
@@ -38,13 +38,13 @@
                       <div class="row">
                         <div class="col-sm-6">
                           <div class="form-group">
-                            <label for="username">Username<span class="kv-reqd">*</span></label>
+                            <label for="username">Username<span class="kv-reqd"></span></label>
                             <input type="text" class="form-control" name="username" required>
-                          </div>Nacimiento
+                          </div>
                         </div>
                         <div class="col-sm-6">
                           <div class="form-group">
-                            <label for="birthday">Fecha de Nacimiento<span class="kv-reqd">*</span></label>
+                            <label for="birthday">Fecha de Nacimiento<span class="kv-reqd"></span></label>
                             <input id="datepicker" width="225" name="birthday" />
                             <script>
                                 $('#datepicker').datepicker({
@@ -53,25 +53,11 @@
                             </script>
                           </div>
                         </div>
-                      </div>
+                      </div>                     
                       <div class="row">
                         <div class="col-sm-6">
                           <div class="form-group">
-                            <label for="email">Email Address<span class="kv-reqd">*</span></label>
-                            <input type="email" class="form-control" name="email" required>
-                          </div>
-                        </div>
-                        <div class="col-sm-6">
-                          <div class="form-group">
-                            <label for="pwd">Password<span class="kv-reqd">*</span></label>
-                            <input type="password" class="form-control" name="pwd" required>
-                          </div>
-                        </div>
-                      </div>                      
-                      <div class="row">
-                        <div class="col-sm-6">
-                          <div class="form-group">
-                            <label for="country">Pais<span class="kv-reqd">*</span></label>
+                            <label for="country">Pais<span class="kv-reqd"></span></label>
                             <select class="js-example-basic-single" name="country">
                               <option value="ES">El Salvador</option>
                               <option value="BL">Belice</option>
@@ -85,7 +71,7 @@
                         </div>
                         <div class="col-sm-6">
                           <div class="form-group">
-                            <label for="me">Sobre mi:<span class="kv-reqd">*</span></label>
+                            <label for="me">Sobre mi:<span class="kv-reqd"></span></label>
                             <textarea name="me" cols="20" rows="10"></textarea>
                           </div>
                         </div>
