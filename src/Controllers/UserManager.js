@@ -1,5 +1,6 @@
 'use strict'
 var User = require('../Models/user');
+var Follow = require('../Models/follow');
 var UserManagement = require('../Services/UserManagement');
 var bcrypt = require('bcrypt-nodejs');
 var nodemailer = require('nodemailer');
@@ -88,7 +89,7 @@ AuthController.configuration = (req, res, next) => {
 };
 
 AuthController.notification = (req, res, next) => {
-  UserManagement.getUsers(1,3,function (users){
+  UserManagement.getUsers(1,4,function (users){
     res.render('notification', {users});
   });
 };
@@ -102,7 +103,7 @@ AuthController.reset = (req,res, next) =>{
   var param = {resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } };
   User.findOne(param, function(err,userFound){
     if(err){
-      next();    
+      next();
     }
     else{
       console.log("usuario"+userFound);
@@ -130,7 +131,7 @@ AuthController.home = (req, res, next) => {
 
 AuthController.profile = (req, res, next) => {
   var userProfile, index;
-  UserManagement.getUsers(1,3,function (users){
+  UserManagement.getUsers(1,4,function (users){
     users.forEach(user => {
       if(user.username == req.params.username)
       {
@@ -181,6 +182,8 @@ AuthController.getUser = async (req, res, next) => {
     });
 
     if (user && user.length > 0) {
+
+      // Follow.findOne({user_follower: req.user.id, user_following: })
       return res.status(200).json({
         success: true,
         message: "Usuario Encontrado",
@@ -193,6 +196,92 @@ AuthController.getUser = async (req, res, next) => {
       });
     }
   });
+};
+
+/*
+ * Comprobar si hay seguimiento
+ * @params username
+ * @return JSON
+ */
+AuthController.followThisUser = async function(userFollowing, userFollowed){
+  var loSigo = await Follow.findOne({user_follower: userFollowed, user_following: userFollowing}).exec((error, follow) =>{
+    if(error) return handleError(error);
+    return follow;
+  });
+
+  var meSigue = await Follow.findOne({user_follower: userFollowing, user_following: userFollowed}).exec((error, follow) =>{
+    if(error) return handleError(error);
+    return follow;
+  });
+
+  return {loSigo, meSigue};
+};
+
+/*
+ * Obtener usuario por id
+ * @params username
+ * @return JSON
+ */
+AuthController.getUser = async (req, res, next) => {
+  //Agarro el username a buscar
+  var username = req.params.id;
+  //Lo busco en mi base de datos
+  await User.find({
+    _id: username
+  }, (err, user) => {
+    if (err) return res.status(500).json({
+      success: false,
+      message: "Error en la petición"
+    });
+
+    if (user && user.length > 0){
+      AuthController.followThisUser(req.user._id, username).then((follow) => {
+        return res.status(200).json({
+          success: true,
+          message: "Usuario Encontrado",
+          user,
+          follow
+        });
+      });
+    } else {
+      return res.status(404).json({
+        success: false,
+        message: "Usuario no encontrado"
+      });
+    }
+  });
+};
+
+/*
+ * Comprobar si hay seguimiento
+ * @params username
+ * @return JSON
+ */
+AuthController.followUserIds = async function(userId){
+  var loSiguoClean = [];
+  var meSigueClean = [];
+
+  var loSigo = await Follow.find({user_follower: userId}).select({'_id':0, '__v': 0, 'user_follower':0}).exec((error, follows) =>{
+    if(error) return handleError(error);
+    return follows;
+  });
+
+  var meSigue = await Follow.find({user_following: userId}).select({'_id':0, '__v': 0, 'user_following':0}).exec((error, follows) =>{
+    if(error) return handleError(error);
+    return follows;
+  });
+
+  //Procesar los que sigo
+  loSigo.forEach((follow) => {
+    loSigoClean.push(follow.user_following);
+  });
+
+  //Procesar los que me siguen
+  meSigue.forEach((follow) => {
+    meSigueClean.push(follow.user_follower);
+  });
+
+  return {loSigo: loSigoClean, meSigue: meSigueClean};
 };
 
 /*
@@ -215,11 +304,15 @@ AuthController.getUsers = async (req, res, next) => {
     });
 
     if (users && users.length > 0) {
-      return res.status(200).json({
-        success: true,
-        total,
-        users,
-        pages: Math.ceil(total / itemsPerPage)
+      AuthController.followUserIds(userLoggerId).then((follows) => {
+        return res.status(200).json({
+          success: true,
+          total,
+          users,
+          user_following: follows.loSigo,
+          user_followMe: follows.meSigue,
+          pages: Math.ceil(total / itemsPerPage)
+        });
       });
     } else {
       return res.status(404).json({
@@ -231,6 +324,31 @@ AuthController.getUsers = async (req, res, next) => {
 
 };
 
+AuthController.getCountFollow = async function (userId) {
+  var Siguiendo = await Follow.count({user_follower: userId}).exec((error, count) =>{
+    if(error) return handleError(error);
+    return count;
+  });
+
+  var Seguidores = await Follow.count({user_following: userId}).exec((error, count) =>{
+    if(error) return handleError(error);
+    return count;
+  });
+
+  return {Siguiendo, Seguidores};
+};
+
+AuthController.getCounters = (req, res, next) => {
+  var userId;
+  if(req.params.id){
+    userId = req.params.id
+  }else{
+    userId = req.user._id;
+  }
+  AuthController.getCountFollow(userId).then((value) => {
+    return res.status(200).json({success: true, value});
+  });
+};
 
 AuthController.confMail=function(user,token,req,res){
   let transporter = nodemailer.createTransport({

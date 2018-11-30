@@ -1,5 +1,4 @@
 'use strict'
-
 var path=require('path');
 var fs=require('fs');
 var moment=require('moment');
@@ -9,12 +8,10 @@ var Publicacion=require('../Models/publication');
 var User=require('../Models/user');
 var Follow=require('../Models/follow');
 
-function testing(req,res){
-    res.status(200);
-    res.send({message:"enviando este desde el controlador de publicaciones"});
-}
+const PostController = {};
 
-function savePublicacion(req,res){
+
+PostController.createPost = function (req,res){
     var params = req.body;
 
     if(!params.text){
@@ -25,7 +22,7 @@ function savePublicacion(req,res){
     var publicacion = new Publicacion();
     publicacion.text = params.text;
     publicacion.file = 'null';
-    publicacion.user_Id = req.user.sub;
+    publicacion.user_Id = req.user.id;
     publicacion.created_at = moment().unix();
 
     publicacion.save((err,publicacionStored)=>{
@@ -43,7 +40,7 @@ function savePublicacion(req,res){
 
 }
 
-function getPublicaciones(req,res){
+PostController.getPosts = function(req,res){
     var page = 1;
     if(req.params.page){
         page = req.params.page;
@@ -84,7 +81,7 @@ function getPublicaciones(req,res){
     });
 }
 
-function eliminarPublicacion(req,res){
+PostController.deletePost = function (req,res){
     var idPublicacion = req.params.id;
 
     Publicacion.find({'user_Id': req.user.sub,'_id':idPublicacion}).remove(err=>{
@@ -101,14 +98,14 @@ function eliminarPublicacion(req,res){
     });
 }
 
-function getPublicacionPorId(req,res){
+PostController.getPostById = function(req,res){
     var idPublicacion= req.params.id;
 
     var publicacion =Publicacion.find({'_id':idPublicacion});
     res.json({publicacion});
 }
 
-function getPublicacionesPorIdUsuario(req,res){
+PostController.getPostsByUser = function (req,res){
     var idPersona = req.params.idPersona;
 
     var publicaciones = Publicacion.find({'user_Id':idPersona});
@@ -116,12 +113,4 @@ function getPublicacionesPorIdUsuario(req,res){
 }
 
 
-
-module.exports={
-    testing,
-    savePublicacion,
-    getPublicaciones,
-    eliminarPublicacion,
-    getPublicacionPorId,
-    getPublicacionesPorIdUsuario
-}
+module.exports = PostController;

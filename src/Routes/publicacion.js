@@ -1,21 +1,17 @@
 'use strict'
 
 var express=require('express');
-var publicationController=require('../Controllers/Publicacion');
-var api=express.Router();
-var md_auth=require('../Middlewares/AuthMiddleware');
+var router =express.Router();
+var PostManager=require('../Controllers/PostManager');
+const AuthMiddleware = require("../Middlewares/AuthMiddleware");
 
-//var multipart = require('connect-multiparty');
-//var md_upload = multipart({uploadDir:'./Uploads/Publications'});
+//Middleware que verifica que solo los usuarios registrados podran ingresar a esta seccion
+router.use(AuthMiddleware.isAuthentication);
 
-api.get('/',function(req,res,next){
-    res.render('dashboard');
-});
+router.post('/create', PostManager.createPost);
 
-//RUTAS QUE VIENEN DESDE EL /post
-api.get('/testing-pub',md_auth.isAuthentication,publicationController.testing);
-api.post('/publicacion',md_auth.isAuthentication,publicationController.savePublicacion);
-api.get('/publicaciones/:page',md_auth.isAuthentication,publicationController.getPublicaciones);
-api.delete('/publicacion/:id',md_auth.isAuthentication,publicationController.eliminarPublicacion);
+// router.post('/publicacion',md_auth.isAuthentication,publicationController.savePublicacion);
+// router.get('/publicaciones/:page',md_auth.isAuthentication,publicationController.getPublicaciones);
+// router.delete('/publicacion/:id',md_auth.isAuthentication,publicationController.eliminarPublicacion);
 
-module.exports = api;
+module.exports = router;

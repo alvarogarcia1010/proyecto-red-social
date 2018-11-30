@@ -11,4 +11,6 @@ router.post('/follow/:id', FollowManager.followUser);
 
 router.delete('/unfollow/:id', FollowManager.followUser);
 
+router.get('/following/:id?/:page?', FollowManager.getFollowingUsers);
+
 module.exports = router;
