@@ -12,7 +12,7 @@ const PostController = {};
 
 //metodo de buscar todas las publicaciones
 PostController.index = async function(req,res,next){
-    let publicaciones = await Publicacion.find();
+    let publicaciones = await Publicacion.find().sort('-created_at');
     return res.status(200).json(publicaciones);
 }
 

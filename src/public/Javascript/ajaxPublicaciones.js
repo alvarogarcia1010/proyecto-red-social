@@ -3,8 +3,9 @@ console.log(document.forms.formPublicacion.texto.value);
 
 
 document.querySelector('#formPublicacion').addEventListener('submit', function (e) {
-    console.log(e);
     e.preventDefault();
+    console.log(e);
+    
     //alert("hola");
     let publicacion = {
         texto: document.forms.formPublicacion.texto.value
@@ -18,7 +19,7 @@ document.querySelector('#formPublicacion').addEventListener('submit', function (
             'Content-Type': 'application/json'
         }
     }).then(res => res.json()).then(response =>{
-        alert("publicacion ingresada con exito!");
+        //alert("publicacion ingresada con exito!");
         publicaciones(); //METODO A DEFINIR PARA INSERTAR PUBLICACIONES CON AJAX
     }).catch(err =>{
         alert("no se ha podido insetar la publicacion");
@@ -93,34 +94,7 @@ function publicaciones(){
             </div>
         </div>`
         });
-        document.querySelector('#espacioPublicaciones').innerHTML = `<div class="card mb-2">
-        <div class="card-body py-2 px-3">
-            <form id="formPublicacion" name="formPublicacion" method="post">
-                <div class="d-flex">
-                    <div class="">
-                        <a href="#">
-                            <img class="rounded-circle" src="https://s.gravatar.com/avatar/47dc454dc555e624caf972e9ecb3a67c?s=35" style="height: 45px; width: 45px; ">
-                        </a>
-                    </div>
-                    <div class="flex-align-center pl-2 pr-0 flex-fill">
-                        <input type="text" id="texto" name="texto" placeholder="escribe un comentario...">
-                    </div>
-                </div>
-                <div class="collapse my-2" id="upload-image">
-                    <div class="card card-body">
-                        <div class="file-loading">
-                            <input id="input-20" type="file">
-                        </div>
-                    </div>
-                </div>
-                <div class="d-flex justify-content-end my-2">
-                    <a class="px-3" data-toggle="collapse" href="#upload-image" role="button" aria-expanded="false"
-                        aria-controls="upload-image" style="font-size:1.5rem;"><i class="fas fa-image text-success"></i></a>
-                    <input type="submit" id="add-post" class="btn btn-outline-success text-align-center px-3" value="Publicar">
-                </div>
-            </form>
-        </div>
-    </div>` + posts;
+        document.querySelector('#espacioPublicaciones').innerHTML = posts;
     })
 }
 
