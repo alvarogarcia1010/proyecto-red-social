@@ -47,7 +47,7 @@
                     <div class="input-group-prepend">
                         <div class="input-group-text"><i class="fas fa-key"></i></div>
                     </div>
-                    <input type="password" class="form-control" placeholder="Contraseña" name="password" aria-label="Contraseña"
+                    <input id="signup-pass" type="password" class="form-control" placeholder="Contraseña" name="password" aria-label="Contraseña"
                         required>
                     <div class="invalid-feedback">
                         Ingrese un password valido
@@ -58,7 +58,7 @@
                     <div class="input-group-prepend">
                         <div class="input-group-text"><i class="fas fa-key"></i></div>
                     </div>
-                    <input type="password" class="form-control" placeholder="Confirmar contraseña" name="confirm-password"
+                    <input id="signup-pass-confirm" type="password" class="form-control" placeholder="Confirmar contraseña" name="confirm-password"
                         aria-label="Confirmar contraseña" required>
                     <div class="invalid-feedback">
                         Confirme que sea el mismo password
@@ -70,7 +70,7 @@
                             href="" class="text-success">política de privacidad</a> de Ayuda Un Peludo.</small></p>
 
                 <div class="d-flex justify-content-center my-3">
-                    <button type="submit" class="btn btn-outline-success btn-sm text-center">Registrarme</button>
+                    <button id="btn-sign-up" type="submit" class="btn btn-outline-success btn-sm text-center">Registrarme</button>
                 </div>
                 <div class="space-around">
                     <div class="">
@@ -108,5 +108,27 @@
                 }, false);
             });
         }, false);
+
+        //validacion para confirmar password
+        var btnPass = document.getElementById('btn-sign-up');
+        var password = document.getElementById('signup-pass');
+        var passwordConfirm = document.getElementById('signup-pass-confirm');
+
+        var regex = /\w{6,}/;
+
+        function validarPassword() {
+            if (regex.test(password.value) === false) {
+                alert("el password debe contener minimo 6 caracteres");
+                return false;
+            }
+            if (password.value != passwordConfirm.value) {
+                alert("asegurese de que la password que escribio sea la misma")
+                return false;
+            } else {
+                passwordConfirm.setCustomValidity('');
+            }
+        }
+
+        btnPass.onclick = validarPassword;
     })();
 </script>
