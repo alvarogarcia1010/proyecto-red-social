@@ -13,7 +13,11 @@ moment().format();
 * @return JSON
 */
 FileManager.uploadAvatarUser = async function (req, res, next) {
-  var userId = req.params.id;
+  var userId = req.user._id;
+
+  if(req.params.id){
+    userId =req.params.id;
+  }
 
   if(userId != req.user._id)
   {

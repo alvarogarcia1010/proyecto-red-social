@@ -1,29 +1,78 @@
 <!--VALIDACION FORM PARA CAMBIAR USERNAME-->
-<form class="needs-validation" novalidate>
-    <div class="form-group">
-        <h2>Perfil</h2>
-        <label for="cambiar-username">Cambiar username:</label>
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">@</span>
+<form class="form form-vertical" action="/" method="post" enctype="multipart/form-data" id="form-upload-picture">
+  <div class="row">
+      <div class="col-sm-4 offset-md-4 text-center">
+          <div class="kv-avatar">
+              <div class="file-loading">
+                  <input id="avatar-1" name="file" id = "avatar-1" type="file" data-browse-on-zone-click="true" required>
+              </div>
+          </div>
+          <div class="kv-avatar-hint"><small>Select file < 1500 KB</small></div>
+      </div>
+  </div>
+  <div class="d-flex justify-content-center">
+    <button type="submit" id="save-profile-picture" class="btn btn-success">Guardar foto</button>
+  </div>
+</form>
+<form class="form form-vertical" action="/" method="post">
+    <div class="row">
+        <div class="col-sm-12 scrollbar">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="name">Nombre<span class="kv-reqd"></span></label>
+                <input type="text" class="form-control" name="name" required>
+              </div>
             </div>
-            <input id="nuevo-username" required type="text" class="form-control" placeholder="Username"
-                aria-label="Username" aria-describedby="basic-addon1">
-            <div class="valid-feedback">
-                Username valido
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="surname">Apellido<span class="kv-reqd"></span></label>
+                <input type="text" class="form-control" name="surname" required>
+              </div>
             </div>
-            <div class="invalid-feedback">
-                Username no valido
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label for="username">Username<span class="kv-reqd"></span></label>
+                <input type="text" class="form-control" name="username" required>
+              </div>
             </div>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label for="birthday">Fecha de Nacimiento<span class="kv-reqd"></span></label>
+                <input id="datepicker" width="225" name="birthday"/>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label for="country">Pais<span class="kv-reqd"></span></label>
+                <select class="js-example-basic-single" name="country">
+                  <option value="ES">El Salvador</option>
+                  <option value="BL">Belice</option>
+                  <option value="CR">Costa Rica</option>
+                  <option value="GU">Guatemala</option>
+                  <option value="ES">El Salvador</option>
+                  <option value="NC">Nicaragua</option>
+                  <option value="PN">Panama</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label for="me">Sobre mi:<span class="kv-reqd"></span></label>
+                <textarea name="me" cols="20" rows="5" class="w-100"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <hr>
+            <div class="text-right">
+              <button type="submit" id="btn-update-profile" class="btn btn-success">Actualizar perfil</button>
+            </div>
+          </div>
         </div>
     </div>
-    <button id="boton-cambiar-username" type="submit" class="btn btn-success">Cambiar username</button>
-</form>
-<form class="needs-validation" novalidate>
-    <div class="form-group">
-        <h2 class="mt-5">Cambiar foto de perfil:</h2>
-        <label for="nueva-foto-perfil">Seleccionar una foto:</label>
-        <input type="file" class="form-control-file" id="nueva-foto-perfil">
-    </div>
-    <button type="submit" class="btn btn-success">Cambiar foto de perfil</button>
 </form>

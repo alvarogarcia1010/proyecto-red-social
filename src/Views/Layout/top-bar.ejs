@@ -31,7 +31,7 @@
           <li class="nav-item dropdown px-2">
             <a class="nav-link dropdown-toggle" href="#" id="navbar-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <% if (user.urlImage) { %>
-              <img class="rounded-circle" src="<%= user.urlImage %>" style="width:35px; height:35px;">
+              <img id="img-profile" class="rounded-circle" src="<%= user.urlImage %>" style="width:35px; height:35px;">
               <% } else { %>
                 <img class="rounded-circle" src="/images/avatarUser/defaultAvatarUser.jpg" style="width:35px; height:35px;">
               <% } %>
