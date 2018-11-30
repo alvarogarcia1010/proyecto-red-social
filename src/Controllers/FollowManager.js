@@ -23,7 +23,7 @@ FollowController.followUser = async (req, res, next) => {
   await newFollow.save((error, followStored) => {
     if (error) return res.status(500).json({success: false, message: "Error en la petición"});
 
-    if (followStored && followStored.length > 0)
+    if (followStored)
     {
       return res.status(200).json({success: true, message: "Usuario seguido con exito", followStored});
     }

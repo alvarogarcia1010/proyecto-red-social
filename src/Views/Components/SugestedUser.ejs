@@ -6,9 +6,36 @@
     </div>
     <div class="flex-align-center px-2">
       <a href="<%= '/' + user.username %>" class="card-link text-dark font-weight-bold"><%= user.name + ' ' + user.surname %></a>
-      <p class="m-0 text-muted"><%= user.username %></p>
+      <p class="m-0 text-muted username" ><%= user.username %></p>
     </div>
     <div class="flex-align-center ml-auto">
-      <button type="button" class="btn btn-outline-success">Seguir</button>
+      <button type="button" class="btn btn-outline-success seguir" data-id="<%= user._id %>">Seguir</button>
     </div>
+    <script>
+        window.onload = () => {
+          var botons = document.getElementsByClassName("seguir");
+          for(i=0; i<botons.length; i++){
+            console.log(botons[i].getAttribute("data-id"));
+            var aux = (botons[i].getAttribute("data-id"));
+            botons[i].addEventListener("click", (event) => {
+              event.preventDefault();
+              fetch('/api/follow/' + aux, {
+                      method: 'POST'
+              }).then(res => res.json())
+                .then(res => {
+                    if (res.success) {
+                      console.log("Listo");
+                      this.value = "Seguido";
+                      this.className += "btn-success";
+                      this.classList.remove("btn-outline-success");
+                    } else {
+                      this.innerText = "Seguir";
+                      this.className += "btn-outline-success";
+                      this.classList.remove("btn-success");
+                    }
+                  });
+              });
+            };
+        };
+    </script>
 </div>

@@ -7,11 +7,10 @@
 </head>
 <body>
   <%- include('./top-bar.ejs') %>
-
+  <button id="app-loader" class = "btn btn-warning btn-lg app-loader d-none" disabled><i class="fas fa-spinner"></i> Cargando</button>
   <div id="main-content">
     <%- body %>
   </div>
-  <button id="app-loader" class = "btn btn-warning btn-lg app-loader d-none" disabled><i class="fas fa-spinner"></i> Cargando</button>
   <!--boton scroll to top-->
   <button onclick="topFunction()" id="scrollTopBtn" title="Go to top"><i class="fas fa-chevron-circle-up"></i></button>
   <%- include('../Components/RecoverPassword.ejs') %>
