@@ -3,12 +3,12 @@
         <form id="formPublicacion" name="formPublicacion" method="post">
             <div class="d-flex">
                 <div class="">
-                <a href="#">
-                    <img class="rounded-circle" src="<%- user.urlImage %>" style="height: 45px; width: 45px; ">
-                </a>
+                    <a href="#">
+                        <img class="rounded-circle" src="<%- user.urlImage %>" style="height: 45px; width: 45px; ">
+                    </a>
                 </div>
                 <div class="flex-align-center pl-2 pr-0 flex-fill">
-                <textarea id="text" name="text" class="form-control js-auto-size" rows="1" placeholder="Escribe una publicación..."></textarea>
+                    <input type="text" id="texto" name="texto" placeholder="escribe un comentario...">
                 </div>
             </div>
             <div class="collapse my-2" id="upload-image">
@@ -19,7 +19,8 @@
                 </div>
             </div>
             <div class="d-flex justify-content-end my-2">
-                <a class="px-3" data-toggle="collapse" href="#upload-image" role="button" aria-expanded="false" aria-controls="upload-image" style="font-size:1.5rem;"><i class="fas fa-image text-success"></i></a>
+                <a class="px-3" data-toggle="collapse" href="#upload-image" role="button" aria-expanded="false"
+                    aria-controls="upload-image" style="font-size:1.5rem;"><i class="fas fa-image text-success"></i></a>
                 <input type="submit" id="add-post" class="btn btn-outline-success text-align-center px-3" value="Publicar">
             </div>
         </form>
