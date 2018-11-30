@@ -17,7 +17,7 @@ router.get('/config',UserManager.configuration);
 
 router.get('/:username', UserManager.profile);
 
-
+router.post('/config', UserManager.updatePass);
 //Rutas para obtener información JSON
 router.get('/api/users/counters/:id?', UserManager.getCounters);
 

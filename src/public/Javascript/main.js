@@ -253,7 +253,23 @@ $(document).ready(function()
 		});
     //console.log("ready from dashboard!");
     //$('#user-register').DataTable();
+    $('body').on('click','#boton-password-confirm', function(e){
+        e.preventDefault();
+        $.ajax({
+            url: '/config',
+            type: "POST",
+            dataType: "json",
+            data: {password: $('#password').val()},
 
+            success: function(response){
+                console.log(response);
+                alertify.success('Contraseña actualizada');
+                $('#password-actual').val('');
+                $('#password').val('');
+                $('#password-nuevo-confirm').val('');
+            }
+        });
+    });
 
     $("#input-20").fileinput({
         browseClass: "btn btn-primary",

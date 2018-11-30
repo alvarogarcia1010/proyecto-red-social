@@ -592,4 +592,28 @@ AuthController.createNewUser = function (req, res, next) {
   }
 }
 
+AuthController.updatePass = async(req,res,next)=>{
+  var newUser = new User();
+  var id = req.user._id;
+  var pass = newUser.encryptPassword(req.body.password);
+
+  if(!id)
+  {
+    return res.status(500).json({message:'Permiso para actualizar usuario denegado', success: false});
+  }
+
+  await User.findByIdAndUpdate(id, {password: pass}, {new: true}, (error, user) => {
+    if (error) return res.status(500).json({success: false, message: "Error en la petición"});
+
+    if (user)
+    {
+      return res.status(200).json({success: true, message: "Contraseña Actualizada", user});
+    }
+    else
+    {
+      return res.status(404).json({success: false, message: "Contraseña no actualizada"});
+    }
+  });
+};
+
 module.exports = AuthController;
