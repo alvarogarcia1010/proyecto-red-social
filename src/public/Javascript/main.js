@@ -124,6 +124,12 @@ $(document).ready(function()
         allowedFileExtensions: ["jpg", "png", "gif"]
     });
 
+    //$("#elem").select2({theme:"bootstrap"});
+
+    $(function () {
+        $('#datetimepicker1').datetimepicker();
+    });
+
 });
 
 setTimeout(function(){
