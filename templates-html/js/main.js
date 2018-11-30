@@ -2,7 +2,7 @@ $(document).ready(function () {
     console.log("ready!");
 
     //CODE TU MAKE TABLES WORK///////////////
-    $('#myTable').DataTable();
+    //$('#myTable').DataTable();
     ////////////////////////////////////
 
     /////////////codigo para validar formularios//////////////////
