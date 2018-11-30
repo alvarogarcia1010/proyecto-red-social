@@ -9,6 +9,7 @@ const AuthMiddleware = require("../Middlewares/AuthMiddleware");
 router.use(AuthMiddleware.isAuthentication);
 
 router.post('/', PostManager.createPost);
+router.get('/',PostManager.findPostsAll);
 
 // router.post('/publicacion',md_auth.isAuthentication,publicationController.savePublicacion);
 // router.get('/publicaciones/:page',md_auth.isAuthentication,publicationController.getPublicaciones);

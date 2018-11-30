@@ -8,6 +8,7 @@ document.querySelector("#formPublicacion").addEventListener('submit', function (
         text: document.forms.formPublicacion.text.value,
     }
     console.log(data);
+    alert(funcionando);
     fetch('/post', {
         method: "POST",
         body: JSON.stringify(data),

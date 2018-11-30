@@ -10,6 +10,12 @@ var Follow = require('../Models/follow');
 
 const PostController = {};
 
+//metodo de buscar todas las publicaciones
+PostController.findPostsAll = async function(req,res,next){
+    let posts = await Publicacion.find();
+    return res.status(200).json(posts);
+}
+
 //metodo de crear la publicacion
 PostController.createPost = function (req, res) {
     var params = req.body;
