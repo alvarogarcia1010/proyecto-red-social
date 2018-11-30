@@ -50,8 +50,12 @@ function callToPage(pageRefInput){
 $(document).ready(function()
 {
 	var urlCounters = "/api/users/counters/" + $("#aup-username").attr("data-id");
+	var imgProfile;
 	var page = 2;
+	imgProfile = $("#img-profile").attr('src');
+
 	if($("#aup-username").attr("data-id") !== undefined){
+
 		$.ajax({
 			url: urlCounters,
 			type: "GET",
@@ -125,7 +129,6 @@ $(document).ready(function()
 						$('#app-loader').removeClass('d-none');
 						disabledAll();
 					},
-
 					success: function(response){
 							//alertify.alert("Mensaje enviado con éxito. Favor revise su correo.", function(){alertify.message('OK');});
 							var newUsers = "";
@@ -160,7 +163,28 @@ $(document).ready(function()
 					}
 			});
 		})
+		console.log(imgProfile);
 
+		$("#form-upload-picture").submit(function(evt){
+			 evt.preventDefault();
+				var logoImg = $('input[name="file"]').get(0).files[0];
+				var formData = new FormData();
+				formData.append('file', logoImg);
+			$.ajax({
+					url: 'file/upload-image',
+					type: 'POST',
+					data: formData,
+					async: false,
+					cache: false,
+					contentType: false,
+					enctype: 'multipart/form-data',
+					processData: false,
+					success: function (response) {
+						alertify.success("Perfil actualizado con exito, favor refresque la pantalla");
+					}
+			});
+		return false;
+	});
 
 
     $('#aup-home').on('click', function(e){
@@ -229,7 +253,23 @@ $(document).ready(function()
 		});
     //console.log("ready from dashboard!");
     //$('#user-register').DataTable();
+    $('body').on('click','#boton-password-confirm', function(e){
+        e.preventDefault();
+        $.ajax({
+            url: '/config',
+            type: "POST",
+            dataType: "json",
+            data: {password: $('#password').val()},
 
+            success: function(response){
+                console.log(response);
+                alertify.success('Contraseña actualizada');
+                $('#password-actual').val('');
+                $('#password').val('');
+                $('#password-nuevo-confirm').val('');
+            }
+        });
+    });
 
     $("#input-20").fileinput({
         browseClass: "btn btn-primary",
@@ -257,7 +297,7 @@ $(document).ready(function()
         removeTitle: 'Cancel or reset changes',
         elErrorContainer: '#kv-avatar-errors-1',
         msgErrorClass: 'alert alert-block alert-danger',
-        defaultPreviewContent: '<img src="https://s.gravatar.com/avatar/31e81597c7a59321931c6a76324c13fd?s=100" alt="Your Avatar">',
+        defaultPreviewContent: `<img src="${imgProfile}" alt="Your Avatar" style="height:125px">`,
         layoutTemplates: { main2: '{preview} ' + btnCust + ' {remove} {browse}' },
         allowedFileExtensions: ["jpg", "png", "gif"]
     });
@@ -291,4 +331,3 @@ setTimeout(function(){
     $('#login-error-alert').alert('close');
     $('#signup-error-alert').alert('close');
 }, 5000);
-
