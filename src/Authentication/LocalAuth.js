@@ -31,7 +31,7 @@ passport.use('local-register', new LocalStrategy({
       newUser.username = params.username;
       newUser.email = params.email;
       newUser.password = newUser.encryptPassword(params.password);
-      newUser.role = 'ROLE_ADMIN';
+      newUser.role = 'ROLE_USER';
       newUser.urlImage = 'images/avatarUser/defaultAvatarUser.jpg';
       newUser.provider_id = Math.random() * Date.now();
       newUser.provider = 'AYUDA_UN_PELUDO';

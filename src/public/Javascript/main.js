@@ -1,3 +1,13 @@
+function enableAll()
+{
+	$('#main-content').removeAttr('disabled');
+}
+
+function disabledAll()
+{
+	$('#main-content').attr('disabled','disabled');
+}
+
 function isEmpty()
 {
     if(this.is("select"))
@@ -36,11 +46,23 @@ $(document).ready(function()
             dataType: "json",
             data: {email: $('#email').val()},
 
+            error: function (jqXHR, textStatus, errorThrown)
+            {
+              alertify.success('Ocurrio un error en su petición');
+            },
+            beforeSend:function()
+            {
+              $('#app-loader').removeClass('d-none');
+              disabledAll();
+            },
+
             success: function(response){
                 //alertify.alert("Mensaje enviado con éxito. Favor revise su correo.", function(){alertify.message('OK');});
                 $('#recoverPass').modal('hide');
                 alertify.success('Mensaje Enviado. Favor revise su correo.');
                 console.log(response);
+                $('#app-loader').addClass('d-none');
+                enableAll();
             }
         })
     });
@@ -91,7 +113,7 @@ $(document).ready(function()
 
     //console.log("ready from dashboard!");
     //$('#user-register').DataTable();
-    
+
 
     $("#input-20").fileinput({
         browseClass: "btn btn-primary btn-block",

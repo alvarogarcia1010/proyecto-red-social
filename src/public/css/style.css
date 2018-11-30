@@ -14,6 +14,14 @@ body {
   font-family: 'Cabin Condensed', sans-serif;
 }
 
+.app-loader{
+	z-index: 1051;
+	position: fixed;
+  color: #ffffff;
+  font-size: 1.4rem;
+	/*width: 570px;*/
+}
+
 .text-inline{
   display: inline-block;
 }
@@ -179,5 +187,3 @@ textarea {
     max-width: 100%;
   }
 }
-
-
