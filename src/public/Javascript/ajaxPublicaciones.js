@@ -1,4 +1,5 @@
 console.log(document.forms.formPublicacion.texto.value);
+publicaciones();
 
 
 
@@ -95,6 +96,7 @@ function publicaciones(){
         </div>`
         });
         document.querySelector('#espacioPublicaciones').innerHTML = posts;
+        document.querySelector('#texto').value="";
     })
 }
 
