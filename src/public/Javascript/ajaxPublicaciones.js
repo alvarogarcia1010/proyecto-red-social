@@ -9,7 +9,7 @@ document.querySelector("#formPublicacion").addEventListener('submit', function (
     }
     console.log(data);
     alert(funcionando);
-    fetch('/post', {
+    fetch('/post/create', {
         method: "POST",
         body: JSON.stringify(data),
         headers: {
@@ -27,7 +27,7 @@ document.querySelector("#formPublicacion").addEventListener('submit', function (
 });
 
 function publicaciones() {
-    fetch('/post',
+    fetch('/post/all',
         {
             method: 'GET'
         }).then(res => res.json())

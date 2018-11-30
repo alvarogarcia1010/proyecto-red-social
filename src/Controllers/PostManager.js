@@ -12,8 +12,11 @@ const PostController = {};
 
 //metodo de buscar todas las publicaciones
 PostController.findPostsAll = async function(req,res,next){
-    let posts = await Publicacion.find();
-    return res.status(200).json(posts);
+    await Publicacion.find((error, posts)=>{
+      if(error) return res.status(500).json({success: false, message: "Error al obtener publicaciones"});
+
+      return res.status(200).json({success: true, posts})
+    });
 }
 
 //metodo de crear la publicacion
@@ -64,7 +67,7 @@ PostController.getPosts = function (req, res) {
         let publicaciones =Publicacion.find({ user: { "$in": follows_clean } }).sort('-created_at');
         res.status(200);
         return res.json(publicaciones);
-            
+
 
     });
 }
