@@ -22,7 +22,7 @@ PostController.createPost = function (req,res){
     var publicacion = new Publicacion();
     publicacion.text = params.text;
     publicacion.file = 'null';
-    publicacion.user_Id = req.user.sub;
+    publicacion.user_Id = req.user.id;
     publicacion.created_at = moment().unix();
 
     publicacion.save((err,publicacionStored)=>{
