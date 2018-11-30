@@ -277,12 +277,6 @@ $(document).ready(function()
         layoutTemplates: { main2: '{preview} ' + btnCust + ' {remove} {browse}' },
         allowedFileExtensions: ["jpg", "png", "gif"]
     });
-<<<<<<< HEAD
-    
-
-    //$("#elem").select2({theme:"bootstrap"});
-=======
->>>>>>> d2a6a60078d1bbe2d6d0b10d081ab14ec0c08e30
 
 
 			// console.log($("button.seguir"));
