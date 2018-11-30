@@ -101,11 +101,27 @@ function eliminarPublicacion(req,res){
     });
 }
 
+function getPublicacionPorId(req,res){
+    var idPublicacion= req.params.id;
+
+    var publicacion =Publicacion.find({'_id':idPublicacion});
+    res.json({publicacion});
+}
+
+function getPublicacionesPorIdUsuario(req,res){
+    var idPersona = req.params.idPersona;
+
+    var publicaciones = Publicacion.find({'user_Id':idPersona});
+    res.json({publicaciones});
+}
+
 
 
 module.exports={
     testing,
     savePublicacion,
     getPublicaciones,
-    eliminarPublicacion
+    eliminarPublicacion,
+    getPublicacionPorId,
+    getPublicacionesPorIdUsuario
 }
