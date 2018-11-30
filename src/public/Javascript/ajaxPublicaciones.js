@@ -51,7 +51,7 @@ function publicaciones(){
                         <h6 class="card-title mb-0">
                             <a href="#" class="text-dark font-weight-bold">Fernando Anstirman</a>
                         </h6>
-                        <p class="card-subtitle"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        <p class="card-subtitle"><small class="text-muted">${element.created_at}</small></p>
                     </div>
                     <div class="ml-auto">
                         <div class="dropdown flex-end">

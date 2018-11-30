@@ -30,7 +30,7 @@ PostController.createPost = function (req, res) {
     publicacion.file = 'null';
     publicacion.user_Id = req.user.id;
     //console.log(req.user.id);
-    publicacion.created_at = moment().unix();
+    publicacion.created_at = moment().format('LLLL');
 
     publicacion.save((err, publicacionStored) => {
         if (err) {
