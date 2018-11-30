@@ -44,12 +44,12 @@ function publicaciones(){
                 <div class="d-flex">
                     <div class="pl-1">
                         <a href="#">
-                            <img class="rounded-circle" src="https://s.gravatar.com/avatar/47dc454dc555e624caf972e9ecb3a67c?s=45">
+                            <img class="rounded-circle" src="/${element.user_Id.urlImage}" style="height:45px;width:45px;">
                         </a>
                     </div>
                     <div class="flex-align-center px-2">
                         <h6 class="card-title mb-0">
-                            <a href="#" class="text-dark font-weight-bold">Fernando Anstirman</a>
+                            <a href="#" class="text-dark font-weight-bold">${element.user_Id.username}</a>
                         </h6>
                         <p class="card-subtitle"><small class="text-muted">${element.created_at}</small></p>
                     </div>
