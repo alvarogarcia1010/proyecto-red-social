@@ -8,8 +8,8 @@ const AuthMiddleware = require("../Middlewares/AuthMiddleware");
 //Middleware que verifica que solo los usuarios registrados podran ingresar a esta seccion
 router.use(AuthMiddleware.isAuthentication);
 
-router.post('/', PostManager.createPost);
-router.get('/',PostManager.findPostsAll);
+router.get('/all', PostManager.findPostsAll);
+router.post('/create', PostManager.createPost);
 
 // router.post('/publicacion',md_auth.isAuthentication,publicationController.savePublicacion);
 // router.get('/publicaciones/:page',md_auth.isAuthentication,publicationController.getPublicaciones);

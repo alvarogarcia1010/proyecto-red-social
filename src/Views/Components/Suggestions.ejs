@@ -4,12 +4,12 @@
             <h5 class="card-title font-weight-bold m-0">Sugerencias</h5>
         </div>
         <div class="text-inline text-right">
-            <a href="/api/users/2" class="card-link text-success text-small">Actualizar</a>
-            <a href="#" class="card-link text-success text-small ml-1">Ver todas</a>
+            <a href="/api/users/" id="aup-refresh-suggestions" class="card-link text-success text-small">Actualizar</a>
+            <!-- <a href="#" class="card-link text-success text-small ml-1">Ver todas</a> -->
         </div>
     </div>
-    <ul class="list-group list-group-flush text-lg-small">
-        <% users.forEach(function(user) { %>
+    <ul class="list-group list-group-flush text-lg-small" id="aup-list-suggestions">
+        <% usersSuggestion.forEach(function(user) { %>
         <!-- Persona Sugerida -->
         <li class="list-group-item p-2">
             <%- include('./SugestedUser.ejs', {user:user}) %>

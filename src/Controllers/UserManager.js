@@ -125,13 +125,16 @@ AuthController.home = (req, res, next) => {
         }
       }
     });
-    res.render('home', {users});
+
+    var usersSuggestion = users.slice(0,4);
+
+    res.render('home', {users, usersSuggestion});
   });
 };
 
 AuthController.profile = (req, res, next) => {
   var userProfile, index;
-  UserManagement.getUsers(1,4,function (users){
+  UserManagement.getUsers(1,100,function (users){
     users.forEach(user => {
       if(user.username == req.params.username)
       {
@@ -149,11 +152,11 @@ AuthController.profile = (req, res, next) => {
         }
       }
     });
-
+    var usersSuggestion = users.slice(0,4);
 
     if(userProfile)
     {
-      res.render('perfil', {userProfile, users});
+      res.render('perfil', {userProfile, users, usersSuggestion});
     }
     else{
       //res.send("Usuario no encontrado")
@@ -257,31 +260,27 @@ AuthController.getUser = async (req, res, next) => {
  * @params username
  * @return JSON
  */
-AuthController.followUserIds = async function(userId){
-  var loSiguoClean = [];
+AuthController.followUserIds = async function(userId, cb){
+  var loSigoClean = [];
   var meSigueClean = [];
 
-  var loSigo = await Follow.find({user_follower: userId}).select({'_id':0, '__v': 0, 'user_follower':0}).exec((error, follows) =>{
+  await Follow.find({user_follower: userId}).select({'_id':0, '__v': 0, 'user_following':0}).exec(async function(error, loSigo){
     if(error) return handleError(error);
-    return follows;
+    if(loSigo){
+      loSigo.forEach((element)=>{
+        loSigoClean.push(element.user_follower)
+      });
+      await Follow.find({user_following: userId}).select({'_id':0, '__v': 0, 'user_following':0}).exec(function(error, follows){
+        if(error) return handleError(error);
+        if(follows){
+          follows.forEach((element)=>{
+            meSigueClean.push(element.user_follower);
+          });
+          cb({siguiendo: loSigoClean, seguidores: meSigueClean});
+        }
+      });
+    }
   });
-
-  var meSigue = await Follow.find({user_following: userId}).select({'_id':0, '__v': 0, 'user_following':0}).exec((error, follows) =>{
-    if(error) return handleError(error);
-    return follows;
-  });
-
-  //Procesar los que sigo
-  loSigo.forEach((follow) => {
-    loSigoClean.push(follow.user_following);
-  });
-
-  //Procesar los que me siguen
-  meSigue.forEach((follow) => {
-    meSigueClean.push(follow.user_follower);
-  });
-
-  return {loSigo: loSigoClean, meSigue: meSigueClean};
 };
 
 /*
@@ -292,7 +291,7 @@ AuthController.followUserIds = async function(userId){
 AuthController.getUsers = async (req, res, next) => {
   var userLoggerId = req.user.id
   var page = 1;
-  var itemsPerPage = 3;
+  var itemsPerPage = 4;
   if (req.params.page) {
     page = req.params.page;
   }
@@ -304,13 +303,13 @@ AuthController.getUsers = async (req, res, next) => {
     });
 
     if (users && users.length > 0) {
-      AuthController.followUserIds(userLoggerId).then((follows) => {
+      AuthController.followUserIds(userLoggerId, (follows) => {
         return res.status(200).json({
           success: true,
           total,
           users,
-          user_following: follows.loSigo,
-          user_followMe: follows.meSigue,
+          user_following: follows.siguiendo,
+          user_followMe: follows.seguidores,
           pages: Math.ceil(total / itemsPerPage)
         });
       });
@@ -325,17 +324,17 @@ AuthController.getUsers = async (req, res, next) => {
 };
 
 AuthController.getCountFollow = async function (userId) {
-  var Siguiendo = await Follow.count({user_follower: userId}).exec((error, count) =>{
+  var siguiendo = await Follow.count({user_follower: userId}).exec((error, count) =>{
     if(error) return handleError(error);
     return count;
   });
 
-  var Seguidores = await Follow.count({user_following: userId}).exec((error, count) =>{
+  var seguidores = await Follow.count({user_following: userId}).exec((error, count) =>{
     if(error) return handleError(error);
     return count;
   });
 
-  return {Siguiendo, Seguidores};
+  return {siguiendo, seguidores};
 };
 
 AuthController.getCounters = (req, res, next) => {
