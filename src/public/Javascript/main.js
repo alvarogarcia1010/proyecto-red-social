@@ -157,3 +157,4 @@ setTimeout(function(){
     $('#login-error-alert').alert('close');
     $('#signup-error-alert').alert('close');
 }, 5000);
+
