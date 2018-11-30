@@ -14,7 +14,7 @@
                     <div class="col-sm-4 text-center">
                         <div class="kv-avatar">
                             <div class="file-loading">
-                                <input id="avatar-1" name="avatar-1" type="file" data-browse-on-zone-click="true" required>
+                                <input id="avatar-1" name="avatar-1" type="file" data-browse-on-zone-click="false" required>
                             </div>
                         </div>
                         <div class="kv-avatar-hint"><small>Select file < 1500 KB</small></div>
@@ -40,17 +40,17 @@
                           <div class="form-group">
                             <label for="username">Username<span class="kv-reqd">*</span></label>
                             <input type="text" class="form-control" name="username" required>
-                          </div>
+                          </div>Nacimiento
                         </div>
                         <div class="col-sm-6">
                           <div class="form-group">
-                            <label for="birthday">Cumpleaño<span class="kv-reqd">*</span></label>
-                              <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
-                                  <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1"/>
-                                  <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
-                                      <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                  </div>
-                              </div>
+                            <label for="birthday">Fecha de Nacimiento<span class="kv-reqd">*</span></label>
+                            <input id="datepicker" width="225" name="birthday" />
+                            <script>
+                                $('#datepicker').datepicker({
+                                    uiLibrary: 'bootstrap4'
+                                });
+                            </script>
                           </div>
                         </div>
                       </div>
@@ -73,19 +73,20 @@
                           <div class="form-group">
                             <label for="country">Pais<span class="kv-reqd">*</span></label>
                             <select class="js-example-basic-single" name="country">
-                                <option value="WY">Belice</option>
-                              <option value="AL">Costa Rica</option>
-                              <option value="WY">Guatemala</option>
-                              <option value="WY">El Salvador</option>
-                              <option value="WY">Nicaragua</option>
-                              <option value="WY">Panama</option>
+                              <option value="ES">El Salvador</option>
+                              <option value="BL">Belice</option>
+                              <option value="CR">Costa Rica</option>
+                              <option value="GU">Guatemala</option>
+                              <option value="ES">El Salvador</option>
+                              <option value="NC">Nicaragua</option>
+                              <option value="PN">Panama</option>
                             </select>
                           </div>
                         </div>
                         <div class="col-sm-6">
                           <div class="form-group">
-                            <label for="pwd">Sobre mi:<span class="kv-reqd">*</span></label>
-                            <input type="text" class="form-control" name="pwd" required>
+                            <label for="me">Sobre mi:<span class="kv-reqd">*</span></label>
+                            <textarea name="me" cols="20" rows="10"></textarea>
                           </div>
                         </div>
                       </div>

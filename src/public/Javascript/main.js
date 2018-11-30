@@ -94,10 +94,10 @@ $(document).ready(function()
     
 
     $("#input-20").fileinput({
-        browseClass: "btn btn-primary btn-block",
+        browseClass: "btn btn-primary",
         showCaption: false,
         showRemove: false,
-        showUpload: false
+        showUpload: true
     });
 
     var btnCust = '<button type="button" class="btn btn-secondary" title="Add picture tags" ' +
@@ -123,12 +123,11 @@ $(document).ready(function()
         layoutTemplates: { main2: '{preview} ' + btnCust + ' {remove} {browse}' },
         allowedFileExtensions: ["jpg", "png", "gif"]
     });
-
+    
     //$("#elem").select2({theme:"bootstrap"});
 
-    $(function () {
-        $('#datetimepicker1').datetimepicker();
-    });
+    
+    //$('#datetimepicker1').datetimepicker();
 
 });
 
