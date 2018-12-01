@@ -82,6 +82,39 @@ $(document).ready(function()
 		});
 	}
 
+	$("#update-statistics").click(()=>{
+		$("#role-user").text("10");
+		$("#role-admin").text("3");
+		$("#count-publications").text("100");
+		$("#count-me-empeluda").text("10");
+	});
+
+	$("#update-users").click(()=>{
+		$.ajax({
+			url: "api/users",
+			type: "GET",
+			dataType: "json",
+			error: function (jqXHR, textStatus, errorThrown)
+			{
+				alertify.success('Ocurrio un error en su petición');
+				$('#app-loader').addClass('d-none');
+				enableAll();
+			},
+			beforeSend:function()
+			{
+				$('#app-loader').removeClass('d-none');
+				disabledAll();
+			},
+
+			success: function(response){
+					console.log(response.users);
+					$('#app-loader').addClass('d-none');
+					enableAll();
+			}
+
+		});
+	});
+
     console.log(urlCounters);
     $('#send-mail-recover-pass').on('click',function(e){
         e.preventDefault();
