@@ -278,6 +278,27 @@ $(document).ready(function()
 				$('#aup-messages').parent().removeClass('active');
         history.pushState(null, "", "dashboard");
 
+	});
+	
+	$('body').on('click','#btn-update-profile', function(e){
+        e.preventDefault();
+        $.ajax({
+            url: '/api/update-user',
+            type: 'put',
+            dataType: 'json',
+            data: {name: $('#name').val(), surname: $('#surname').val(), 
+                    username: $('#username').val(), fecha_nacimiento: $('#datepicker').val(), 
+                    pais: $('#pais').val(), sobre_mi: $('#sobremi').val()},
+
+            success: function(response){
+                console.log(response);
+                alertify.success('Perfil actualizado');
+                $('#name').val('');
+                $('#surname').val('');
+                $('#username').val('');
+                $('#sobremi').val('');  
+            }
+        })
     });
 
 

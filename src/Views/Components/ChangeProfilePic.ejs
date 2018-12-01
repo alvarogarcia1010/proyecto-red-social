@@ -1,5 +1,5 @@
 <!--VALIDACION FORM PARA CAMBIAR USERNAME-->
-<form class="form form-vertical" action="/" method="post" enctype="multipart/form-data" id="form-upload-picture">
+<form class="form form-vertical" action="/api/update-user" method="post" enctype="multipart/form-data" id="form-upload-picture">
   <div class="row">
       <div class="col-sm-4 offset-md-4 text-center">
           <div class="kv-avatar">
@@ -14,20 +14,20 @@
     <button type="submit" id="save-profile-picture" class="btn btn-success">Guardar foto</button>
   </div>
 </form>
-<form class="form form-vertical" action="/" method="post">
+<form class="form form-vertical" action="/api/update-user" method="put">
     <div class="row">
         <div class="col-sm-12 scrollbar">
           <div class="row">
             <div class="col-sm-6">
               <div class="form-group">
                 <label for="name">Nombre<span class="kv-reqd"></span></label>
-                <input type="text" class="form-control" name="name" required>
+                <input type="text" id ="name" class="form-control" name="name" required>
               </div>
             </div>
             <div class="col-sm-6">
               <div class="form-group">
                 <label for="surname">Apellido<span class="kv-reqd"></span></label>
-                <input type="text" class="form-control" name="surname" required>
+                <input type="text" id="surname" class="form-control" name="surname" required>
               </div>
             </div>
           </div>
@@ -35,7 +35,7 @@
             <div class="col-sm-4">
               <div class="form-group">
                 <label for="username">Username<span class="kv-reqd"></span></label>
-                <input type="text" class="form-control" name="username" required>
+                <input type="text" id="username" class="form-control" name="username" required>
               </div>
             </div>
             <div class="col-sm-4">
@@ -46,8 +46,8 @@
             </div>
             <div class="col-sm-4">
               <div class="form-group">
-                <label for="country">Pais<span class="kv-reqd"></span></label>
-                <select class="js-example-basic-single" name="country">
+                <label for="pais">Pais<span class="kv-reqd"></span></label>
+                <select class="js-example-basic-single" name="pais" id="pais">
                   <option value="ES">El Salvador</option>
                   <option value="BL">Belice</option>
                   <option value="CR">Costa Rica</option>
@@ -62,8 +62,8 @@
           <div class="row">
             <div class="col-sm-12">
               <div class="form-group">
-                <label for="me">Sobre mi:<span class="kv-reqd"></span></label>
-                <textarea name="me" cols="20" rows="5" class="w-100"></textarea>
+                <label for="sobremi">Sobre mi:<span class="kv-reqd"></span></label>
+                <textarea name="sobremi" id="sobremi" cols="20" rows="5" class="w-100"></textarea>
               </div>
             </div>
           </div>

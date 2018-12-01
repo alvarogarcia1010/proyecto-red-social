@@ -25,7 +25,7 @@ router.get('/api/users/counters/:id?', UserManager.getCounters);
 router.get('/api/users/:page?', UserManager.getUsers);
 
 //Actualiza la informacion de usuario
-router.put('/api/update-user/:id', UserManager.updateUser);
+router.put('/api/update-user/:id?', UserManager.updateUser);
 
 // Un usuario especifico
 router.get('/api/:username', UserManager.getUser);

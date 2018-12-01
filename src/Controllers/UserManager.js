@@ -423,21 +423,26 @@ AuthController.resetPass = async(req,res, next)=>{
 * @return JSON
 */
 AuthController.updateUser = async (req, res, next) => {
-  var userId = req.params.id;
-  var updatedUser = req.body;
+  var userId;
+  var updatedUser = {name: req.body.name, surname: req.body.surname, username: req.body.username, fecha_nacimiento: req.body.fecha_nacimiento, pais: req.body.pais, sobre_mi: req.body.sobre_mi};
 
-  delete updatedUser.password;
+  if(req.params.id){
 
-  if(userId != req.user._id)
-  {
-    return res.status(500).json({message:'Permiso para actualizar usuario denegado', success: false});
+    userId = req.params.id
+
+  }else{
+
+    userId = req.user._id;
   }
+
+  console.log("id usuario" + userId);
 
   await User.findByIdAndUpdate(userId, updatedUser, {new: true}, (error, user) => {
     if (error) return res.status(500).json({success: false, message: "Error en la petición"});
 
-    if (user && user.length > 0)
+    if (user)
     {
+      console.log("usuario nuevo: " + user);
       return res.status(200).json({success: true, message: "Usuario actualizado", user});
     }
     else
@@ -615,5 +620,7 @@ AuthController.updatePass = async(req,res,next)=>{
     }
   });
 };
+
+
 
 module.exports = AuthController;
