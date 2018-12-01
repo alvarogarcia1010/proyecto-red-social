@@ -1,47 +1,39 @@
 <%- layout('Layout/template.ejs') %>
 <!-- mainContainer -->
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-3 col-md-5 px-2">
-        <!-- Mi Perfil -->
-        <%- include('Components/myProfile.ejs') %>
-        <!-- Fin de mi perfil   -->
-        <!-- Sugerencias -->
-        <%- include('Components/Suggestions.ejs', {users: usersSuggestion}) %>
-        <!-- Fin de sugerencias -->
-      </div>
-        <div id="espacioPublicaciones" class="col-lg-6 col-md-7 px-2">
-          <!--Agregar Publicacion-->
-          <%- include('Components/addPost.ejs') %>
-          <!--Fin Agregar publicacion-->
-          <!--Alerta publicacion-->
-          <%- include('Components/postAlert.ejs') %>
-          <!--Fin alerta publicacion-->
-          <!-- Publicacion #1 -->
-          <%- include('Components/post.ejs') %>
-          <!-- Fin de publicación #1 -->
-          <!-- Publicacion #2 -->
-          <%- include('Components/post.ejs') %>
-          <!-- Fin de publicación #2 -->
-          <!-- Publicacion #3 -->
-          <%- include('Components/post.ejs') %>
-          <!-- Fin de publicación #3 -->
-          <!-- Publicacion #4 -->
-          <%- include('Components/post.ejs') %>
-          <!-- Fin de publicación #4 -->
-      </div>
-      <!-- Publicidad -->
-      <div class="col-lg-3 px-2 d-none d-lg-inline">
-          <%- include('Components/ads.ejs') %>
-      </div>
-      <!--Fin de publicidad-->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3 col-md-5 px-2">
+      <!-- Mi Perfil -->
+      <%- include('Components/myProfile.ejs') %>
+      <!-- Fin de mi perfil   -->
+      <!-- Sugerencias -->
+      <%- include('Components/Suggestions.ejs', {users: usersSuggestion}) %>
+      <!-- Fin de sugerencias -->
     </div>
+    <div id="areaPublicaciones" class="col-lg-6 col-md-7 px-2">
+      <!--Agregar Publicacion-->
+      <%- include('Components/addPost.ejs') %>
+      <!--Fin Agregar publicacion-->
+      <!--Alerta publicacion-->
+      <div id="espacioPublicaciones">
+        
+      </div>
+
+    </div>
+    <!-- Publicidad -->
+    <div class="col-lg-3 px-2 d-none d-lg-inline">
+      <%- include('Components/ads.ejs') %>
+    </div>
+    <!--Fin de publicidad-->
   </div>
+</div>
 
 
 <!-- mainContainer -->
 
-  <!-- Modal Compartir publicación-->
+<!-- Modal Compartir publicación-->
 
 
-  <!-- Modal Enviar mensaje privado-->
+<!-- Modal Enviar mensaje privado-->
+<!--agregar publicaciones-->
+<script src="Javascript/ajaxPublicaciones.js"></script>

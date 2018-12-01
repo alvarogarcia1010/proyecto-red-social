@@ -11,28 +11,26 @@ var Follow = require('../Models/follow');
 const PostController = {};
 
 //metodo de buscar todas las publicaciones
-PostController.findPostsAll = async function(req,res,next){
-    await Publicacion.find((error, posts)=>{
-      if(error) return res.status(500).json({success: false, message: "Error al obtener publicaciones"});
-
-      return res.status(200).json({success: true, posts})
-    });
+PostController.index = async function(req,res,next){
+    let publicaciones = await Publicacion.find().sort('-created_at').populate('user_Id');
+    return res.status(200).json(publicaciones);
 }
 
 //metodo de crear la publicacion
 PostController.createPost = function (req, res) {
     var params = req.body;
 
-    if (!params.text) {
+    if (!params.texto) {
         res.status(200);
         return res.json({ message: "debes enviar un texto" });
     }
 
     var publicacion = new Publicacion();
-    publicacion.text = params.text;
+    publicacion.text = params.texto;
     publicacion.file = 'null';
     publicacion.user_Id = req.user.id;
-    publicacion.created_at = moment().unix();
+    //console.log(req.user.id);
+    publicacion.created_at = moment().format('LLLL');
 
     publicacion.save((err, publicacionStored) => {
         if (err) {

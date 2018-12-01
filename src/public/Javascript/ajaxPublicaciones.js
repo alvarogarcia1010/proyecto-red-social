@@ -1,92 +1,102 @@
+console.log(document.forms.formPublicacion.texto.value);
 publicaciones();
 
-console.log(document.forms.formRegistrar.user.value);
-//formulario para registrar
-document.querySelector("#formPublicacion").addEventListener('submit', function (e) {
+
+
+document.querySelector('#formPublicacion').addEventListener('submit', function (e) {
     e.preventDefault();
-    let data = {
-        text: document.forms.formPublicacion.text.value,
-    }
-    console.log(data);
-    alert(funcionando);
-    fetch('/post/create', {
+    console.log(e);
+    
+    //alert("hola");
+    let publicacion = {
+        texto: document.forms.formPublicacion.texto.value
+    };
+
+    console.log(publicacion);
+    fetch('/post', {
         method: "POST",
-        body: JSON.stringify(data),
+        body: JSON.stringify(publicacion),
         headers: {
             'Content-Type': 'application/json'
         }
-    }).then(res => res.json())
-        .then(response => {
-            alert("Publicacion insertada con exito");
-            publicaciones();
-        })
-        .catch(err => {
-            alert("Por favor revise los datos ingresados");
-            console.log(err);
-        });
+    }).then(res => res.json()).then(response =>{
+        //alert("publicacion ingresada con exito!");
+        publicaciones(); //METODO A DEFINIR PARA INSERTAR PUBLICACIONES CON AJAX
+    }).catch(err =>{
+        alert("no se ha podido insetar la publicacion");
+        console.log(err);
+    });
+
+
+    
 });
 
-function publicaciones() {
-    fetch('/post/all',
-        {
-            method: 'GET'
-        }).then(res => res.json())
-        .then(data => {
-            let newPost = "";
-            newPost = newPost + '<div class="card mb-2"><div class="card-body p-2"><!-- Información personal de la publicación -->\
-                <div class="d-flex">\
-                    <div class="pl-1">\
-                        <a href="#">\
-                            <img class="rounded-circle" src="https://s.gravatar.com/avatar/47dc454dc555e624caf972e9ecb3a67c?s=45">\
-                        </a>\
-                    </div>\
-                    <div class="flex-align-center px-2">\
-                        <h6 class="card-title mb-0">\
-                            <a href="#" class="text-dark font-weight-bold">Alvaro García</a>\
-                        </h6>\
-                        <p class="card-subtitle"><small class="text-muted">Last updated 3 mins ago</small></p>\
-                    </div>\
-                    <div class="ml-auto">\
-                        <div class="dropdown flex-end">\
-                            <i class="fas fa-ellipsis-h btn" id="publication-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>\
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="publication-1">\
-                                <a class="dropdown-item" href="#">Editar publicación</a>\
-                                <a class="dropdown-item" href="#">Eliminar publicación</a>\
-                                <a class="dropdown-item" href="#">Copiar enlace de publicación</a>\
-                            </div>\
-                        </div>\
-                    </div>\
-                </div>\
-                <!-- Fin de la información personal -->\
-                <!-- Texto -->\
-                <p class="card-text my-1">With supporting text below as a natural lead-in to additional content.</p>\
-                <!-- Footer -->\
-                <div class="d-flex btn-group w-100" role="group" aria-label="post-action">\
-                    <button type="button" class="btn btn-outline-success btn-sm flex-fill"><i class="fas fa-paw"></i> <span class="d-none d-sm-inline d-md-none d-xl-inline">Me empeluda</span> <span class="badge badge-light">20</span></button>\
-                    <button type="button" class="btn btn-outline-success btn-sm flex-fill" data-toggle="collapse" data-target="#collapse-comment" aria-expanded="false" aria-controls="collapse-comment"><i class="far fa-comment"></i> <span class="d-none d-sm-inline d-md-none d-xl-inline">Comentar</span>\
-                        <span class="badge badge-light">20</span></button>\
-                    <button type="button" class="btn btn-outline-success btn-sm flex-fill" data-toggle="modal" data-target="#share-publication"><i class="fas fa-share"></i> <span class="d-none d-sm-inline d-md-none d-xl-inline">Compartir</span> <span\
-                        class="badge badge-light">20</span></button>\
-                    <button type="button" class="btn btn-outline-success btn-sm flex-fill" data-toggle="modal" data-target="#send-private-message"><i class="fas fa-envelope"></i> <span class="d-none d-sm-inline d-md-none d-xl-inline">Mensaje directo</span> </button>\
-                </div>\
-        \
-                <div class="collapse" id="collapse-comment">\
-                    <div class="card card-body border-0 py-2 px-0">\
-                        <form class="form-inline">\
-                            <div class="">\
-                                <a href="#">\
-                                    <img class="rounded-circle" src="https://s.gravatar.com/avatar/47dc454dc555e624caf972e9ecb3a67c?s=35">\
-                                </a>\
-                            </div>\
-                            <div class="form-group flex-grow-1 mx-2 my-0">\
-                                <textarea class="form-control form-control-sm w-100 js-auto-size" id="comment-box" rows="1" placeholder="Escribe un comentario..."></textarea>\
-                            </div>\
-                            <button type="submit" class="btn btn-outline-success btn-sm">Enviar</button>\
-                        </form>\
-                    </div>\
-                </div>\
-            </div>\
-        </div>'
-            document.querySelector("#espacioPublicaciones").innerHTML = newPost + document.querySelector("#espacioPublicaciones").innerHTML;
-        })
+//FUNCION PARA AGREGAR PUBLICACIONES AJAX
+function publicaciones(){
+    fetch('/post',{
+        method: "GET"
+    }).then(res=>res.json()).then(data => {
+        let posts = "";
+        data.forEach(element =>{
+            posts = posts + `<div class="card mb-2">
+            <div class="card-body p-2">
+                <!-- Información personal de la publicación -->
+                <div class="d-flex">
+                    <div class="pl-1">
+                        <a href="#">
+                            <img class="rounded-circle" src="/${element.user_Id.urlImage}" style="height:45px;width:45px;">
+                        </a>
+                    </div>
+                    <div class="flex-align-center px-2">
+                        <h6 class="card-title mb-0">
+                            <a href="#" class="text-dark font-weight-bold">${element.user_Id.username}</a>
+                        </h6>
+                        <p class="card-subtitle"><small class="text-muted">${element.created_at}</small></p>
+                    </div>
+                    <div class="ml-auto">
+                        <div class="dropdown flex-end">
+                            <i class="fas fa-ellipsis-h btn" id="publication-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="publication-1">
+                                <a class="dropdown-item" href="#">Editar publicación</a>
+                                <a class="dropdown-item" href="#">Eliminar publicación</a>
+                                <a class="dropdown-item" href="#">Copiar enlace de publicación</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Fin de la información personal -->
+                <!-- Texto -->
+                <p class="card-text my-1">${element.text}</p>
+                <!-- Footer -->
+                <div class="d-flex btn-group w-100" role="group" aria-label="post-action">
+                    <button type="button" class="btn btn-outline-success btn-sm flex-fill"><i class="fas fa-paw"></i> <span class="d-none d-sm-inline d-md-none d-xl-inline">Me empeluda</span> <span class="badge badge-light">20</span></button>
+                    <button type="button" class="btn btn-outline-success btn-sm flex-fill" data-toggle="collapse" data-target="#collapse-comment" aria-expanded="false" aria-controls="collapse-comment"><i class="far fa-comment"></i> <span class="d-none d-sm-inline d-md-none d-xl-inline">Comentar</span>
+                        <span class="badge badge-light">20</span></button>
+                    <button type="button" class="btn btn-outline-success btn-sm flex-fill" data-toggle="modal" data-target="#share-publication"><i class="fas fa-share"></i> <span class="d-none d-sm-inline d-md-none d-xl-inline">Compartir</span> <span
+                        class="badge badge-light">20</span></button>
+                    <button type="button" class="btn btn-outline-success btn-sm flex-fill" data-toggle="modal" data-target="#send-private-message"><i class="fas fa-envelope"></i> <span class="d-none d-sm-inline d-md-none d-xl-inline">Mensaje directo</span> </button>
+                </div>
+        
+                <div class="collapse" id="collapse-comment">
+                    <div class="card card-body border-0 py-2 px-0">
+                        <form class="form-inline">
+                            <div class="">
+                                <a href="#">
+                                    <img class="rounded-circle" src="https://s.gravatar.com/avatar/47dc454dc555e624caf972e9ecb3a67c?s=35">
+                                </a>
+                            </div>
+                            <div class="form-group flex-grow-1 mx-2 my-0">
+                                <textarea class="form-control form-control-sm w-100 js-auto-size" id="comment-box" rows="1" placeholder="Escribe un comentario..."></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-outline-success btn-sm">Enviar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>`
+        });
+        document.querySelector('#espacioPublicaciones').innerHTML = posts;
+        document.querySelector('#texto').value="";
+    })
 }
+
