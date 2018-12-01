@@ -47,6 +47,13 @@ PostController.createPost = function (req, res) {
 
 }
 
+//metodo de borrar una publicacion
+PostController.deletePost = async function(req,res){
+    let {id} = req.params;
+    await Publicacion.remove({_id:id});
+    res.json("la publicacion ha sido eliminada");
+}
+
 //metodo de retornar todas las publicaciones
 PostController.getPosts = function (req, res) {
 
@@ -67,23 +74,6 @@ PostController.getPosts = function (req, res) {
         return res.json(publicaciones);
 
 
-    });
-}
-
-PostController.deletePost = function (req, res) {
-    var idPublicacion = req.params.id;
-
-    Publicacion.find({ 'user_Id': req.user.sub, '_id': idPublicacion }).remove(err => {
-        if (err) {
-            res.status(500);
-            return res.json({ message: "error eliminar la publicacion" });
-        }
-        if (!publicacionRemoved) {
-            res.status(404);
-            return res.json({ message: "no se encontro la publicacion a eliminar" });
-        }
-        res.status(200);
-        res.json({ message: 'publicacion borrada correctamente' });
     });
 }
 

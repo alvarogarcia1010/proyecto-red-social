@@ -31,6 +31,7 @@ document.querySelector('#formPublicacion').addEventListener('submit', function (
     
 });
 
+
 //FUNCION PARA AGREGAR PUBLICACIONES AJAX
 function publicaciones(){
     fetch('/post',{
@@ -58,7 +59,7 @@ function publicaciones(){
                             <i class="fas fa-ellipsis-h btn" id="publication-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="publication-1">
                                 <a class="dropdown-item" href="#">Editar publicación</a>
-                                <a class="dropdown-item" href="#">Eliminar publicación</a>
+                                <a id="eliminar" class="dropdown-item" href="/post/${element._id}">Eliminar publicación</a>
                                 <a class="dropdown-item" href="#">Copiar enlace de publicación</a>
                             </div>
                         </div>
@@ -82,7 +83,7 @@ function publicaciones(){
                         <form class="form-inline">
                             <div class="">
                                 <a href="#">
-                                    <img class="rounded-circle" src="https://s.gravatar.com/avatar/47dc454dc555e624caf972e9ecb3a67c?s=35">
+                                    <img class="rounded-circle" src="/${element.user_Id.urlImage}">
                                 </a>
                             </div>
                             <div class="form-group flex-grow-1 mx-2 my-0">
@@ -97,6 +98,26 @@ function publicaciones(){
         });
         document.querySelector('#espacioPublicaciones').innerHTML = posts;
         document.querySelector('#texto').value="";
+        //funcion para borrar una publicacion
+        let btnEliminar = document.querySelectorAll('#eliminar');
+        console.log(btnEliminar);
+        btnEliminar.forEach(boton=>{
+            boton.addEventListener("click",function(e){
+                e.preventDefault();
+                let url = this["href"];
+                fetch(
+                    url,
+                    {
+                    method:"DELETE"
+                }).then(res=>res.json()).then(response=>{
+                    alert("la publicacion ha sido borrada con exito!");
+                    publicaciones();
+                }).catch(err=>{
+                    //res.json("hubo un error al eliminar la publicacion");
+                    console.log(err);
+                });
+            });
+        })
     })
 }
 

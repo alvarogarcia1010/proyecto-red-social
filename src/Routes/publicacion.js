@@ -10,6 +10,7 @@ router.use(AuthMiddleware.isAuthentication);
 
 router.get('/', PostManager.index);
 router.post('/', PostManager.createPost);
+router.delete('/:id',PostManager.deletePost);
 
 // router.post('/publicacion',md_auth.isAuthentication,publicationController.savePublicacion);
 // router.get('/publicaciones/:page',md_auth.isAuthentication,publicationController.getPublicaciones);
