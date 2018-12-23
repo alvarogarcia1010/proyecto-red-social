@@ -13,29 +13,23 @@
     </div>
     <script>
         window.onload = () => {
-          var botons = document.getElementsByClassName("seguir");
-          for(i=0; i<botons.length; i++){
-            console.log(botons[i].getAttribute("data-id"));
-            var aux = (botons[i].getAttribute("data-id"));
-            botons[i].addEventListener("click", (event) => {
+          document.querySelectorAll(".seguir").forEach(botons => {
+            botons.addEventListener("click", (event) => {
               event.preventDefault();
-              fetch('/api/follow/' + aux, {
+              fetch('/api/follow/' + botons.getAttribute("data-id"), {
                       method: 'POST'
               }).then(res => res.json())
                 .then(res => {
                     if (res.success) {
-                      console.log("Listo");
-                      this.value = "Seguido";
-                      this.className += "btn-success";
-                      this.classList.remove("btn-outline-success");
+                      botons.innerHTML = "Siguiendo";
+                      botons.classList.remove("btn-outline-success");
+                      botons.classList.add("btn-success");
                     } else {
-                      this.innerText = "Seguir";
-                      this.className += "btn-outline-success";
-                      this.classList.remove("btn-success");
+                      alert("Error al seguirlo");
                     }
                   });
               });
-            };
+          });
         };
     </script>
 </div>

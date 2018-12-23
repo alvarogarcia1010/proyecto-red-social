@@ -13,7 +13,7 @@ var serverMongoDb = `mongodb://${crendentials}${server}/${db}`
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect(serverMongoDb, {
+mongoose.connect(mongodb.URI, {
   useNewUrlParser: true,
   useCreateIndex: true
 })

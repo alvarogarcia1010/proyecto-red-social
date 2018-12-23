@@ -1,4 +1,3 @@
-console.log(document.forms.formPublicacion.texto.value);
 publicaciones();
 
 
@@ -6,7 +5,7 @@ publicaciones();
 document.querySelector('#formPublicacion').addEventListener('submit', function (e) {
     e.preventDefault();
     console.log(e);
-    
+
     //alert("hola");
     let publicacion = {
         texto: document.forms.formPublicacion.texto.value
@@ -28,7 +27,7 @@ document.querySelector('#formPublicacion').addEventListener('submit', function (
     });
 
 
-    
+
 });
 
 
@@ -58,9 +57,7 @@ function publicaciones(){
                         <div class="dropdown flex-end">
                             <i class="fas fa-ellipsis-h btn" id="publication-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="publication-1">
-                                <a class="dropdown-item" href="#">Editar publicación</a>
                                 <a id="eliminar" class="dropdown-item" href="/post/${element._id}">Eliminar publicación</a>
-                                <a class="dropdown-item" href="#">Copiar enlace de publicación</a>
                             </div>
                         </div>
                     </div>
@@ -77,7 +74,7 @@ function publicaciones(){
                         class="badge badge-light">20</span></button>
                     <button type="button" class="btn btn-outline-success btn-sm flex-fill" data-toggle="modal" data-target="#send-private-message"><i class="fas fa-envelope"></i> <span class="d-none d-sm-inline d-md-none d-xl-inline">Mensaje directo</span> </button>
                 </div>
-        
+
                 <div class="collapse" id="collapse-comment">
                     <div class="card card-body border-0 py-2 px-0">
                         <form class="form-inline">
@@ -120,4 +117,3 @@ function publicaciones(){
         })
     })
 }
-

@@ -2,8 +2,9 @@
 module.exports = {
     mongodb:
     {
+        // URI: 'mongodb://alvarogarcia1010:6ce69ba8@ds123454.mlab.com:23454/ayuda_un_peludo',
         URI: 'mongodb://localhost/ayuda_un_peludo',
-        user: '',
+        user: 'alvarogarcia1010',
         password:'',
         server:'localhost',
         db: 'ayuda_un_peludo'

@@ -291,7 +291,7 @@ AuthController.followUserIds = async function(userId, cb){
 AuthController.getUsers = async (req, res, next) => {
   var userLoggerId = req.user.id
   var page = 1;
-  var itemsPerPage = 100;
+  var itemsPerPage = 4;
   if (req.params.page) {
     page = req.params.page;
   }

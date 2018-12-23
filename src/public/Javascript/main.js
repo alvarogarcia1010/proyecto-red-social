@@ -53,40 +53,13 @@ $(document).ready(function()
 	var imgProfile;
 	var page = 2;
 	imgProfile = $("#img-profile").attr('src');
-
-	if($("#aup-username").attr("data-id") !== undefined){
-
-		$.ajax({
-			url: urlCounters,
-			type: "GET",
-			dataType: "json",
-
-			error: function (jqXHR, textStatus, errorThrown)
-			{
-				alertify.error('Ocurrio un error en su petición');
-				$('#app-loader').addClass('d-none');
-				enableAll();
-			},
-			beforeSend:function()
-			{
-				$('#app-loader').removeClass('d-none');
-				disabledAll();
-			},
-
-			success: function(response){
-					console.log(response.siguiendo);
-					console.log(response.seguidores);
-					$('#app-loader').addClass('d-none');
-					enableAll();
-			}
-		});
-	}
+	getUser();
 
 	$("#update-statistics").click(()=>{
 		$("#role-user").text("10");
 		$("#role-admin").text("3");
-		$("#count-publications").text("100");
-		$("#count-me-empeluda").text("10");
+		$("#count-publications").text("10");
+		$("#count-me-empeluda").text("0");
 	});
 
 	$("#update-users").click(()=>{
@@ -115,7 +88,6 @@ $(document).ready(function()
 		});
 	});
 
-    console.log(urlCounters);
     $('#send-mail-recover-pass').on('click',function(e){
         e.preventDefault();
         $.ajax({
@@ -127,6 +99,8 @@ $(document).ready(function()
             error: function (jqXHR, textStatus, errorThrown)
             {
               alertify.success('Ocurrio un error en su petición');
+							$('#app-loader').addClass('d-none');
+							enableAll();
             },
             beforeSend:function()
             {
@@ -144,6 +118,91 @@ $(document).ready(function()
             }
         });
     });
+
+		$('#following-tab').on('click', function (e) {
+		  e.preventDefault();
+
+			$.ajax({
+					url: "api/following",
+					type: "GET",
+					dataType: "json",
+
+					error: function (jqXHR, textStatus, errorThrown)
+					{
+						alertify.success('Ocurrio un error en su petición');
+					},
+					beforeSend:function()
+					{
+
+					},
+					success: function(response){
+							//alertify.alert("Mensaje enviado con éxito. Favor revise su correo.", function(){alertify.message('OK');});
+							var newUsers = "";
+							var head = '<div class="container"> <div class="row">'
+							var footer = '</div> </div>'
+							response.follows.forEach(user => {
+								newUsers+= `<div class="col-md-6">
+								<div class="card text-center">
+								    <a class="justify-content-center mt-2" href="/profile/${user.user_following.username}">
+								        <img class="card-img-top rounded-circle" style="width:75px" src="${user.user_following.urlImage}" alt="Card image">
+								    </a>
+								    <div class="card-body">
+								        <a href="/profile/${user.user_following.username}" class="card-title text-dark font-weight-bold">${user.user_following.name} ${user.user_following.surname} </a>
+								        <h6 class="card-subtitle text-center mb-2 text-muted">${user.user_following.username}</h6>
+								        <p class="card-text">${user.user_following.sobre_mi}</p>
+								        <a href="#" class="btn btn-outline-success">Seguir</a>
+								    </div>
+								</div>
+								</div>`
+							});
+							$("#following").html(head + newUsers + footer)
+							$("#following").tab('show');
+
+					}
+			});
+		});
+
+
+		// $("#list-users").on("click", ".actualizar", function(){
+		// 		var newRole = "";
+		// 		if($(this).text() == "Hacer administrador"){
+		// 			newRole = "ROLE_ADMIN";
+		// 		}else{
+		// 			newRole = "ROLE_USER";
+		// 		}
+		// 		$.ajax({
+	  //       url: "api/update-user/" + $(this).attr("data-id"),
+	  //       type: "PUT",
+	  //       dataType: "json",
+	  //       data:
+	  //           {
+	  //               role: newRole
+	  //           },
+		//
+	  //       error: function(){
+	  //           console.log("Hubo un error en la peticion");
+		// 					$('#app-loader').addClass('d-none');
+		// 					enableAll();
+	  //       },
+		// 			beforeSend:function()
+		// 			{
+		// 				$('#app-loader').removeClass('d-none');
+		// 				disabledAll();
+		// 			},
+		//
+	  //       success: function(response){
+	  //           if(response.success){
+		// 						$(this).removeClass("btn-success");
+		// 						$(this).addClass("btn-danger");
+	  //           }else{
+	  //               console.log(response.message);
+	  //           }
+		//
+		// 					$('#app-loader').addClass('d-none');
+		// 					enableAll();
+	  //       }
+	  //   });
+		// });
 
 		$("#aup-refresh-suggestions").on("click", function(e){
 			e.preventDefault();
@@ -187,8 +246,29 @@ $(document).ready(function()
 													      <button type="button" class="btn btn-outline-success seguir" data-id="${user._id}">Seguir</button>
 													    </div>
 														</div>
-													 </li>`
+													 </li>
+`
 							});
+							newUsers +=
+							`<script>
+							document.querySelectorAll(".seguir").forEach(botons => {
+								botons.addEventListener("click", (event) => {
+									event.preventDefault();
+									fetch('/api/follow/' + botons.getAttribute("data-id"), {
+													method: 'POST'
+									}).then(res => res.json())
+										.then(res => {
+												if (res.success) {
+													botons.innerHTML = "Siguiendo";
+													botons.classList.remove("btn-outline-success");
+													botons.classList.add("btn-success");
+												} else {
+													alert("Error al seguirlo");
+												}
+											});
+									});
+							});
+							</script>`
 							console.log(newUsers)
 							$("#aup-list-suggestions").html(newUsers)
 							$('#app-loader').addClass('d-none');
@@ -196,7 +276,6 @@ $(document).ready(function()
 					}
 			});
 		})
-		console.log(imgProfile);
 
 		$("#form-upload-picture").submit(function(evt){
 			 evt.preventDefault();
@@ -279,15 +358,15 @@ $(document).ready(function()
         history.pushState(null, "", "dashboard");
 
 	});
-	
+
 	$('body').on('click','#btn-update-profile', function(e){
         e.preventDefault();
         $.ajax({
             url: '/api/update-user',
             type: 'put',
             dataType: 'json',
-            data: {name: $('#name').val(), surname: $('#surname').val(), 
-                    username: $('#username').val(), fecha_nacimiento: $('#datepicker').val(), 
+            data: {name: $('#name').val(), surname: $('#surname').val(),
+                    username: $('#username').val(), fecha_nacimiento: $('#datepicker').val(),
                     pais: $('#pais').val(), sobre_mi: $('#sobremi').val()},
 
             success: function(response){
@@ -296,7 +375,7 @@ $(document).ready(function()
                 $('#name').val('');
                 $('#surname').val('');
                 $('#username').val('');
-                $('#sobremi').val('');  
+                $('#sobremi').val('');
             }
         })
     });
@@ -385,3 +464,34 @@ setTimeout(function(){
     $('#login-error-alert').alert('close');
     $('#signup-error-alert').alert('close');
 }, 5000);
+
+function getUser(){
+    var rowUser = "";
+    $.ajax({
+        url: "api/users",
+        type: "GET",
+        datatype: "json",
+        error: function(){
+            console.log("Error en la peticion");
+        },
+        success: function(response){
+            response.users.forEach(user => {
+                rowUser += createRow(user);
+            });
+
+            $("#list-users").html(rowUser);
+        }
+    });
+}
+
+function createRow (data){
+    var row = ` <tr>
+		                <td class="text-center">${data._id}</td>
+		                <td>${data.name}</td>
+		                <td>${data.surname}</td>
+		                <td>${data.username}</td>
+		                <td class="text-center"><button class="btn btn-success actualizar" data-id="${data._id}">Hacer administrador</button></td>
+		            </tr>`
+
+    return row;
+};

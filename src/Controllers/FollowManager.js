@@ -53,7 +53,7 @@ FollowController.unfollowUser = (req, res, next) => {
 FollowController.getFollowingUsers = (req, res, next) => {
   var userId = req.user._id;
   var page = 1;
-  var itemsPerPage = 4;
+  var itemsPerPage = 100;
   if(req.params.id){
     userId = req.params.id;
   }
@@ -61,12 +61,12 @@ FollowController.getFollowingUsers = (req, res, next) => {
     page = req.params.page;
   }
 
-  Follow.find({user_follower: userId}).populate({path: 'user_follower', select: '_id name surname username email urlImage fecha_nacimiento sobre_mi pais' }).paginate(page, itemsPerPage, (error, follows, total) =>{
+  Follow.find({user_follower: userId}).populate({path: 'user_following', select: '_id name surname username email urlImage fecha_nacimiento sobre_mi pais' }).paginate(page, itemsPerPage, (error, follows, total) =>{
       if (error) return res.status(500).json({success: false, message: "Error en la petición"});
 
       if (follows && follows.length > 0)
       {
-        return res.status(200).json({success: true, message: "Usuario seguido con exito", followStored, total, pages: Math.ceil(total/itemsPerPage)});
+        return res.status(200).json({success: true, message: "Usuario seguido con exito", follows, total, pages: Math.ceil(total/itemsPerPage)});
       }
       else
       {
